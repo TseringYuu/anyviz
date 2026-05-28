@@ -1,0 +1,302 @@
+# 交互式场景示例：COVID-19 数据探索
+
+## 场景
+创建一个交互式 COVID-19 数据探索页面，使用 D3.js。
+包含：时间序列折线图 + 可选择国家的交互。
+
+## 美学决策
+- 主题：深色科学风格（Viridis 色板）
+- 定制："深色主题，用 Viridis 色板，字体大一点"
+
+## 实现代码
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COVID-19 Cases Explorer</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1A1A1A;
+      color: #E8E8E8;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #F0F0F0;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #999999;
+      margin-bottom: 24px;
+    }
+    #chart {
+      background: #1E1E1E;
+      border-radius: 8px;
+      padding: 24px 0 0 0;
+    }
+    .country-list {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .country-btn {
+      padding: 6px 14px;
+      border: 1px solid #444444;
+      background: #2A2A2A;
+      color: #CCCCCC;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .country-btn:hover {
+      background: #3A3A3A;
+      border-color: #666666;
+    }
+    .country-btn.active {
+      background: #3E4A89;
+      border-color: #4C5DA7;
+      color: #FFFFFF;
+    }
+    .tooltip {
+      position: absolute;
+      background: rgba(30, 30, 30, 0.95);
+      border: 1px solid #555555;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #E8E8E8;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .footer {
+      margin-top: 16px;
+      font-size: 9px;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>COVID-19 Daily New Cases</h1>
+    <p class="subtitle">7-day rolling average · Select countries to compare</p>
+
+    <div class="country-list" id="countryList"></div>
+
+    <div id="chart">
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <p class="footer">Source: Johns Hopkins University CSSE · Data as of 2024-01-01</p>
+  </div>
+
+  <script>
+    // ===== AnyVis 参数（深色主题定制）=====
+    const BG = '#1E1E1E';
+    const TEXT_PRIMARY = '#E8E8E8';
+    const TEXT_SECONDARY = '#999999';
+    const GRID_COLOR = '#333333';
+    const AXIS_COLOR = '#555555';
+
+    // Viridis 色板（深色主题下亮度提升）
+    const VIRIDIS = ['#5EC962', '#3EC887', '#29AF7F', '#3B988B',
+                     '#3F7F93', '#436590', '#482878'];
+
+    const MARGIN = { top: 20, right: 40, bottom: 50, left: 60 };
+    const WIDTH = 950 - MARGIN.left - MARGIN.right;
+    const HEIGHT = 500 - MARGIN.top - MARGIN.bottom;
+
+    // 模拟数据（7 个国家，180 天）
+    const countries = ['USA', 'India', 'Brazil', 'UK', 'Germany', 'Japan', 'Australia'];
+    const dates = d3.range(180).map(d => {
+      const date = new Date(2023, 6, 1);
+      date.setDate(date.getDate() + d);
+      return date;
+    });
+
+    // 生成模拟数据
+    const data = {};
+    const baseRates = { USA: 5000, India: 3000, Brazil: 2500, UK: 1200, Germany: 900, Japan: 800, Australia: 400 };
+    countries.forEach(c => {
+      data[c] = dates.map((d, i) => ({
+        date: d,
+        value: Math.max(0,
+          baseRates[c] * (1 + 0.3 * Math.sin(i / 20) + 0.5 * Math.sin(i / 7))
+          + (Math.random() - 0.5) * baseRates[c] * 0.4
+        )
+      }));
+    });
+
+    // 默认选中国家
+    let selectedCountries = new Set(['USA', 'India', 'UK']);
+
+    // 创建 SVG
+    const svg = d3.select('#chart')
+      .append('svg')
+      .attr('viewBox', `0 0 ${WIDTH + MARGIN.left + MARGIN.right} ${HEIGHT + MARGIN.top + MARGIN.bottom}`)
+      .style('width', '100%')
+      .style('height', '540px');
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${MARGIN.left},${MARGIN.top})`);
+
+    // 比例尺
+    const xScale = d3.scaleTime()
+      .domain(d3.extent(dates))
+      .range([0, WIDTH]);
+
+    const yScale = d3.scaleLinear()
+      .range([HEIGHT, 0]);
+
+    // 线生成器
+    const line = d3.line()
+      .x(d => xScale(d.date))
+      .y(d => yScale(d.value))
+      .curve(d3.curveMonotoneX);
+
+    // X 轴
+    const xAxis = g.append('g')
+      .attr('transform', `translate(0,${HEIGHT})`)
+      .attr('color', AXIS_COLOR)
+      .attr('font-size', 11)
+      .call(d3.axisBottom(xScale).ticks(6).tickFormat(d3.timeFormat('%b %d')));
+
+    // Y 轴
+    const yAxis = g.append('g')
+      .attr('color', AXIS_COLOR)
+      .attr('font-size', 11);
+
+    // Y 轴标签
+    g.append('text')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', -50)
+      .attr('x', -HEIGHT / 2)
+      .attr('text-anchor', 'middle')
+      .attr('fill', TEXT_SECONDARY)
+      .attr('font-size', 12)
+      .text('Daily New Cases (7-day avg)');
+
+    // 网格线
+    g.append('g')
+      .attr('class', 'grid')
+      .attr('color', GRID_COLOR)
+      .attr('stroke-width', 0.5);
+
+    // Tooltip
+    const tooltip = d3.select('#tooltip');
+
+    // 渲染函数
+    function render() {
+      const selected = Array.from(selectedCountries);
+
+      // 更新 Y 轴域
+      const allValues = selected.flatMap(c => data[c].map(d => d.value));
+      yScale.domain([0, d3.max(allValues) * 1.05]);
+
+      yAxis.transition().duration(600)
+        .call(d3.axisLeft(yScale).ticks(5).tickFormat(d => d >= 1000 ? `${(d/1000).toFixed(1)}k` : d));
+
+      // 更新网格
+      g.select('.grid').transition().duration(600)
+        .call(d3.axisLeft(yScale).ticks(5).tickSize(-WIDTH).tickFormat(''));
+
+      // 数据绑定
+      const paths = g.selectAll('.line')
+        .data(selected, d => d);
+
+      // Enter
+      paths.enter()
+        .append('path')
+        .attr('class', 'line')
+        .attr('fill', 'none')
+        .attr('stroke-width', 2.5)
+        .attr('stroke-linecap', 'round')
+        .attr('stroke-linejoin', 'round')
+        .attr('stroke', (d, i) => VIRIDIS[i % VIRIDIS.length])
+        .attr('d', d => line(data[d]))
+        .attr('stroke-dasharray', function() {
+          return this.getTotalLength();
+        })
+        .attr('stroke-dashoffset', function() {
+          return this.getTotalLength();
+        })
+        .transition().duration(1000).ease(d3.easeCubicOut)
+        .attr('stroke-dashoffset', 0);
+
+      // Update
+      paths.transition().duration(600).ease(d3.easeCubicOut)
+        .attr('stroke', (d, i) => VIRIDIS[i % VIRIDIS.length])
+        .attr('d', d => line(data[d]));
+
+      // Exit
+      paths.exit()
+        .transition().duration(400)
+        .attr('opacity', 0)
+        .remove();
+
+      // 更新图例（简单实现：在最后一条线末端标注国家名）
+      g.selectAll('.label').remove();
+      selected.forEach((c, i) => {
+        const lastPoint = data[c][data[c].length - 1];
+        g.append('text')
+          .attr('class', 'label')
+          .attr('x', xScale(lastPoint.date) + 8)
+          .attr('y', yScale(lastPoint.value) + 4)
+          .attr('fill', VIRIDIS[i % VIRIDIS.length])
+          .attr('font-size', 11)
+          .attr('font-weight', 600)
+          .text(c);
+      });
+    }
+
+    // 国家按钮
+    const countryList = d3.select('#countryList');
+    countries.forEach((c, i) => {
+      countryList.append('button')
+        .attr('class', `country-btn ${selectedCountries.has(c) ? 'active' : ''}`)
+        .style('border-left', `3px solid ${VIRIDIS[i % VIRIDIS.length]}`)
+        .text(c)
+        .on('click', function() {
+          if (selectedCountries.has(c)) {
+            if (selectedCountries.size > 1) {
+              selectedCountries.delete(c);
+              d3.select(this).classed('active', false);
+            }
+          } else {
+            selectedCountries.add(c);
+            d3.select(this).classed('active', true);
+          }
+          render();
+        });
+    });
+
+    // 初始渲染
+    render();
+  </script>
+</body>
+</html>
+```
+
+## 定制说明
+
+本示例展示了自然语言定制 "深色主题，用 Viridis 色板" 的具体实现：
+- 背景色 → #1A1A1A（页面）/ #1E1E1E（图表区）
+- 文字色 → #E8E8E8（主文字）/ #999999（次要文字）
+- 网格色 → #333333
+- 色板 → Viridis 多色相顺序色板
+- 线条加粗至 2.5px（深色背景下需要稍粗）

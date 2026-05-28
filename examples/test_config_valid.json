@@ -1,0 +1,49 @@
+{
+  "name": "Test Chart Config",
+  "charts": [
+    {
+      "name": "Chart 1 - Line Chart",
+      "typography": {
+        "h1": { "size_px": 16, "weight": 600, "color": "#1A1A1A" },
+        "h4": { "size_px": 10, "color": "#666666" },
+        "h5": { "size_px": 10, "color": "#555555" }
+      },
+      "spacing": {
+        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 }
+      },
+      "stroke": {
+        "line": { "width_px": 2.0 },
+        "grid": { "width_px": 0.5, "color": "#E0E0E0" }
+      },
+      "color": {
+        "categorical_palette": ["#4C72B0","#55A868","#C44E52","#8172B2","#CCB974"]
+      },
+      "color_mapping": {
+        "Product A": "#4C72B0",
+        "Product B": "#55A868"
+      }
+    },
+    {
+      "name": "Chart 2 - Bar Chart",
+      "typography": {
+        "h1": { "size_px": 16, "weight": 600, "color": "#1A1A1A" },
+        "h4": { "size_px": 10, "color": "#666666" },
+        "h5": { "size_px": 10, "color": "#555555" }
+      },
+      "spacing": {
+        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 }
+      },
+      "stroke": {
+        "line": { "width_px": 2.0 },
+        "grid": { "width_px": 0.5, "color": "#E0E0E0" }
+      },
+      "color": {
+        "categorical_palette": ["#4C72B0","#55A868","#C44E52","#8172B2","#CCB974"]
+      },
+      "color_mapping": {
+        "Product A": "#4C72B0",
+        "Product B": "#55A868"
+      }
+    }
+  ]
+}

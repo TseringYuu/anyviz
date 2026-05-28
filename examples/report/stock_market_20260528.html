@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日股市数据分析报告 — 2026年5月28日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<style>
+  :root {
+    --bg-page: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #555555;
+    --text-tertiary: #666666;
+    --text-muted: #888888;
+    --border: #E8E8E8;
+    --color-up: #C44E52;
+    --color-down: #55A868;
+    --color-flat: #8C8C8C;
+    --accent: #4C72B0;
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 24px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* Header */
+  .report-header {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  .report-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .report-header .subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+  }
+  .kpi-card .label {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    margin-bottom: 4px;
+  }
+  .kpi-card .value {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .kpi-card .change {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .kpi-card .change.up { color: var(--color-up); }
+  .kpi-card .change.down { color: var(--color-down); }
+  .kpi-card .sse-stats {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Chart Grid */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .chart-grid .full-width { grid-column: 1 / -1; }
+  .chart-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .chart-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .chart-card .chart-desc {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .chart-container { width: 100%; height: 380px; }
+  .chart-container.tall { height: 500px; }
+
+  /* Table section */
+  .table-section {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .table-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  td.up { color: var(--color-up); font-weight: 500; }
+  td.down { color: var(--color-down); font-weight: 500; }
+  .footnote {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <h1>📊 今日股市数据分析报告</h1>
+    <div class="subtitle">2026年5月28日（周四） · A股市场收盘总结 · 数据来源：东方财富</div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="label">上证指数</div>
+      <div class="value">4,084.76</div>
+      <div class="change down">▼ -0.22%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">深证成指</div>
+      <div class="value">15,676.94</div>
+      <div class="change down">▼ -0.38%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">创业板指</div>
+      <div class="value">4,049.04</div>
+      <div class="change up">▲ +0.08%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">科创50</div>
+      <div class="value">1,836.18</div>
+      <div class="change up">▲ +1.14%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">沪深300</div>
+      <div class="value">4,876.58</div>
+      <div class="change down">▼ -0.64%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">全市场</div>
+      <div class="value">5,856</div>
+      <div class="sse-stats">只股票 · 沪市PE 16.77 · 总市值68.3万亿</div>
+    </div>
+  </div>
+
+  <!-- Chart 1: Index Performance -->
+  <div class="chart-grid">
+    <div class="chart-card full-width">
+      <h2>主要指数涨跌幅</h2>
+      <div class="chart-desc">8大核心指数今日表现一览：科创50领涨，上证50领跌，权重股承压而科技成长相对活跃</div>
+      <div class="chart-container" id="chart-index"></div>
+    </div>
+  </div>
+
+  <!-- Chart Row 2: Concepts + Volume -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h2>概念板块涨跌 Top 10</h2>
+      <div class="chart-desc">MLCC暴涨7.22%领衔，培育钻石+5.97%跟随；退税商店-2.31%垫底</div>
+      <div class="chart-container tall" id="chart-concept"></div>
+    </div>
+    <div class="chart-card">
+      <h2>成交额 TOP 10 个股</h2>
+      <div class="chart-desc">银行股包揽前三，建设银行264亿居首；整体成交向大金融集中</div>
+      <div class="chart-container tall" id="chart-volume"></div>
+    </div>
+  </div>
+
+  <!-- Tables: Gainers & Losers -->
+  <div class="chart-grid">
+    <div class="table-section" style="margin-bottom:0; border:1px solid var(--border);">
+      <h2>今日涨幅榜 TOP 10</h2>
+      <table>
+        <thead>
+          <tr><th>排名</th><th>股票名称</th><th>代码</th><th>最新价</th><th>涨跌幅</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>惠丰钻石</td><td>920725</td><td>-</td><td class="up">+22.87%</td></tr>
+          <tr><td>2</td><td>四方达</td><td>300179</td><td>-</td><td class="up">+20.01%</td></tr>
+          <tr><td>3</td><td>燕东微</td><td>688172</td><td>-</td><td class="up">+20.00%</td></tr>
+          <tr><td>4</td><td>奕东电子</td><td>301123</td><td>-</td><td class="up">+20.00%</td></tr>
+          <tr><td>5</td><td>商络电子</td><td>300975</td><td>-</td><td class="up">+20.00%</td></tr>
+          <tr><td>6</td><td>红星发展</td><td>600367</td><td>-</td><td class="up">+10.05%</td></tr>
+          <tr><td>7</td><td>博菲电气</td><td>001255</td><td>-</td><td class="up">+10.03%</td></tr>
+          <tr><td>8</td><td>顺络电子</td><td>002138</td><td>-</td><td class="up">+10.01%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-section" style="margin-bottom:0; border:1px solid var(--border);">
+      <h2>今日跌幅榜 TOP 10</h2>
+      <table>
+        <thead>
+          <tr><th>排名</th><th>股票名称</th><th>代码</th><th>最新价</th><th>涨跌幅</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>上海谊众</td><td>688091</td><td>-</td><td class="down">-17.49%</td></tr>
+          <tr><td>2</td><td>瑞华泰</td><td>688323</td><td>-</td><td class="down">-12.32%</td></tr>
+          <tr><td>3</td><td>嘉亨家化</td><td>300955</td><td>-</td><td class="down">-10.95%</td></tr>
+          <tr><td>4</td><td>帝欧水华</td><td>002798</td><td>-</td><td class="down">-10.04%</td></tr>
+          <tr><td>5</td><td>园林股份</td><td>605303</td><td>-</td><td class="down">-10.01%</td></tr>
+          <tr><td>6</td><td>精华制药</td><td>002349</td><td>-</td><td class="down">-10.00%</td></tr>
+          <tr><td>7</td><td>天津普林</td><td>002134</td><td>-</td><td class="down">-10.00%</td></tr>
+          <tr><td>8</td><td>鸿博医药</td><td>688265</td><td>-</td><td class="down">-9.87%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="report-header" style="margin-top:24px;">
+    <h1 style="font-size:16px;">📝 市场总结</h1>
+    <div class="subtitle" style="font-size:13px; line-height:1.8;">
+      <p><strong>指数分化明显：</strong>科创50逆势上涨1.14%，上证50下跌0.75%，市场呈现"科技强、权重弱"格局。创业板微涨0.08%，深成指跌0.38%，上证指数跌0.22%失守4090点。</p>
+      <p style="margin-top:8px;"><strong>热点集中：</strong>MLCC（多层陶瓷电容）板块暴涨7.22%，培育钻石+5.97%，被动元件+4.96%，电子元器件产业链全线爆发。下跌集中在券商（-1.98%）、转基因（-2.07%）、退税商店（-2.31%）等板块。</p>
+      <p style="margin-top:8px;"><strong>资金流向：</strong>成交额前五为建设银行（264亿）、工商银行（252亿）、农业银行（217亿）、中国移动（211亿）、中国石油（199亿），大金融和大盘蓝筹占据流动性高地，但多数收跌，显示资金博弈激烈。</p>
+      <p style="margin-top:8px;"><strong>市场情绪：</strong>5,856只股票中涨停板集中在电子元器件方向（惠丰钻石+22.87%、四方达涨停），跌停板则以医药、地产链为主。全市场成交额较近期有所收缩，观望情绪渐浓。</p>
+    </div>
+  </div>
+
+  <div class="footnote">
+    报告生成时间：2026-05-28 15:30 · 数据来源：东方财富 · 使用 AnyVis 可视化规范 · 仅供参考，不构成投资建议
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// AnyVis 默认主题配置
+// 色板: #4C72B0 #55A868 #C44E52 #8172B2 #CCB974 #64B5CD #8C8C8C #E8A735
+// ============================================================
+const UP_COLOR = '#C44E52';
+const DOWN_COLOR = '#55A868';
+const FLAT_COLOR = '#8C8C8C';
+const ACCENT = '#4C72B0';
+const PALETTE = ['#4C72B0','#55A868','#C44E52','#8172B2','#CCB974','#64B5CD','#8C8C8C','#E8A735','#8BC34A','#E377C2'];
+const TEXT_PRIMARY = '#1A1A1A';
+const TEXT_SEC = '#555555';
+const GRID_COLOR = '#E8E8E8';
+
+// Chart 1: Index Performance
+(function() {
+  var chart = echarts.init(document.getElementById('chart-index'));
+  var indices = [
+    { name: '科创50', value: 1.14 },
+    { name: '中证1000', value: 0.19 },
+    { name: '创业板指', value: 0.08 },
+    { name: '中证500', value: -0.20 },
+    { name: '上证指数', value: -0.22 },
+    { name: '深证成指', value: -0.38 },
+    { name: '沪深300', value: -0.64 },
+    { name: '上证50', value: -0.75 }
+  ];
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>涨跌幅: <b>' + (p[0].value > 0 ? '+' : '') + p[0].value.toFixed(2) + '%</b>'; },
+      textStyle: { fontSize: 11, color: TEXT_PRIMARY },
+      backgroundColor: '#FFFFFF',
+      borderColor: '#D0D0D0'
+    },
+    grid: { top: 20, right: 60, bottom: 30, left: 80 },
+    xAxis: {
+      type: 'value',
+      axisLabel: { fontSize: 10, color: TEXT_SEC, formatter: '{value}%' },
+      splitLine: { lineStyle: { color: GRID_COLOR, width: 0.5, type: 'dashed' } },
+      axisLine: { lineStyle: { color: '#333333', width: 1 } }
+    },
+    yAxis: {
+      type: 'category',
+      data: indices.map(function(d) { return d.name; }).reverse(),
+      axisLabel: { fontSize: 11, color: '#333333' },
+      axisLine: { show: false },
+      axisTick: { show: false }
+    },
+    series: [{
+      type: 'bar',
+      data: indices.map(function(d) {
+        return {
+          value: d.value,
+          itemStyle: { color: d.value >= 0 ? UP_COLOR : DOWN_COLOR, borderRadius: [0, 3, 3, 0] }
+        };
+      }).reverse(),
+      barWidth: 18,
+      label: {
+        show: true,
+        position: 'right',
+        fontSize: 10,
+        color: TEXT_SEC,
+        formatter: function(p) { return (p.value > 0 ? '+' : '') + p.value.toFixed(2) + '%'; }
+      }
+    }]
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// Chart 2: Concept Sector Top/Bottom
+(function() {
+  var chart = echarts.init(document.getElementById('chart-concept'));
+  var concepts = [
+    { name: 'MLCC', value: 7.22 },
+    { name: '培育钻石', value: 5.97 },
+    { name: '被动元件', value: 4.96 },
+    { name: '历史新高', value: 3.38 },
+    { name: '昨日连板', value: 3.35 },
+    { name: '超级电容', value: 3.29 },
+    { name: '复合集流体', value: 2.97 },
+    { name: 'IGBT概念', value: 2.23 },
+    { name: 'Kimi概念', value: -1.89 },
+    { name: '券商概念', value: -1.98 },
+    { name: '科创板做市', value: -2.06 },
+    { name: '转基因', value: -2.07 },
+    { name: '同步磁阻电机', value: -2.23 },
+    { name: '退税商店', value: -2.31 }
+  ];
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>涨跌幅: <b>' + (p[0].value > 0 ? '+' : '') + p[0].value.toFixed(2) + '%</b>'; },
+      textStyle: { fontSize: 11 }
+    },
+    grid: { top: 10, right: 30, bottom: 20, left: 90 },
+    xAxis: {
+      type: 'value',
+      axisLabel: { fontSize: 10, color: TEXT_SEC, formatter: '{value}%' },
+      splitLine: { lineStyle: { color: GRID_COLOR, width: 0.5, type: 'dashed' } }
+    },
+    yAxis: {
+      type: 'category',
+      data: concepts.map(function(d) { return d.name; }).reverse(),
+      axisLabel: { fontSize: 10, color: '#333333' },
+      axisLine: { show: false },
+      axisTick: { show: false }
+    },
+    series: [{
+      type: 'bar',
+      data: concepts.map(function(d) {
+        var color = d.value > 3 ? '#E8A735' : (d.value > 0 ? UP_COLOR : DOWN_COLOR);
+        return { value: d.value, itemStyle: { color: color, borderRadius: [0, 3, 3, 0] } };
+      }).reverse(),
+      barWidth: 14,
+      label: {
+        show: true,
+        position: 'right',
+        fontSize: 9,
+        color: TEXT_SEC,
+        formatter: function(p) { return (p.value > 0 ? '+' : '') + p.value.toFixed(2) + '%'; }
+      }
+    }]
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// Chart 3: Volume Leaders
+(function() {
+  var chart = echarts.init(document.getElementById('chart-volume'));
+  var stocks = [
+    { name: '建设银行', vol: 26447.8, change: -1.08 },
+    { name: '工商银行', vol: 25162.3, change: -0.84 },
+    { name: '农业银行', vol: 21734.0, change: -1.58 },
+    { name: '中国移动', vol: 21097.2, change: -0.23 },
+    { name: '中国石油', vol: 19912.7, change: 0.74 },
+    { name: '宁德时代', vol: 18996.8, change: -1.01 },
+    { name: '中国银行', vol: 17543.1, change: -0.89 },
+    { name: '贵州茅台', vol: 16820.5, change: -0.35 },
+    { name: '招商银行', vol: 15230.9, change: -1.25 },
+    { name: '比亚迪', vol: 14876.3, change: 0.42 }
+  ];
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(p) {
+        return p[0].name + '<br/>成交额: <b>' + p[0].value.toFixed(0) + '亿</b>';
+      },
+      textStyle: { fontSize: 11 }
+    },
+    grid: { top: 10, right: 30, bottom: 20, left: 80 },
+    xAxis: {
+      type: 'value',
+      name: '亿元',
+      nameTextStyle: { fontSize: 10, color: TEXT_SEC },
+      axisLabel: { fontSize: 10, color: TEXT_SEC },
+      splitLine: { lineStyle: { color: GRID_COLOR, width: 0.5, type: 'dashed' } }
+    },
+    yAxis: {
+      type: 'category',
+      data: stocks.map(function(d) { return d.name; }).reverse(),
+      axisLabel: { fontSize: 10, color: '#333333' },
+      axisLine: { show: false },
+      axisTick: { show: false }
+    },
+    series: [{
+      type: 'bar',
+      data: stocks.map(function(d) {
+        var color = d.change >= 0 ? UP_COLOR : ACCENT;
+        return {
+          value: d.vol,
+          itemStyle: { color: color, borderRadius: [0, 3, 3, 0] }
+        };
+      }).reverse(),
+      barWidth: 14,
+      label: {
+        show: true,
+        position: 'right',
+        fontSize: 9,
+        color: TEXT_SEC,
+        formatter: function(p) { return (p.value / 10000).toFixed(2) + '万亿'; }
+      }
+    }]
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+</script>
+
+</body>
+</html>

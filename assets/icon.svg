@@ -12,40 +12,29 @@
     <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
     <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
     <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
-    <linearGradient id="ax" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#CCC" stop-opacity="0"/><stop offset="20%" stop-color="#CCC" stop-opacity="1"/><stop offset="80%" stop-color="#CCC" stop-opacity="1"/><stop offset="100%" stop-color="#CCC" stop-opacity="0"/></linearGradient>
-    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".08"/></filter>
-    <filter id="bs"><feDropShadow dx="-1.5" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".06"/></filter>
+    <filter id="bs"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity=".08"/></filter>
   </defs>
 
-  <rect x="8" y="8" width="112" height="112" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
-
-  <!-- X 轴渐变线 -->
-  <line x1="28" y1="86" x2="100" y2="86" stroke="url(#ax)" stroke-width=".8"/>
-
-  <g transform="translate(64,74)" filter="url(#bs)">
-    <!-- 柱1 H=18 地=16  侧后底 -22+18=-4 → 但v1是-6  -->
+  <g transform="translate(64,72)" filter="url(#bs)">
     <g transform="translate(-44,0)">
-      <polygon points="0,-18 7,-22 20,-22 13,-18" fill="url(#t1)" stroke="#A0C8FF" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-18 13,-18 13,16 0,16" fill="url(#f1)" stroke="#3556A3" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="13,-18 20,-22 20,12 13,16" fill="url(#s1)" stroke="#5B8DE0" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-18 7,-22 20,-22 13,-18" fill="url(#t1)" stroke="#A0C8FF" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-18 13,-18 13,16 0,16" fill="url(#f1)" stroke="#4A6FB8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="13,-18 20,-22 20,12 13,16" fill="url(#s1)" stroke="#6B9EE8" stroke-width="4" stroke-linejoin="round"/>
     </g>
-    <!-- 柱2 H=36 地=0 -->
     <g transform="translate(-15,0)">
-      <polygon points="0,-36 7,-40 20,-40 13,-36" fill="url(#t2)" stroke="#8EE0A8" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-36 13,-36 13,0 0,0" fill="url(#f2)" stroke="#2A7A49" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="13,-36 20,-40 20,-4 13,0" fill="url(#s2)" stroke="#4CB880" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-36 7,-40 20,-40 13,-36" fill="url(#t2)" stroke="#A0E8B8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-36 13,-36 13,0 0,0" fill="url(#f2)" stroke="#2E8A50" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="13,-36 20,-40 20,-4 13,0" fill="url(#s2)" stroke="#5DC88C" stroke-width="4" stroke-linejoin="round"/>
     </g>
-    <!-- 柱3 H=58 地=-22 -->
     <g transform="translate(14,0)">
-      <polygon points="0,-58 7,-62 20,-62 13,-58" fill="url(#t3)" stroke="#FFB8AD" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-58 13,-58 13,-22 0,-22" fill="url(#f3)" stroke="#B84039" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="13,-58 20,-62 20,-26 13,-22" fill="url(#s3)" stroke="#EE7B6F" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-58 7,-62 20,-62 13,-58" fill="url(#t3)" stroke="#FFC8BE" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-58 13,-58 13,-22 0,-22" fill="url(#f3)" stroke="#C04840" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="13,-58 20,-62 20,-26 13,-22" fill="url(#s3)" stroke="#F08D82" stroke-width="4" stroke-linejoin="round"/>
     </g>
-    <!-- 柱4 H=44 地=-8 -->
     <g transform="translate(43,0)">
-      <polygon points="0,-44 7,-48 20,-48 13,-44" fill="url(#t4)" stroke="#CCB8F0" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-44 13,-44 13,-8 0,-8" fill="url(#f4)" stroke="#5D419E" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="13,-44 20,-48 20,-12 13,-8" fill="url(#s4)" stroke="#9B7ED8" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-44 7,-48 20,-48 13,-44" fill="url(#t4)" stroke="#D8C8F5" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-44 13,-44 13,-8 0,-8" fill="url(#f4)" stroke="#6649A8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="13,-44 20,-48 20,-12 13,-8" fill="url(#s4)" stroke="#AA8EE0" stroke-width="4" stroke-linejoin="round"/>
     </g>
   </g>
 </svg>

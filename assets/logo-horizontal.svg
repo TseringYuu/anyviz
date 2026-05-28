@@ -12,35 +12,29 @@
     <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
     <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
     <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
-    <linearGradient id="ax" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#CCC" stop-opacity="0"/><stop offset="20%" stop-color="#CCC" stop-opacity="1"/><stop offset="80%" stop-color="#CCC" stop-opacity="1"/><stop offset="100%" stop-color="#CCC" stop-opacity="0"/></linearGradient>
-    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".06"/></filter>
-    <filter id="bs"><feDropShadow dx="-1" dy="1.5" stdDeviation="2" flood-color="#000" flood-opacity=".06"/></filter>
+    <filter id="bs"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity=".08"/></filter>
   </defs>
 
-  <rect x="8" y="10" width="100" height="100" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
-
-  <line x1="24" y1="80" x2="88" y2="80" stroke="url(#ax)" stroke-width=".8"/>
-
-  <g transform="translate(58,68)" filter="url(#bs)">
+  <g transform="translate(58,66)" filter="url(#bs)">
     <g transform="translate(-38,0)">
-      <polygon points="0,-16 6,-19 17,-19 11,-16" fill="url(#t1)" stroke="#A0C8FF" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-16 11,-16 11,14 0,14" fill="url(#f1)" stroke="#3556A3" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="11,-16 17,-19 17,11 11,14" fill="url(#s1)" stroke="#5B8DE0" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-16 6,-19 17,-19 11,-16" fill="url(#t1)" stroke="#A0C8FF" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-16 11,-16 11,14 0,14" fill="url(#f1)" stroke="#4A6FB8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-16 17,-19 17,11 11,14" fill="url(#s1)" stroke="#6B9EE8" stroke-width="4" stroke-linejoin="round"/>
     </g>
     <g transform="translate(-13,0)">
-      <polygon points="0,-33 6,-36 17,-36 11,-33" fill="url(#t2)" stroke="#8EE0A8" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-33 11,-33 11,0 0,0" fill="url(#f2)" stroke="#2A7A49" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="11,-33 17,-36 17,-3 11,0" fill="url(#s2)" stroke="#4CB880" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-33 6,-36 17,-36 11,-33" fill="url(#t2)" stroke="#A0E8B8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-33 11,-33 11,0 0,0" fill="url(#f2)" stroke="#2E8A50" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-33 17,-36 17,-3 11,0" fill="url(#s2)" stroke="#5DC88C" stroke-width="4" stroke-linejoin="round"/>
     </g>
     <g transform="translate(12,0)">
-      <polygon points="0,-52 6,-55 17,-55 11,-52" fill="url(#t3)" stroke="#FFB8AD" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-52 11,-52 11,-20 0,-20" fill="url(#f3)" stroke="#B84039" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="11,-52 17,-55 17,-23 11,-20" fill="url(#s3)" stroke="#EE7B6F" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-52 6,-55 17,-55 11,-52" fill="url(#t3)" stroke="#FFC8BE" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-52 11,-52 11,-20 0,-20" fill="url(#f3)" stroke="#C04840" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-52 17,-55 17,-23 11,-20" fill="url(#s3)" stroke="#F08D82" stroke-width="4" stroke-linejoin="round"/>
     </g>
     <g transform="translate(37,0)">
-      <polygon points="0,-40 6,-43 17,-43 11,-40" fill="url(#t4)" stroke="#CCB8F0" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="0,-40 11,-40 11,-8 0,-8" fill="url(#f4)" stroke="#5D419E" stroke-width="3" stroke-linejoin="round"/>
-      <polygon points="11,-40 17,-43 17,-11 11,-8" fill="url(#s4)" stroke="#9B7ED8" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="0,-40 6,-43 17,-43 11,-40" fill="url(#t4)" stroke="#D8C8F5" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-40 11,-40 11,-8 0,-8" fill="url(#f4)" stroke="#6649A8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-40 17,-43 17,-11 11,-8" fill="url(#s4)" stroke="#AA8EE0" stroke-width="4" stroke-linejoin="round"/>
     </g>
   </g>
 

@@ -17,7 +17,7 @@ categorical_10 <- c(
   '#6cc5b0', '#9696a0', '#f5a623', '#ca5bb8', '#ff8ab7'
 )
 
-# AnyVis 默认主题
+# anyvis 默认主题
 theme_anyvis <- function() {
   theme_minimal(base_family = 'Helvetica Neue') +
   theme(

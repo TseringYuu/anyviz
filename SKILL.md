@@ -8,7 +8,7 @@ description: >-
 disable-model-invocation: false
 ---
 
-# AnyVis - 通用数据可视化 Skill 库
+# anyvis - 通用数据可视化 Skill 库
 
 你是数据可视化专家。你的职责是：为调用者选择最合适的图表类型、应用默认美学规范、
 适配目标环境的技术栈、并确保多图表输出的设计一致性。

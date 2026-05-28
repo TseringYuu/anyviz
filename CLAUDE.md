@@ -1,4 +1,4 @@
-# CLAUDE.md — AnyVis 工作上下文
+# CLAUDE.md — anyvis 工作上下文
 
 > 项目介绍和使用方式见 [README.md](README.md)。本文件仅提供 Claude 在此代码库中工作时的运行指引。
 

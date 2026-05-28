@@ -1,4 +1,4 @@
-# CLAUDE.md — anyvis 工作上下文
+# CLAUDE.md — anyviz 工作上下文
 
 > 项目介绍和使用方式见 [README.md](README.md)。本文件仅提供 Claude 在此代码库中工作时的运行指引。
 
@@ -31,7 +31,7 @@
 ## 文件树
 
 ```
-anyvis/
+anyviz/
 ├── README.md, LICENSE, SKILL.md, CLAUDE.md
 ├── aesthetics/   → default.json + 规则文档
 ├── guides/       → 选择/用色/一致性/定制 四种指南

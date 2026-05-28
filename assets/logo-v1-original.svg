@@ -72,5 +72,5 @@
   <!-- 品牌名 -->
   <text x="200" y="375" text-anchor="middle"
         font-family="'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
-        font-size="30" font-weight="700" fill="#1A1A1A" letter-spacing="2">anyvis</text>
+        font-size="30" font-weight="700" fill="#1A1A1A" letter-spacing="2">anyviz</text>
 </svg>

@@ -14,36 +14,36 @@ import plotly.graph_objects as go
 import plotly.io as pio
 
 # 创建默认模板
-anyvis_template = go.layout.Template()
+anyviz_template = go.layout.Template()
 
 # 颜色
-anyvis_template.layout.colorway = [
+anyviz_template.layout.colorway = [
     '#4269d0', '#3ca951', '#ff725c', '#a463f2', '#efb118',
     '#6cc5b0', '#9696a0', '#f5a623', '#ca5bb8', '#ff8ab7'
 ]
 
 # 排版
-anyvis_template.layout.font = dict(
+anyviz_template.layout.font = dict(
     family="'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif",
     size=11,                          # h3
     color='#333333'
 )
 
-anyvis_template.layout.title = dict(
+anyviz_template.layout.title = dict(
     font=dict(size=16, color='#1A1A1A'),
     x=0,                              # 左对齐
     xanchor='left'
 )
 
 # 画布
-anyvis_template.layout.plot_bgcolor = '#FFFFFF'
-anyvis_template.layout.paper_bgcolor = '#FFFFFF'
+anyviz_template.layout.plot_bgcolor = '#FFFFFF'
+anyviz_template.layout.paper_bgcolor = '#FFFFFF'
 
 # 间距
-anyvis_template.layout.margin = dict(t=40, r=30, b=50, l=60)
+anyviz_template.layout.margin = dict(t=40, r=30, b=50, l=60)
 
 # 图例
-anyvis_template.layout.legend = dict(
+anyviz_template.layout.legend = dict(
     font=dict(size=10, color='#555555'),
     orientation='h',
     yanchor='bottom',
@@ -53,8 +53,8 @@ anyvis_template.layout.legend = dict(
 )
 
 # 注册模板
-pio.templates['anyvis'] = anyvis_template
-pio.templates.default = 'anyvis'
+pio.templates['anyviz'] = anyviz_template
+pio.templates.default = 'anyviz'
 ```
 
 ### 折线图

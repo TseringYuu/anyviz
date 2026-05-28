@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-anyvis 主题一致性验证器
+anyviz 主题一致性验证器
 
-验证生成的图表配置是否符合 anyvis 默认美学规范，
+验证生成的图表配置是否符合 anyviz 默认美学规范，
 以及多图表之间的一致性。
 
 用法:
@@ -226,7 +226,7 @@ def validate_multi_chart_consistency(charts: List[Dict]) -> List[str]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="anyvis 主题一致性验证器"
+        description="anyviz 主题一致性验证器"
     )
     parser.add_argument(
         "--config", "-c", required=True,
@@ -266,7 +266,7 @@ def main():
         print(f"\n共 {len(all_issues)} 个问题需要处理。")
         sys.exit(1)
     else:
-        print("✅ 所有检查通过！图表配置符合 anyvis 默认美学规范。")
+        print("✅ 所有检查通过！图表配置符合 anyviz 默认美学规范。")
         sys.exit(0)
 
 

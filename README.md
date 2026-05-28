@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="anyvis" width="180">
+  <img src="assets/logo.svg" alt="anyviz" width="180">
 </p>
 
-# anyvis
+# anyviz
 
 通用数据可视化 Skill 库 — 为 Claude 和其他 AI 助手提供智能图表选择、默认美学规范、多技术栈适配和设计一致性保障。
 
@@ -44,7 +44,7 @@ with open('aesthetics/default.json') as f:
 ## 目录结构
 
 ```
-anyvis/
+anyviz/
 ├── README.md                     # 项目文档（本文件）
 ├── LICENSE                       # MIT 开源协议
 ├── SKILL.md                      # Claude Skill 主入口

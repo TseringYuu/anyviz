@@ -17,8 +17,8 @@ categorical_10 <- c(
   '#6cc5b0', '#9696a0', '#f5a623', '#ca5bb8', '#ff8ab7'
 )
 
-# anyvis 默认主题
-theme_anyvis <- function() {
+# anyviz 默认主题
+theme_anyviz <- function() {
   theme_minimal(base_family = 'Helvetica Neue') +
   theme(
     # 画布
@@ -58,7 +58,7 @@ theme_anyvis <- function() {
 }
 
 # 设置默认主题
-theme_set(theme_anyvis())
+theme_set(theme_anyviz())
 
 # 设置默认色板
 options(ggplot2.discrete.colour = categorical_10)
@@ -76,7 +76,7 @@ ggplot(data, aes(x = date, y = value, color = category)) +
     x = 'X Axis',
     y = 'Y Axis'
   ) +
-  theme_anyvis()
+  theme_anyviz()
 ```
 
 ### 柱状图
@@ -88,7 +88,7 @@ ggplot(data, aes(x = reorder(category, -value), y = value)) +
             size = 9 / .pt,              # h6 (9px) → ggplot2 mm
             color = '#888888') +
   labs(title = 'Chart Title', x = '', y = 'Value') +
-  theme_anyvis()
+  theme_anyviz()
 ```
 
 ### 散点图
@@ -110,7 +110,7 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
 
 ## ggplot2 默认配置
 
-- **主题**：theme_minimal() 为基础，叠加 anyvis 定制
+- **主题**：theme_minimal() 为基础，叠加 anyviz 定制
 - **色板**：scale_color_manual / scale_fill_manual 使用 categorical_10
 - **保存**：ggsave(dpi = 150, bg = 'white')
 - **宽度/高度**：默认 width = 8, height = 5 (inches)，保持 1.6:1

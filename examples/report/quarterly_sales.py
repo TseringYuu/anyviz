@@ -11,7 +11,7 @@
 | 图 2    | 类别 × 数值 (区域贡献)      | 组成    | 堆叠柱状图       |
 
 ## 美学决策
-- 主题：默认 anyvis，学术/报告风格（保留边框）
+- 主题：默认 anyviz，学术/报告风格（保留边框）
 - 颜色：传统商务配色
 - 输出：PDF 矢量格式，适合印刷
 
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
 
-# ===== anyvis 默认美学参数 =====
+# ===== anyviz 默认美学参数 =====
 CATEGORICAL = ['#4269d0', '#3ca951', '#ff725c', '#a463f2', '#efb118']
 FONT_FAMILY = ['Helvetica Neue', 'Helvetica', 'Arial',
                'PingFang SC', 'Microsoft YaHei', 'sans-serif']

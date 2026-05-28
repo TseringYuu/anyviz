@@ -2,7 +2,7 @@
 name: anyvis
 description: >-
   数据可视化专家 Skill。自动分析数据特征与用户意图，选择最佳图表类型，
-  应用现代数据可视化美学规范（基于 Observable Plot），适配前端（D3.js/ECharts/Mapbox/Three.js）、
+  应用《数据之美》美学规范，适配前端（D3.js/ECharts/Mapbox/Three.js）、
   Python（matplotlib/plotly）或 R（ggplot2）技术栈，确保多图表输出的设计一致性。
   invoke-skill-immediately: true
 disable-model-invocation: false
@@ -41,6 +41,11 @@ disable-model-invocation: false
 3. **查阅图表选择指南**
    - 读取 `guides/chart-selection.md`，根据数据结构 + 意图选择最佳图表类型
    - 如果单一图表无法满足需求，考虑组合图表或多视图方案
+   - 选定图表类型后，查阅 `templates/` 目录下对应模板（20 种模板可选）获取数据格式和设计细节：
+     - `templates/charts/` — 10 种统计图表（柱状/折线/散点/面积/饼图/直方图/箱线/热力/雷达/瀑布）
+     - `templates/maps/` — 3 种地图（面量/气泡/流向）
+     - `templates/graphs/` — 4 种关系图（桑基/和弦/力导向/树图）
+     - `templates/3d/` — 3 种 3D 图（地球/散点/曲面）
 
 4. **推断主题方案**
    - 根据调用者的使用场景，从 `aesthetics/themes/` 中选择最合适的配色主题：
@@ -58,16 +63,18 @@ disable-model-invocation: false
 
 ### 阶段 2：应用美学规范
 
-读取 `aesthetics/default.json`，应用默认美学规则：
+读取 `aesthetics/default.json`，应用默认美学规则。同时参考详细设计文档：
 
-1. **颜色系统** - 基于数据类型选择合适的色板（分类/顺序/发散）
-2. **排版系统** - 标题、轴标签、图例、注释的字号与字重层级
-3. **间距系统** - 边距、内边距、元素间距的统一标准
-4. **样式系统** - 线宽、点大小、透明度、虚线样式的规范
-5. **标注系统** - 数据标签、高亮、参考线的样式
+1. **颜色系统** — 基于数据类型选择合适的色板（分类/顺序/发散/高亮），详见 `aesthetics/color.md`
+2. **排版系统** — 标题、轴标签、图例、注释的字号与字重层级，详见 `aesthetics/typography.md`
+3. **间距系统** — 边距、内边距、元素间距的统一标准，详见 `aesthetics/layout.md`
+4. **样式系统** — 线宽、点大小、透明度、虚线样式的规范
+5. **标注系统** — 数据标签、高亮、参考线的样式
+
+**用色决策**：当需要判断使用哪种色板时，查阅 `guides/color-guide.md`（涵盖分类/顺序/发散色板的使用条件、颜色禁忌、语义约定）。
 
 当调用者通过自然语言描述美学偏好时（如"颜色更活泼一些"、"字体大一点"、"使用公司品牌色"），
-将这些自然语言指令映射到对应的美学属性上进行覆盖。
+查阅 `guides/customization-guide.md` 的完整映射表，将这些自然语言指令映射到对应的美学属性上进行覆盖。
 
 ### 阶段 3：技术栈适配
 
@@ -114,6 +121,8 @@ disable-model-invocation: false
    字体颜色、线宽等必须一致，除非调用者明确指定了差异
 2. **主题一致性**：所有图表使用相同的色板、字体族、间距规则
 3. **标注一致性**：数据标签的格式（小数点位数、单位、日期格式）统一
+
+可选：运行 `scripts/theme_validator.py` 对输出 JSON 进行自动校验。
 
 ---
 
@@ -176,6 +185,55 @@ disable-model-invocation: false
 | Python/数据分析/jupyter     | Plotly（默认）          |
 | Python/学术/论文/出版        | Matplotlib              |
 | R/tidyverse/统计            | ggplot2                 |
+
+---
+
+## 资源索引
+
+### 美学设计文档
+| 文件 | 用途 |
+|------|------|
+| `aesthetics/default.json` | 默认主题参数（颜色/排版/间距/线条），权威配置来源 |
+| `aesthetics/color.md` | 色彩规则：色板与数据类型匹配、色盲友好、语义一致性、NL 指令映射 |
+| `aesthetics/typography.md` | 排版规则：字体层级、字体选择、中文适配、NL 指令映射 |
+| `aesthetics/layout.md` | 布局规则：数据墨水比、视觉层次、尺寸比例、NL 指令映射 |
+| `aesthetics/themes/*.json` | 四套预设主题（modern/analytics/dashboard/academic） |
+
+### 决策指南
+| 文件 | 用途 |
+|------|------|
+| `guides/chart-selection.md` | 图表选择决策树：数据特征 + 意图 → 图表类型 |
+| `guides/color-guide.md` | 用色原则：何时用哪种色板、颜色禁忌、语义约定 |
+| `guides/consistency-rules.md` | 多图表设计一致性校验规则 |
+| `guides/customization-guide.md` | 自然语言到美学参数完整映射表（风格/颜色/排版/布局/元素） |
+
+### 模板库（20 种）
+| 分类 | 数量 | 包含 |
+|------|------|------|
+| `templates/charts/` | 10 | 柱状/折线/散点/面积/饼图/直方图/箱线/热力/雷达/瀑布 |
+| `templates/maps/` | 3 | 面量图/气泡地图/流向地图 |
+| `templates/graphs/` | 4 | 桑基图/和弦图/力导向图/树图 |
+| `templates/3d/` | 3 | 3D地球/3D散点/曲面图 |
+
+### 适配器
+| 环境 | 文件 |
+|------|------|
+| Web-D3 | `adapters/web/d3.md` |
+| Web-ECharts | `adapters/web/echarts.md` |
+| Web-Mapbox | `adapters/web/mapbox.md` |
+| Web-Three.js | `adapters/web/three.md` |
+| Python-Matplotlib | `adapters/python/matplotlib.md` |
+| Python-Plotly | `adapters/python/plotly.md` |
+| R-ggplot2 | `adapters/r/ggplot2.md` |
+
+### 工具与示例
+| 文件 | 用途 |
+|------|------|
+| `scripts/theme_validator.py` | 主题一致性自动验证器 |
+| `examples/dashboard/` | 仪表盘场景示例（电商、全球市场） |
+| `examples/report/` | 报告场景示例（季度销售、股票市场） |
+| `examples/interactive/` | 交互式场景示例（COVID 探索器） |
+| `demo.html` | 独立运行的 D3.js 全功能演示页 |
 
 ---
 

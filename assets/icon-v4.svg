@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9DC4FF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="l1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4265B5"/><stop offset="100%" stop-color="#2E4990"/></linearGradient>
+    <linearGradient id="r1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B9EE8"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8EE0A8"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="l2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#36955E"/><stop offset="100%" stop-color="#256F43"/></linearGradient>
+    <linearGradient id="r2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5DC88C"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB8AD"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="l3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CC5A4F"/><stop offset="100%" stop-color="#A84036"/></linearGradient>
+    <linearGradient id="r3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F08D82"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="l4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
+    <linearGradient id="r4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5B8DE0" stop-opacity="0.0"/><stop offset="25%" stop-color="#EE7B6F" stop-opacity="0.8"/><stop offset="55%" stop-color="#EE7B6F" stop-opacity="1"/><stop offset="80%" stop-color="#9B7ED8" stop-opacity="0.8"/><stop offset="100%" stop-color="#9B7ED8" stop-opacity="0.0"/>
+    </linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/></filter>
+    <filter id="gl"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
+
+  <g transform="translate(64,78)">
+    <!-- 珊瑚柱（曲线从后面穿过）-->
+    <g transform="translate(12,0)">
+      <polygon points="0,-62 7,-66 20,-66 13,-62" fill="url(#t3)"/>
+      <polygon points="0,-62 13,-62 13,-26 0,-26" fill="url(#l3)"/>
+      <polygon points="13,-62 20,-66 20,-30 13,-26" fill="url(#r3)"/>
+    </g>
+    <!-- A 曲线 -->
+    <path d="M -50,14 C -36,0 -14,-36 20,-52 C 36,-56 46,-46 50,-24"
+          fill="none" stroke="url(#cg)" stroke-width="1.8" stroke-linecap="round" filter="url(#gl)"/>
+    <circle cx="-50" cy="14" r="1.5" fill="#5B8DE0" opacity="0.3"/>
+    <circle cx="50" cy="-24" r="1.5" fill="#9B7ED8" opacity="0.3"/>
+    <!-- 其余柱 -->
+    <g transform="translate(-44,0)">
+      <polygon points="0,-18 7,-22 20,-22 13,-18" fill="url(#t1)"/>
+      <polygon points="0,-18 13,-18 13,16 0,16" fill="url(#l1)"/>
+      <polygon points="13,-18 20,-22 20,-6 13,16" fill="url(#r1)"/>
+    </g>
+    <g transform="translate(-15,0)">
+      <polygon points="0,-36 7,-40 20,-40 13,-36" fill="url(#t2)"/>
+      <polygon points="0,-36 13,-36 13,-2 0,-2" fill="url(#l2)"/>
+      <polygon points="13,-36 20,-40 20,-6 13,-2" fill="url(#r2)"/>
+    </g>
+    <g transform="translate(42,0)">
+      <polygon points="0,-46 7,-50 20,-50 13,-46" fill="url(#t4)"/>
+      <polygon points="0,-46 13,-46 13,-10 0,-10" fill="url(#l4)"/>
+      <polygon points="13,-46 20,-50 20,-14 13,-10" fill="url(#r4)"/>
+    </g>
+  </g>
+</svg>

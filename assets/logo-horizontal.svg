@@ -1,48 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" fill="none">
   <defs>
-    <linearGradient id="hb1" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4269d0"/><stop offset="100%" stop-color="#3554a6"/>
-    </linearGradient>
-    <linearGradient id="hb2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3ca951"/><stop offset="100%" stop-color="#308741"/>
-    </linearGradient>
-    <linearGradient id="hb3" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ff725c"/><stop offset="100%" stop-color="#cc5b49"/>
-    </linearGradient>
-    <linearGradient id="hb4" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#a463f2"/><stop offset="100%" stop-color="#834fc1"/>
-    </linearGradient>
-    <linearGradient id="hb5" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#efb118"/><stop offset="100%" stop-color="#bf8e13"/>
-    </linearGradient>
+    <linearGradient id="ht1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7AADFF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="hl1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A7ACC"/><stop offset="100%" stop-color="#3A62A3"/></linearGradient>
+    <linearGradient id="hr1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5B8DE0"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="ht2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6DCD8A"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="hl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3DA36B"/><stop offset="100%" stop-color="#2E8A54"/></linearGradient>
+    <linearGradient id="hr2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CB880"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="ht3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F5998D"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="hl3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D96458"/><stop offset="100%" stop-color="#C45045"/></linearGradient>
+    <linearGradient id="hr3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EE7B6F"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="ht4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B8A0E8"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="hl4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7E5FC4"/><stop offset="100%" stop-color="#6849AA"/></linearGradient>
+    <linearGradient id="hr4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B7ED8"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <filter id="hsh"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.06"/></filter>
   </defs>
 
   <!-- 图标区 -->
-  <rect x="8" y="10" width="100" height="100" rx="16" fill="#FAFAFA"/>
+  <rect x="8" y="10" width="100" height="100" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#hsh)"/>
 
-  <line x1="16" y1="88" x2="92" y2="88" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-  <line x1="16" y1="70" x2="92" y2="70" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-  <line x1="16" y1="52" x2="92" y2="52" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
+  <g transform="translate(58,68)">
+    <g transform="translate(-38,0)">
+      <polygon points="0,-16 6,-19 17,-19 11,-16" fill="url(#ht1)"/>
+      <polygon points="0,-16 11,-16 11,14 0,14" fill="url(#hl1)"/>
+      <polygon points="11,-16 17,-19 17,-5 11,14" fill="url(#hr1)"/>
+    </g>
+    <g transform="translate(-13,0)">
+      <polygon points="0,-32 6,-35 17,-35 11,-32" fill="url(#ht2)"/>
+      <polygon points="0,-32 11,-32 11,-2 0,-2" fill="url(#hl2)"/>
+      <polygon points="11,-32 17,-35 17,-5 11,-2" fill="url(#hr2)"/>
+    </g>
+    <g transform="translate(12,0)">
+      <polygon points="0,-52 6,-55 17,-55 11,-52" fill="url(#ht3)"/>
+      <polygon points="0,-52 11,-52 11,-20 0,-20" fill="url(#hl3)"/>
+      <polygon points="11,-52 17,-55 17,-23 11,-20" fill="url(#hr3)"/>
+    </g>
+    <g transform="translate(37,0)">
+      <polygon points="0,-40 6,-43 17,-43 11,-40" fill="url(#ht4)"/>
+      <polygon points="0,-40 11,-40 11,-8 0,-8" fill="url(#hl4)"/>
+      <polygon points="11,-40 17,-43 17,-11 11,-8" fill="url(#hr4)"/>
+    </g>
+  </g>
 
-  <rect x="22" y="54" width="10" height="34" rx="0" fill="url(#hb1)"/>
-  <rect x="38" y="38" width="10" height="50" rx="0" fill="url(#hb2)"/>
-  <rect x="54" y="48" width="10" height="40" rx="0" fill="url(#hb3)"/>
-  <rect x="70" y="28" width="10" height="60" rx="0" fill="url(#hb4)"/>
-  <rect x="86" y="42" width="10" height="46" rx="0" fill="url(#hb5)"/>
-
-  <line x1="16" y1="88" x2="92" y2="88" stroke="#333333" stroke-width="1.5" stroke-linecap="round"/>
-
-  <polyline points="27,48 43,32 59,42 75,22 91,36"
-            fill="none" stroke="#ff725c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="27" cy="48" r="2.5" fill="#ff725c" stroke="#FFFFFF" stroke-width="0.8"/>
-  <circle cx="43" cy="32" r="2.5" fill="#ff725c" stroke="#FFFFFF" stroke-width="0.8"/>
-  <circle cx="59" cy="42" r="2.5" fill="#ff725c" stroke="#FFFFFF" stroke-width="0.8"/>
-  <circle cx="75" cy="22" r="2.5" fill="#ff725c" stroke="#FFFFFF" stroke-width="0.8"/>
-  <circle cx="91" cy="36" r="2.5" fill="#ff725c" stroke="#FFFFFF" stroke-width="0.8"/>
-
-  <!-- 文字区 -->
-  <text x="124" y="65" dominant-baseline="middle"
-        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
-        font-size="36" font-weight="700" fill="#1A1A1A"
-        letter-spacing="1.5">AnyVis</text>
+  <!-- 文字 -->
+  <text x="124" y="66" dominant-baseline="middle"
+        font-family="'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+        font-size="34" font-weight="700" fill="#1A1A1A" letter-spacing="1.5">AnyVis</text>
 </svg>

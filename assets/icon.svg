@@ -1,47 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
   <defs>
-    <linearGradient id="ib1" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4269d0"/><stop offset="100%" stop-color="#3554a6"/>
-    </linearGradient>
-    <linearGradient id="ib2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3ca951"/><stop offset="100%" stop-color="#308741"/>
-    </linearGradient>
-    <linearGradient id="ib3" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ff725c"/><stop offset="100%" stop-color="#cc5b49"/>
-    </linearGradient>
-    <linearGradient id="ib4" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#a463f2"/><stop offset="100%" stop-color="#834fc1"/>
-    </linearGradient>
-    <linearGradient id="ib5" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#efb118"/><stop offset="100%" stop-color="#bf8e13"/>
-    </linearGradient>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7AADFF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="l1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A7ACC"/><stop offset="100%" stop-color="#3A62A3"/></linearGradient>
+    <linearGradient id="r1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5B8DE0"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6DCD8A"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="l2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3DA36B"/><stop offset="100%" stop-color="#2E8A54"/></linearGradient>
+    <linearGradient id="r2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CB880"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F5998D"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="l3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D96458"/><stop offset="100%" stop-color="#C45045"/></linearGradient>
+    <linearGradient id="r3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EE7B6F"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B8A0E8"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="l4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7E5FC4"/><stop offset="100%" stop-color="#6849AA"/></linearGradient>
+    <linearGradient id="r4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B7ED8"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/></filter>
   </defs>
 
-  <!-- 圆角方底 -->
-  <rect x="4" y="4" width="120" height="120" rx="16" fill="#FAFAFA"/>
+  <rect x="8" y="8" width="112" height="112" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
 
-  <!-- 网格线 -->
-  <line x1="18" y1="108" x2="110" y2="108" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-  <line x1="18" y1="88"  x2="110" y2="88"  stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-  <line x1="18" y1="68"  x2="110" y2="68"  stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-  <line x1="18" y1="48"  x2="110" y2="48"  stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
-
-  <!-- 柱子 -->
-  <rect x="24" y="60" width="12" height="48" rx="0" fill="url(#ib1)"/>
-  <rect x="42" y="40" width="12" height="68" rx="0" fill="url(#ib2)"/>
-  <rect x="60" y="52" width="12" height="56" rx="0" fill="url(#ib3)"/>
-  <rect x="78" y="28" width="12" height="80" rx="0" fill="url(#ib4)"/>
-  <rect x="96" y="44" width="12" height="64" rx="0" fill="url(#ib5)"/>
-
-  <!-- 轴线 -->
-  <line x1="18" y1="108" x2="110" y2="108" stroke="#333333" stroke-width="1.5" stroke-linecap="round"/>
-
-  <!-- 折线 -->
-  <polyline points="30,52 48,32 66,44 84,20 102,36"
-            fill="none" stroke="#ff725c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="30" cy="52" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="48" cy="32" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="66" cy="44" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="84" cy="20" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="102" cy="36" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
+  <g transform="translate(64,76)">
+    <!-- 柱 1 -->
+    <g transform="translate(-44,0)">
+      <polygon points="0,-18 7,-22 20,-22 13,-18" fill="url(#t1)"/>
+      <polygon points="0,-18 13,-18 13,16 0,16" fill="url(#l1)"/>
+      <polygon points="13,-18 20,-22 20,-6 13,16" fill="url(#r1)"/>
+    </g>
+    <!-- 柱 2 -->
+    <g transform="translate(-15,0)">
+      <polygon points="0,-36 7,-40 20,-40 13,-36" fill="url(#t2)"/>
+      <polygon points="0,-36 13,-36 13,-2 0,-2" fill="url(#l2)"/>
+      <polygon points="13,-36 20,-40 20,-6 13,-2" fill="url(#r2)"/>
+    </g>
+    <!-- 柱 3 -->
+    <g transform="translate(14,0)">
+      <polygon points="0,-58 7,-62 20,-62 13,-58" fill="url(#t3)"/>
+      <polygon points="0,-58 13,-58 13,-22 0,-22" fill="url(#l3)"/>
+      <polygon points="13,-58 20,-62 20,-26 13,-22" fill="url(#r3)"/>
+    </g>
+    <!-- 柱 4 -->
+    <g transform="translate(43,0)">
+      <polygon points="0,-44 7,-48 20,-48 13,-44" fill="url(#t4)"/>
+      <polygon points="0,-44 13,-44 13,-8 0,-8" fill="url(#l4)"/>
+      <polygon points="13,-44 20,-48 20,-12 13,-8" fill="url(#r4)"/>
+    </g>
+  </g>
 </svg>

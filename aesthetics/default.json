@@ -97,47 +97,47 @@
   },
 
   "spacing": {
-    "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 },
-    "chart_margin_small": { "top": 30, "right": 20, "bottom": 40, "left": 50 },
-    "multi_chart_gap": 24,
-    "element_padding": 8,
-    "legend_item_gap": 12,
-    "title_to_chart_gap": 8,
-    "axis_label_to_tick_gap": 6,
+    "chart_margin": { "top": 48, "right": 36, "bottom": 56, "left": 56 },
+    "chart_margin_small": { "top": 32, "right": 24, "bottom": 40, "left": 48 },
+    "multi_chart_gap": 28,
+    "element_padding": 10,
+    "legend_item_gap": 14,
+    "title_to_chart_gap": 10,
+    "axis_label_to_tick_gap": 8,
     "data_label_offset": 6
   },
 
   "stroke": {
-    "line": { "width_px": 2.0, "cap": "round", "join": "round" },
-    "line_emphasis": { "width_px": 3.0 },
-    "line_deemphasis": { "width_px": 1.0, "opacity": 0.3 },
-    "grid": { "width_px": 0.5, "color": "#E0E0E0", "dash": [2, 2], "style": "dashed" },
-    "axis": { "width_px": 1.0, "color": "#333333", "style": "solid" },
-    "axis_zero": { "width_px": 1.0, "color": "#555555", "style": "solid" },
-    "reference_line": { "width_px": 1.0, "color": "#ff725c", "dash": [4, 4] },
-    "trend_line": { "width_px": 1.5, "color": "#ff725c", "dash": [6, 3], "opacity": 0.8 }
+    "line": { "width_px": 2.2, "cap": "round", "join": "round", "interpolation": "monotone" },
+    "line_emphasis": { "width_px": 3.2 },
+    "line_deemphasis": { "width_px": 1.0, "opacity": 0.25 },
+    "grid": { "width_px": 0.5, "color": "#E8E8E8", "dash": [2, 2], "style": "dashed", "show_x": false, "show_y": true },
+    "axis": { "width_px": 0.8, "color": "#CCCCCC", "style": "solid", "tick_length_px": 4, "tick_width_px": 0.8 },
+    "axis_zero": { "width_px": 0.8, "color": "#BBBBBB", "style": "solid" },
+    "reference_line": { "width_px": 1.0, "color": "#EE7B6F", "dash": [4, 4], "opacity": 0.7 },
+    "trend_line": { "width_px": 1.5, "color": "#EE7B6F", "dash": [6, 3], "opacity": 0.6 }
   },
 
   "point": {
-    "scatter": { "radius_px": 4.0, "opacity": 0.8, "stroke_width_px": 0.5, "stroke_color": "#FFFFFF" },
-    "line_data_point": { "radius_px": 3.0, "opacity": 1.0, "stroke_width_px": 0 },
-    "highlight_point": { "radius_px": 6.0, "opacity": 1.0, "stroke_width_px": 2.0, "stroke_color": "#333333" },
+    "scatter": { "radius_px": 4.5, "opacity": 0.75, "stroke_width_px": 2.0, "stroke_color": "#FFFFFF" },
+    "line_data_point": { "radius_px": 3.5, "opacity": 1.0, "stroke_width_px": 1.5, "stroke_color": "#FFFFFF" },
+    "highlight_point": { "radius_px": 6.0, "opacity": 1.0, "stroke_width_px": 2.5, "stroke_color": "#333333" },
     "outlier_point": { "radius_px": 4.5, "opacity": 0.6, "style": "x" }
   },
 
   "area": {
-    "opacity": 0.15,
-    "stacked_opacity": 0.7,
-    "gradient_top_opacity": 0.3,
+    "opacity": 0.12,
+    "stacked_opacity": 0.65,
+    "gradient_top_opacity": 0.25,
     "gradient_bottom_opacity": 0.0
   },
 
   "bar": {
-    "width_ratio": 0.7,
-    "corner_radius_px": 0,
+    "width_ratio": 0.65,
+    "corner_radius_px": 5,
     "min_height_px": 2,
     "label_position": "outside",
-    "label_offset_px": 4
+    "label_offset_px": 6
   },
 
   "annotation": {

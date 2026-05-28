@@ -1,46 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
   <defs>
-    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7AADFF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
-    <linearGradient id="l1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A7ACC"/><stop offset="100%" stop-color="#3A62A3"/></linearGradient>
-    <linearGradient id="r1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5B8DE0"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
-    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6DCD8A"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
-    <linearGradient id="l2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3DA36B"/><stop offset="100%" stop-color="#2E8A54"/></linearGradient>
-    <linearGradient id="r2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CB880"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
-    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F5998D"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
-    <linearGradient id="l3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D96458"/><stop offset="100%" stop-color="#C45045"/></linearGradient>
-    <linearGradient id="r3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EE7B6F"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
-    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B8A0E8"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
-    <linearGradient id="l4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7E5FC4"/><stop offset="100%" stop-color="#6849AA"/></linearGradient>
-    <linearGradient id="r4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B7ED8"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
-    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/></filter>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9DC4FF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4265B5"/><stop offset="100%" stop-color="#2E4990"/></linearGradient>
+    <linearGradient id="s1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B9EE8"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8EE0A8"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#36955E"/><stop offset="100%" stop-color="#256F43"/></linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5DC88C"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB8AD"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CC5A4F"/><stop offset="100%" stop-color="#A84036"/></linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F08D82"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
+    <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <linearGradient id="cg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#5B8DE0" stop-opacity=".6"/><stop offset="40%" stop-color="#EE7B6F" stop-opacity=".9"/><stop offset="60%" stop-color="#EE7B6F" stop-opacity="1"/><stop offset="100%" stop-color="#9B7ED8" stop-opacity=".6"/></linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".08"/></filter>
+    <filter id="gl"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
 
   <rect x="8" y="8" width="112" height="112" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
 
-  <g transform="translate(64,76)">
-    <!-- 柱 1 -->
+  <g transform="translate(64,74)">
     <g transform="translate(-44,0)">
-      <polygon points="0,-18 7,-22 20,-22 13,-18" fill="url(#t1)"/>
-      <polygon points="0,-18 13,-18 13,16 0,16" fill="url(#l1)"/>
-      <polygon points="13,-18 20,-22 20,-6 13,16" fill="url(#r1)"/>
+      <polygon points="0,-24 7,-28 20,-28 13,-24" fill="url(#t1)"/>
+      <polygon points="0,-24 13,-24 13,0 0,0" fill="url(#f1)"/>
+      <polygon points="13,-24 20,-28 20,-4 13,0" fill="url(#s1)"/>
     </g>
-    <!-- 柱 2 -->
     <g transform="translate(-15,0)">
-      <polygon points="0,-36 7,-40 20,-40 13,-36" fill="url(#t2)"/>
-      <polygon points="0,-36 13,-36 13,-2 0,-2" fill="url(#l2)"/>
-      <polygon points="13,-36 20,-40 20,-6 13,-2" fill="url(#r2)"/>
+      <polygon points="0,-44 7,-48 20,-48 13,-44" fill="url(#t2)"/>
+      <polygon points="0,-44 13,-44 13,0 0,0" fill="url(#f2)"/>
+      <polygon points="13,-44 20,-48 20,-4 13,0" fill="url(#s2)"/>
     </g>
-    <!-- 柱 3 -->
     <g transform="translate(14,0)">
-      <polygon points="0,-58 7,-62 20,-62 13,-58" fill="url(#t3)"/>
-      <polygon points="0,-58 13,-58 13,-22 0,-22" fill="url(#l3)"/>
-      <polygon points="13,-58 20,-62 20,-26 13,-22" fill="url(#r3)"/>
+      <polygon points="0,-72 7,-76 20,-76 13,-72" fill="url(#t3)"/>
+      <polygon points="0,-72 13,-72 13,0 0,0" fill="url(#f3)"/>
+      <polygon points="13,-72 20,-76 20,-4 13,0" fill="url(#s3)"/>
     </g>
-    <!-- 柱 4 -->
     <g transform="translate(43,0)">
-      <polygon points="0,-44 7,-48 20,-48 13,-44" fill="url(#t4)"/>
-      <polygon points="0,-44 13,-44 13,-8 0,-8" fill="url(#l4)"/>
-      <polygon points="13,-44 20,-48 20,-12 13,-8" fill="url(#r4)"/>
+      <polygon points="0,-54 7,-58 20,-58 13,-54" fill="url(#t4)"/>
+      <polygon points="0,-54 13,-54 13,0 0,0" fill="url(#f4)"/>
+      <polygon points="13,-54 20,-58 20,-4 13,0" fill="url(#s4)"/>
     </g>
+    <path d="M -50,12 C -22,-10 22,-70 54,-45" fill="none" stroke="url(#cg)" stroke-width="1.5" stroke-linecap="round" filter="url(#gl)"/>
+    <circle cx="-50" cy="12" r="1.2" fill="#5B8DE0" opacity=".5"/>
+    <circle cx="54" cy="-45" r="1.2" fill="#9B7ED8" opacity=".5"/>
   </g>
 </svg>

@@ -1,48 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" fill="none">
   <defs>
-    <linearGradient id="ht1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7AADFF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
-    <linearGradient id="hl1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A7ACC"/><stop offset="100%" stop-color="#3A62A3"/></linearGradient>
-    <linearGradient id="hr1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5B8DE0"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
-    <linearGradient id="ht2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6DCD8A"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
-    <linearGradient id="hl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3DA36B"/><stop offset="100%" stop-color="#2E8A54"/></linearGradient>
-    <linearGradient id="hr2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CB880"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
-    <linearGradient id="ht3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F5998D"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
-    <linearGradient id="hl3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D96458"/><stop offset="100%" stop-color="#C45045"/></linearGradient>
-    <linearGradient id="hr3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EE7B6F"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
-    <linearGradient id="ht4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B8A0E8"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
-    <linearGradient id="hl4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7E5FC4"/><stop offset="100%" stop-color="#6849AA"/></linearGradient>
-    <linearGradient id="hr4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B7ED8"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
-    <filter id="hsh"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.06"/></filter>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9DC4FF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4265B5"/><stop offset="100%" stop-color="#2E4990"/></linearGradient>
+    <linearGradient id="s1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B9EE8"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8EE0A8"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#36955E"/><stop offset="100%" stop-color="#256F43"/></linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5DC88C"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB8AD"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CC5A4F"/><stop offset="100%" stop-color="#A84036"/></linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F08D82"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
+    <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <linearGradient id="cg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#5B8DE0" stop-opacity=".6"/><stop offset="40%" stop-color="#EE7B6F" stop-opacity=".9"/><stop offset="60%" stop-color="#EE7B6F" stop-opacity="1"/><stop offset="100%" stop-color="#9B7ED8" stop-opacity=".6"/></linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".06"/></filter>
+    <filter id="gl"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
 
-  <!-- 图标区 -->
-  <rect x="8" y="10" width="100" height="100" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#hsh)"/>
+  <rect x="8" y="10" width="100" height="100" rx="20" fill="#FAFBFC" stroke="#EDEEF0" stroke-width="1" filter="url(#sh)"/>
 
-  <g transform="translate(58,68)">
+  <g transform="translate(58,67)">
     <g transform="translate(-38,0)">
-      <polygon points="0,-16 6,-19 17,-19 11,-16" fill="url(#ht1)"/>
-      <polygon points="0,-16 11,-16 11,14 0,14" fill="url(#hl1)"/>
-      <polygon points="11,-16 17,-19 17,-5 11,14" fill="url(#hr1)"/>
+      <polygon points="0,-22 7,-26 17,-26 10,-22" fill="url(#t1)"/>
+      <polygon points="0,-22 10,-22 10,0 0,0" fill="url(#f1)"/>
+      <polygon points="10,-22 17,-26 17,-4 10,0" fill="url(#s1)"/>
     </g>
     <g transform="translate(-13,0)">
-      <polygon points="0,-32 6,-35 17,-35 11,-32" fill="url(#ht2)"/>
-      <polygon points="0,-32 11,-32 11,-2 0,-2" fill="url(#hl2)"/>
-      <polygon points="11,-32 17,-35 17,-5 11,-2" fill="url(#hr2)"/>
+      <polygon points="0,-40 7,-44 17,-44 10,-40" fill="url(#t2)"/>
+      <polygon points="0,-40 10,-40 10,0 0,0" fill="url(#f2)"/>
+      <polygon points="10,-40 17,-44 17,-4 10,0" fill="url(#s2)"/>
     </g>
     <g transform="translate(12,0)">
-      <polygon points="0,-52 6,-55 17,-55 11,-52" fill="url(#ht3)"/>
-      <polygon points="0,-52 11,-52 11,-20 0,-20" fill="url(#hl3)"/>
-      <polygon points="11,-52 17,-55 17,-23 11,-20" fill="url(#hr3)"/>
+      <polygon points="0,-65 7,-69 17,-69 10,-65" fill="url(#t3)"/>
+      <polygon points="0,-65 10,-65 10,0 0,0" fill="url(#f3)"/>
+      <polygon points="10,-65 17,-69 17,-4 10,0" fill="url(#s3)"/>
     </g>
     <g transform="translate(37,0)">
-      <polygon points="0,-40 6,-43 17,-43 11,-40" fill="url(#ht4)"/>
-      <polygon points="0,-40 11,-40 11,-8 0,-8" fill="url(#hl4)"/>
-      <polygon points="11,-40 17,-43 17,-11 11,-8" fill="url(#hr4)"/>
+      <polygon points="0,-50 7,-54 17,-54 10,-50" fill="url(#t4)"/>
+      <polygon points="0,-50 10,-50 10,0 0,0" fill="url(#f4)"/>
+      <polygon points="10,-50 17,-54 17,-4 10,0" fill="url(#s4)"/>
     </g>
+    <path d="M -46,12 C -20,-10 20,-64 50,-40" fill="none" stroke="url(#cg)" stroke-width="1.5" stroke-linecap="round" filter="url(#gl)"/>
+    <circle cx="-46" cy="12" r="1.2" fill="#5B8DE0" opacity=".5"/>
+    <circle cx="50" cy="-40" r="1.2" fill="#9B7ED8" opacity=".5"/>
   </g>
 
-  <!-- 文字 -->
   <text x="124" y="66" dominant-baseline="middle"
-        font-family="'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+        font-family="'Helvetica Neue',Helvetica,Arial,'PingFang SC','Microsoft YaHei',sans-serif"
         font-size="34" font-weight="700" fill="#1A1A1A" letter-spacing="1.5">AnyVis</text>
 </svg>

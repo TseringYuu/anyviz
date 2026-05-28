@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" fill="none">
+  <defs>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9DC4FF"/><stop offset="100%" stop-color="#5B8DE0"/></linearGradient>
+    <linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4265B5"/><stop offset="100%" stop-color="#2E4990"/></linearGradient>
+    <linearGradient id="s1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B9EE8"/><stop offset="100%" stop-color="#4A7ACC"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8EE0A8"/><stop offset="100%" stop-color="#4CB880"/></linearGradient>
+    <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#36955E"/><stop offset="100%" stop-color="#256F43"/></linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5DC88C"/><stop offset="100%" stop-color="#3DA36B"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB8AD"/><stop offset="100%" stop-color="#EE7B6F"/></linearGradient>
+    <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CC5A4F"/><stop offset="100%" stop-color="#A84036"/></linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F08D82"/><stop offset="100%" stop-color="#D96458"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#CCB8F0"/><stop offset="100%" stop-color="#9B7ED8"/></linearGradient>
+    <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7055B8"/><stop offset="100%" stop-color="#573E96"/></linearGradient>
+    <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AA8EE0"/><stop offset="100%" stop-color="#7E5FC4"/></linearGradient>
+    <filter id="bs"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity=".08"/></filter>
+  </defs>
+
+  <g transform="translate(58,66)" filter="url(#bs)">
+    <g transform="translate(-38,0)">
+      <polygon points="0,-16 6,-19 17,-19 11,-16" fill="url(#t1)" stroke="#A0C8FF" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-16 11,-16 11,14 0,14" fill="url(#f1)" stroke="#4A6FB8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-16 17,-19 17,11 11,14" fill="url(#s1)" stroke="#6B9EE8" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(-13,0)">
+      <polygon points="0,-33 6,-36 17,-36 11,-33" fill="url(#t2)" stroke="#A0E8B8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-33 11,-33 11,0 0,0" fill="url(#f2)" stroke="#2E8A50" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-33 17,-36 17,-3 11,0" fill="url(#s2)" stroke="#5DC88C" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(12,0)">
+      <polygon points="0,-52 6,-55 17,-55 11,-52" fill="url(#t3)" stroke="#FFC8BE" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-52 11,-52 11,-20 0,-20" fill="url(#f3)" stroke="#C04840" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-52 17,-55 17,-23 11,-20" fill="url(#s3)" stroke="#F08D82" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(37,0)">
+      <polygon points="0,-40 6,-43 17,-43 11,-40" fill="url(#t4)" stroke="#D8C8F5" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-40 11,-40 11,-8 0,-8" fill="url(#f4)" stroke="#6649A8" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="11,-40 17,-43 17,-11 11,-8" fill="url(#s4)" stroke="#AA8EE0" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <text x="124" y="66" dominant-baseline="middle"
+        font-family="'Helvetica Neue',Helvetica,Arial,'PingFang SC','Microsoft YaHei',sans-serif"
+        font-size="34" font-weight="700" fill="#1A1A1A" letter-spacing="1.5">anyvis</text>
+</svg>

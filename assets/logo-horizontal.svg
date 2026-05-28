@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" fill="none">
+  <defs>
+    <linearGradient id="hb1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4C72B0"/><stop offset="100%" stop-color="#3A5A8C"/>
+    </linearGradient>
+    <linearGradient id="hb2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#55A868"/><stop offset="100%" stop-color="#3D8A4E"/>
+    </linearGradient>
+    <linearGradient id="hb3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C44E52"/><stop offset="100%" stop-color="#A03A3E"/>
+    </linearGradient>
+    <linearGradient id="hb4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8172B2"/><stop offset="100%" stop-color="#655899"/>
+    </linearGradient>
+    <linearGradient id="hb5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#CCB974"/><stop offset="100%" stop-color="#B0A05A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 图标区 -->
+  <rect x="8" y="10" width="100" height="100" rx="16" fill="#FAFAFA"/>
+
+  <line x1="16" y1="88" x2="92" y2="88" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
+  <line x1="16" y1="70" x2="92" y2="70" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
+  <line x1="16" y1="52" x2="92" y2="52" stroke="#E8E8E8" stroke-width="0.75" stroke-dasharray="3 3"/>
+
+  <rect x="22" y="54" width="10" height="34" rx="0" fill="url(#hb1)"/>
+  <rect x="38" y="38" width="10" height="50" rx="0" fill="url(#hb2)"/>
+  <rect x="54" y="48" width="10" height="40" rx="0" fill="url(#hb3)"/>
+  <rect x="70" y="28" width="10" height="60" rx="0" fill="url(#hb4)"/>
+  <rect x="86" y="42" width="10" height="46" rx="0" fill="url(#hb5)"/>
+
+  <line x1="16" y1="88" x2="92" y2="88" stroke="#333333" stroke-width="1.5" stroke-linecap="round"/>
+
+  <polyline points="27,48 43,32 59,42 75,22 91,36"
+            fill="none" stroke="#C44E52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="27" cy="48" r="2.5" fill="#C44E52" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="43" cy="32" r="2.5" fill="#C44E52" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="59" cy="42" r="2.5" fill="#C44E52" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="75" cy="22" r="2.5" fill="#C44E52" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="91" cy="36" r="2.5" fill="#C44E52" stroke="#FFFFFF" stroke-width="0.8"/>
+
+  <!-- 文字区 -->
+  <text x="124" y="65" dominant-baseline="middle"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="36" font-weight="700" fill="#1A1A1A"
+        letter-spacing="1.5">AnyVis</text>
+</svg>

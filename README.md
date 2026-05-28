@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.svg" alt="AnyVis" width="180">
+</p>
+
 # AnyVis
 
 通用数据可视化 Skill 库 — 为 Claude 和其他 AI 助手提供智能图表选择、默认美学规范、多技术栈适配和设计一致性保障。

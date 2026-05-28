@@ -35,8 +35,8 @@ DEFAULT_SPEC = {
     },
     "color": {
         "categorical_palette": [
-            "#4C72B0", "#55A868", "#C44E52", "#8172B2", "#CCB974",
-            "#64B5CD", "#8C8C8C", "#E8A735", "#8BC34A", "#E377C2"
+            "#4269d0", "#3ca951", "#ff725c", "#a463f2", "#efb118",
+            "#6cc5b0", "#9696a0", "#f5a623", "#ca5bb8", "#ff8ab7"
         ]
     }
 }

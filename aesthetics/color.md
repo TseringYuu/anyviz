@@ -1,6 +1,6 @@
 # 色彩规则
 
-基于《数据之美》的色彩使用原则，以及 ColorBrewer、Viridis 等学术色彩方案的实践。
+色彩方案受 Observable Plot 现代设计语言启发，结合 ColorBrewer、Viridis 等学术色彩方案的实践。
 
 ## 核心原则
 

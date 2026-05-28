@@ -16,11 +16,11 @@
         "grid": { "width_px": 0.5, "color": "#E0E0E0" }
       },
       "color": {
-        "categorical_palette": ["#4C72B0","#55A868","#C44E52","#8172B2","#CCB974"]
+        "categorical_palette": ["#4269d0","#3ca951","#ff725c","#a463f2","#efb118"]
       },
       "color_mapping": {
-        "Product A": "#4C72B0",
-        "Product B": "#55A868"
+        "Product A": "#4269d0",
+        "Product B": "#3ca951"
       }
     },
     {
@@ -38,11 +38,11 @@
         "grid": { "width_px": 0.5, "color": "#E0E0E0" }
       },
       "color": {
-        "categorical_palette": ["#4C72B0","#55A868","#C44E52","#8172B2","#CCB974"]
+        "categorical_palette": ["#4269d0","#3ca951","#ff725c","#a463f2","#efb118"]
       },
       "color_mapping": {
-        "Product A": "#4C72B0",
-        "Product B": "#55A868"
+        "Product A": "#4269d0",
+        "Product B": "#3ca951"
       }
     }
   ]

@@ -55,7 +55,7 @@ const material = new THREE.MeshPhongMaterial({
 ```javascript
 const geometry = new THREE.SphereGeometry(0.05, 8, 8);
 const material = new THREE.MeshPhongMaterial({
-  color: new THREE.Color('#4C72B0'),
+  color: new THREE.Color('#4269d0'),
   opacity: 0.7,
   transparent: true
 });

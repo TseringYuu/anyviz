@@ -60,7 +60,7 @@ map.addLayer({
       minValue, 4,           // min radius
       maxValue, 40           // max radius
     ],
-    'circle-color': '#4C72B0',
+    'circle-color': '#4269d0',
     'circle-opacity': 0.7,
     'circle-stroke-color': '#FFFFFF',
     'circle-stroke-width': 1

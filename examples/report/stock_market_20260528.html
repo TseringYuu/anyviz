@@ -14,10 +14,10 @@
     --text-tertiary: #666666;
     --text-muted: #888888;
     --border: #E8E8E8;
-    --color-up: #C44E52;
-    --color-down: #55A868;
-    --color-flat: #8C8C8C;
-    --accent: #4C72B0;
+    --color-up: #ff725c;
+    --color-down: #3ca951;
+    --color-flat: #9696a0;
+    --accent: #4269d0;
     --font-sans: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -283,13 +283,13 @@
 <script>
 // ============================================================
 // AnyVis 默认主题配置
-// 色板: #4C72B0 #55A868 #C44E52 #8172B2 #CCB974 #64B5CD #8C8C8C #E8A735
+// 色板: #4269d0 #3ca951 #ff725c #a463f2 #efb118 #6cc5b0 #9696a0 #f5a623
 // ============================================================
-const UP_COLOR = '#C44E52';
-const DOWN_COLOR = '#55A868';
-const FLAT_COLOR = '#8C8C8C';
-const ACCENT = '#4C72B0';
-const PALETTE = ['#4C72B0','#55A868','#C44E52','#8172B2','#CCB974','#64B5CD','#8C8C8C','#E8A735','#8BC34A','#E377C2'];
+const UP_COLOR = '#ff725c';
+const DOWN_COLOR = '#3ca951';
+const FLAT_COLOR = '#9696a0';
+const ACCENT = '#4269d0';
+const PALETTE = ['#4269d0','#3ca951','#ff725c','#a463f2','#efb118','#6cc5b0','#9696a0','#f5a623','#ca5bb8','#ff8ab7'];
 const TEXT_PRIMARY = '#1A1A1A';
 const TEXT_SEC = '#555555';
 const GRID_COLOR = '#E8E8E8';
@@ -394,7 +394,7 @@ const GRID_COLOR = '#E8E8E8';
     series: [{
       type: 'bar',
       data: concepts.map(function(d) {
-        var color = d.value > 3 ? '#E8A735' : (d.value > 0 ? UP_COLOR : DOWN_COLOR);
+        var color = d.value > 3 ? '#f5a623' : (d.value > 0 ? UP_COLOR : DOWN_COLOR);
         return { value: d.value, itemStyle: { color: color, borderRadius: [0, 3, 3, 0] } };
       }).reverse(),
       barWidth: 14,

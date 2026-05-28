@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
   <defs>
     <linearGradient id="ib1" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4C72B0"/><stop offset="100%" stop-color="#3A5A8C"/>
+      <stop offset="0%" stop-color="#4269d0"/><stop offset="100%" stop-color="#3554a6"/>
     </linearGradient>
     <linearGradient id="ib2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#55A868"/><stop offset="100%" stop-color="#3D8A4E"/>
+      <stop offset="0%" stop-color="#3ca951"/><stop offset="100%" stop-color="#308741"/>
     </linearGradient>
     <linearGradient id="ib3" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#C44E52"/><stop offset="100%" stop-color="#A03A3E"/>
+      <stop offset="0%" stop-color="#ff725c"/><stop offset="100%" stop-color="#cc5b49"/>
     </linearGradient>
     <linearGradient id="ib4" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#8172B2"/><stop offset="100%" stop-color="#655899"/>
+      <stop offset="0%" stop-color="#a463f2"/><stop offset="100%" stop-color="#834fc1"/>
     </linearGradient>
     <linearGradient id="ib5" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#CCB974"/><stop offset="100%" stop-color="#B0A05A"/>
+      <stop offset="0%" stop-color="#efb118"/><stop offset="100%" stop-color="#bf8e13"/>
     </linearGradient>
   </defs>
 
@@ -38,10 +38,10 @@
 
   <!-- 折线 -->
   <polyline points="30,52 48,32 66,44 84,20 102,36"
-            fill="none" stroke="#C44E52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="30" cy="52" r="3" fill="#C44E52" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="48" cy="32" r="3" fill="#C44E52" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="66" cy="44" r="3" fill="#C44E52" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="84" cy="20" r="3" fill="#C44E52" stroke="#FFFFFF" stroke-width="1"/>
-  <circle cx="102" cy="36" r="3" fill="#C44E52" stroke="#FFFFFF" stroke-width="1"/>
+            fill="none" stroke="#ff725c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="30" cy="52" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="48" cy="32" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="66" cy="44" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="84" cy="20" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="102" cy="36" r="3" fill="#ff725c" stroke="#FFFFFF" stroke-width="1"/>
 </svg>

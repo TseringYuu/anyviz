@@ -23,7 +23,7 @@ import matplotlib as mpl
 import numpy as np
 
 # ===== AnyVis 默认美学参数 =====
-CATEGORICAL = ['#4C72B0', '#55A868', '#C44E52', '#8172B2', '#CCB974']
+CATEGORICAL = ['#4269d0', '#3ca951', '#ff725c', '#a463f2', '#efb118']
 FONT_FAMILY = ['Helvetica Neue', 'Helvetica', 'Arial',
                'PingFang SC', 'Microsoft YaHei', 'sans-serif']
 

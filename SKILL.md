@@ -2,7 +2,7 @@
 name: anyvis
 description: >-
   数据可视化专家 Skill。自动分析数据特征与用户意图，选择最佳图表类型，
-  应用《数据之美》美学规范，适配前端（D3.js/ECharts/Mapbox/Three.js）、
+  应用现代数据可视化美学规范（基于 Observable Plot），适配前端（D3.js/ECharts/Mapbox/Three.js）、
   Python（matplotlib/plotly）或 R（ggplot2）技术栈，确保多图表输出的设计一致性。
   invoke-skill-immediately: true
 disable-model-invocation: false
@@ -107,15 +107,16 @@ disable-model-invocation: false
 
 ### 默认色板（Categorical Default）
 
-基于《数据之美》原则，默认色板应满足：
-- 感知均匀：相邻颜色在视觉上的差异程度一致
+受 Observable Plot 现代设计语言启发，默认色板应满足：
+- 明亮克制：灰度使用节制，避免上世纪 90 年代图表感
+- 色彩区分：相邻颜色色相间距足够，可轻松区分
 - 色盲友好：对红绿色盲可区分
 - 打印兼容：在灰度下仍可区分
 
 默认 10 色色板：
 ```
-#4C72B0  #55A868  #C44E52  #8172B2  #CCB974
-#64B5CD  #8C8C8C  #E8A735  #8BC34A  #E377C2
+#4269d0  #3ca951  #ff725c  #a463f2  #efb118
+#6cc5b0  #9696a0  #f5a623  #ca5bb8  #ff8ab7
 ```
 
 ### 默认排版层级

@@ -1,23 +1,23 @@
 {
   "name": "AnyVis Default",
   "version": "1.0.0",
-  "description": "基于《数据之美》原则的默认可视化主题，适用于商业报告和通用数据展示场景",
+  "description": "基于 Observable Plot 设计理念的默认可视化主题，色彩明亮、灰度克制，适用于现代商业报告和通用数据展示场景",
 
   "color": {
     "categorical": {
-      "description": "分类数据色板 — 用于无顺序关系的类别对比",
+      "description": "分类数据色板 — 受 Observable Plot 现代配色启发，用于无顺序关系的类别对比。颜色明亮、灰度克制",
       "max_items": 10,
       "palette": [
-        "#4C72B0",
-        "#55A868",
-        "#C44E52",
-        "#8172B2",
-        "#CCB974",
-        "#64B5CD",
-        "#8C8C8C",
-        "#E8A735",
-        "#8BC34A",
-        "#E377C2"
+        "#4269d0",
+        "#3ca951",
+        "#ff725c",
+        "#a463f2",
+        "#efb118",
+        "#6cc5b0",
+        "#9696a0",
+        "#f5a623",
+        "#ca5bb8",
+        "#ff8ab7"
       ],
       "color_blind_safe": true,
       "grayscale_distinguishable": true
@@ -46,10 +46,10 @@
     },
 
     "highlight": {
-      "primary": "#4C72B0",
-      "comparison": "#C44E52",
-      "reference_positive": "#55A868",
-      "reference_negative": "#C44E52"
+      "primary": "#4269d0",
+      "comparison": "#ff725c",
+      "reference_positive": "#3ca951",
+      "reference_negative": "#ff725c"
     },
 
     "background": {
@@ -114,8 +114,8 @@
     "grid": { "width_px": 0.5, "color": "#E0E0E0", "dash": [2, 2], "style": "dashed" },
     "axis": { "width_px": 1.0, "color": "#333333", "style": "solid" },
     "axis_zero": { "width_px": 1.0, "color": "#555555", "style": "solid" },
-    "reference_line": { "width_px": 1.0, "color": "#C44E52", "dash": [4, 4] },
-    "trend_line": { "width_px": 1.5, "color": "#C44E52", "dash": [6, 3], "opacity": 0.8 }
+    "reference_line": { "width_px": 1.0, "color": "#ff725c", "dash": [4, 4] },
+    "trend_line": { "width_px": 1.5, "color": "#ff725c", "dash": [6, 3], "opacity": 0.8 }
   },
 
   "point": {
@@ -143,7 +143,7 @@
   "annotation": {
     "callout_line": { "width_px": 1.0, "color": "#555555", "dash": [3, 3] },
     "callout_circle": { "radius_px": 5, "stroke_width_px": 2.0, "fill": "none" },
-    "highlight_band": { "fill_color": "#4C72B0", "opacity": 0.08 },
+    "highlight_band": { "fill_color": "#4269d0", "opacity": 0.08 },
     "tooltip_font_size_px": 11,
     "tooltip_background": "#FFFFFF",
     "tooltip_border": "#D0D0D0"

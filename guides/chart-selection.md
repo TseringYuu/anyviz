@@ -133,3 +133,38 @@
 ### 缺失值
 - 折线图：用虚线连接断点，或用半透明标记缺失区域
 - 柱状图：在缺失位置留空或用灰色标注
+
+---
+
+## 模板索引
+
+选定图表类型后，到对应模板获取数据格式、美学参数与设计要点。模板统一结构见 `templates/TEMPLATE-SPEC.md`。
+
+### 统计图表 `templates/charts/`（20 种）
+
+| 图表 | 文件 | 图表 | 文件 |
+|------|------|------|------|
+| 柱状/条形图 | `bar-chart.md` | 折线图 | `line-chart.md` |
+| 散点图 | `scatter-plot.md` | 面积图 | `area-chart.md` |
+| 饼图/环形图 | `pie-donut-chart.md` | 直方图 | `histogram.md` |
+| 箱线图 | `box-plot.md` | 热力图 | `heatmap.md` |
+| 雷达图 | `radar-chart.md` | 瀑布图 | `waterfall-chart.md` |
+| 密度图 | `density-plot.md` | 华夫图 | `waffle-chart.md` |
+| 点图 | `dot-plot.md` | 坡度图 | `slope-chart.md` |
+| 小倍数图 | `small-multiples.md` | 日历热力图 | `calendar-heatmap.md` |
+| 烛台图 | `candlestick-chart.md` | 六边形分箱图 | `hexbin-plot.md` |
+| 平行坐标图 | `parallel-coordinates.md` | 矩阵散点图 | `scatter-matrix.md` |
+
+### 地图 `templates/maps/`（3 种）
+
+等值区域图 `choropleth.md` · 气泡地图 `bubble-map.md` · 流向地图 `flow-map.md`
+
+### 关系与层次图 `templates/graphs/`（8 种）
+
+桑基图 `sankey.md` · 弦图 `chord-diagram.md` · 力导向图 `force-graph.md` · 树图 `treemap.md` · 旭日图 `sunburst.md` · 树形图 `dendrogram.md` · 弧形图 `arc-diagram.md` · 冲积图 `alluvial.md`
+
+### 三维 `templates/3d/`（3 种）
+
+3D 地球 `globe-3d.md` · 3D 散点图 `scatter-3d.md` · 3D 曲面图 `surface-3d.md`
+
+> 部分图表（棒棒糖图、堆叠/分组柱、六边形分箱、坡度图等）也作为主图模板的「变体」记录，查阅主图模板的「变体」章节。

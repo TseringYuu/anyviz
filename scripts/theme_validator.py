@@ -122,13 +122,29 @@ def validate_stroke(config: Dict) -> List[str]:
 
 
 def validate_color_palette(config: Dict) -> List[str]:
-    """验证色板是否在默认色板范围内"""
+    """验证色板是否在默认色板范围内。
+
+    使用默认色板的前缀（按顺序取前 N 色）视为一致——类别较少时
+    只取前几色是正常且推荐的用法。仅当色板包含默认色板之外的颜色，
+    或未按默认顺序取色时，才提示可能为用户定制。
+    """
     issues = []
     palette = config.get("color", {}).get("categorical_palette", [])
     default = DEFAULT_SPEC["color"]["categorical_palette"]
 
-    if palette and palette != default:
-        # 不强制要求完全一致，但提醒检查
+    if not palette:
+        return issues
+
+    # 归一化为小写比较，避免大小写差异误报
+    norm_palette = [c.lower() for c in palette]
+    norm_default = [c.lower() for c in default]
+
+    is_ordered_prefix = (
+        len(norm_palette) <= len(norm_default)
+        and norm_palette == norm_default[:len(norm_palette)]
+    )
+
+    if not is_ordered_prefix:
         issues.append(
             "[色板] 色板与默认值不同 — 请确认是否为用户定制"
         )
@@ -242,11 +258,18 @@ def main():
 
     all_issues = []
 
-    # 单图表验证
-    if args.multi_chart:
+    # 确定待校验的图表列表：
+    # 1) 显式 --multi-chart，或
+    # 2) 配置顶层包含 charts 数组（自动识别多图表配置，避免把外层包装对象误当单图表，导致漏检）
+    if isinstance(config, dict) and isinstance(config.get("charts"), list):
+        charts = config["charts"]
+        multi_chart = True
+    elif args.multi_chart:
         charts = config.get("charts", [config])
+        multi_chart = True
     else:
         charts = [config]
+        multi_chart = False
 
     for chart in charts:
         all_issues.extend(validate_typography(chart))
@@ -255,7 +278,7 @@ def main():
         all_issues.extend(validate_color_palette(chart))
 
     # 多图表一致性验证
-    if args.multi_chart and len(charts) > 1:
+    if multi_chart and len(charts) > 1:
         all_issues.extend(validate_multi_chart_consistency(charts))
 
     # 输出结果

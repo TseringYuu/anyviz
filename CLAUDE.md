@@ -12,8 +12,10 @@
 | 2. 美学 | `aesthetics/default.json` | 加载默认主题参数（颜色/排版/间距/线条） |
 | 3. 适配 | `adapters/` | 根据目标环境选择技术栈适配器生成代码 |
 | 4. 校验 | `guides/consistency-rules.md` | 检查多图表输出的设计一致性 |
+| 5. 无障碍 | `guides/accessibility.md` | 校验对比度、色盲友好、冗余编码、alt text |
 
 当调用者通过自然语言定制美学时，参考 `guides/customization-guide.md` 中的映射表。
+新建或修改图表模板时，遵循 `templates/TEMPLATE-SPEC.md` 的统一结构规范。
 
 ## 默认技术栈优先级
 
@@ -33,9 +35,9 @@
 ```
 anyviz/
 ├── README.md, LICENSE, SKILL.md, CLAUDE.md
-├── aesthetics/   → default.json + 规则文档
-├── guides/       → 选择/用色/一致性/定制 四种指南
-├── templates/    → 按 charts/maps/graphs/3d 分类的模板
+├── aesthetics/   → default.json + 规则文档（color/typography/layout）+ themes/
+├── guides/       → 选择/用色/一致性/定制/无障碍 五种指南
+├── templates/    → 34 种模板，按 charts/maps/graphs/3d 分类 + TEMPLATE-SPEC.md 规范
 ├── adapters/     → 按 web/python/r 环境分类的适配器
 ├── scripts/      → theme_validator.py
 └── examples/     → dashboard/report/interactive 三类示例

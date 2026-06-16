@@ -197,7 +197,7 @@ finance-trading/
 ## 关于 anyviz
 
 anyviz 是 AI 原生数据可视化规范库，本示例严格遵循其设计系统、色板、无障碍标准与模板规范。详见：
-- [anyviz GitHub](https://github.com/anyviz/anyviz)
+- [anyviz GitHub](https://github.com/TseringYuu/anyviz)
 - [设计系统文档](../../aesthetics/)
 - [无障碍指南](../../guides/accessibility.md)
 

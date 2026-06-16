@@ -84,5 +84,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/theme_validator.py` for automated theme-consistency validation.
   主题一致性校验脚本。
 
-[Unreleased]: https://github.com/anyviz/anyviz/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/anyviz/anyviz/releases/tag/v1.0.0
+[Unreleased]: https://github.com/TseringYuu/anyviz/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/TseringYuu/anyviz/releases/tag/v1.0.0

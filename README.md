@@ -44,13 +44,13 @@ and how to keep ten charts visually coherent.
 
 ---
 
-The montage below is rendered from a dedicated Remotion composition built around the dashboards in `examples/`, so each shot behaves like a full-screen report scene instead of a stitched single-chart reel.
+The preview below highlights the range of outputs anyviz is designed to guide:
+analytical reports, operational dashboards, geographic views, and monitoring
+screens that combine multiple visualizations into one coherent canvas.
 
 <p align="center">
-  <img src="assets/showcase.gif" alt="A montage of full-screen dashboard scenes rendered in the anyviz style" width="100%">
+  <img src="assets/showcase.gif" alt="Examples of full-screen dashboard scenes designed with anyviz" width="100%">
 </p>
-
-Source of truth: [`showcase-remotion/`](showcase-remotion) + [`scripts/make_showcase_gif.py`](scripts/make_showcase_gif.py). The script renders `assets/showcase.mp4` first, then exports the README-friendly `assets/showcase.gif`.
 
 ## The Pipeline
 
@@ -200,7 +200,7 @@ Full mapping: [`guides/customization-guide.md`](guides/customization-guide.md).
 ```text
 anyviz/
 ├── SKILL.md                  # Claude Skill entry point (workflow + core rules)
-├── CLAUDE.md                 # Runtime context & conventions for Claude
+├── README.zh-CN.md           # Simplified Chinese documentation
 ├── aesthetics/               # Authoritative aesthetic spec
 │   ├── default.json          # Default theme (color, type, spacing, stroke, responsive)
 │   ├── color.md              # Color rules & colorblind-safe palettes
@@ -220,9 +220,11 @@ anyviz/
 │   ├── graphs/               # 8 relational & hierarchical charts
 │   └── 3d/                   # 3 three-dimensional charts
 ├── adapters/                 # Stack-specific adapters (web / python / r)
+├── assets/                   # README banner, wordmark, and showcase media
 ├── examples/                 # Runnable examples + per-example READMEs
 └── scripts/
-    └── theme_validator.py    # Automated theme-consistency validator
+    ├── theme_validator.py    # Automated theme-consistency validator
+    └── make_*.py             # Reproducible brand-asset helpers
 ```
 
 ---
@@ -231,8 +233,8 @@ anyviz/
 
 Each example in [`examples/`](examples) is a complete, runnable **industry big-screen
 dashboard** — not a single chart, but a full canvas of coordinated visualizations in the
-anyviz dark-screen aesthetic. The showcase above is a Remotion-directed preview of these
-dashboard patterns, with scene-to-scene transitions rather than static screenshot swapping.
+anyviz dark-screen aesthetic. Together they show how the same specification can support
+financial monitoring, retail operations, energy IoT, and geospatial command-center use cases.
 
 - [`finance-trading`](examples/finance-trading) — real-time market monitoring: candlestick + MAs, intraday indices, capital flow, sector heatmap
 - [`ecommerce-retail`](examples/ecommerce-retail) — retail operations: GMV trend, category mix, regional sales map, conversion funnel
@@ -240,20 +242,6 @@ dashboard patterns, with scene-to-scene transitions rather than static screensho
 - [`city-geo`](examples/city-geo) — urban big-data: map flight-lines + ripples, city rankings, footfall trends, 24h heatmap
 
 All four are single-file `index.html` (ECharts 5.5.1), built for 1920×1080 and responsive.
-
-### Regenerate the showcase
-
-```bash
-# Render the video source
-cd showcase-remotion
-npm install
-npm run lint
-npm run render:showcase
-
-# Export the repository GIF used by README
-cd ..
-python3 scripts/make_showcase_gif.py
-```
 
 ---
 

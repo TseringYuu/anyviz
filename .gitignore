@@ -16,9 +16,5 @@ __pycache__/
 .venv/
 venv/
 
-# Hyperframes / Remotion render output (large binaries; regenerate locally)
-hyperframes/renders/
-remotion/out/
-
 # Local design scratch
 design/

@@ -38,13 +38,12 @@
 
 ---
 
-下面这段蒙太奇由专门的 Remotion 组合渲染生成，并围绕 `examples/` 里的整屏案例设计成报表 / 大屏级别的分镜，而不是简单拼接单一图表。
+下面的展示图呈现了 anyviz 适用的多种输出形态：分析报告、运营仪表盘、地理可视化与监控大屏。
+这些场景都不是孤立图表，而是在同一画布中组织多种可视化，形成清晰、统一、可落地的业务视图。
 
 <p align="center">
-  <img src="assets/showcase.gif" alt="anyviz 风格渲染的整屏大屏场景蒙太奇" width="100%">
+  <img src="assets/showcase.gif" alt="使用 anyviz 设计的多种整屏数据大屏示例" width="100%">
 </p>
-
-当前展示动画的真实来源是 [`showcase-remotion/`](showcase-remotion) 与 [`scripts/make_showcase_gif.py`](scripts/make_showcase_gif.py)。脚本会先渲染 `assets/showcase.mp4`，再导出 README 使用的 `assets/showcase.gif`。
 
 ## 工作流水线
 
@@ -189,7 +188,7 @@ anyviz 将自然语言指令映射到美学参数，同时保持一致性：
 ```text
 anyviz/
 ├── SKILL.md                  # Claude Skill 主入口（工作流 + 核心规则）
-├── CLAUDE.md                 # Claude 运行时上下文与规范
+├── README.md                 # 英文文档
 ├── aesthetics/               # 权威美学规范
 │   ├── default.json          # 默认主题（颜色、排版、间距、线条、响应式）
 │   ├── color.md              # 色彩规则与色盲友好色板
@@ -209,16 +208,18 @@ anyviz/
 │   ├── graphs/               # 8 种关系与层次图
 │   └── 3d/                   # 3 种三维图
 ├── adapters/                 # 技术栈适配器（web / python / r）
+├── assets/                   # README 横幅、字标与展示素材
 ├── examples/                 # 可运行示例 + 各自 README
 └── scripts/
-    └── theme_validator.py    # 主题一致性自动校验器
+    ├── theme_validator.py    # 主题一致性自动校验器
+    └── make_*.py             # 品牌素材的可复现生成脚本
 ```
 
 ---
 
 ## 示例
 
-[`examples/`](examples) 里的每个示例都是一块完整、可直接运行的**行业数据大屏**——不是单一图表，而是一整块画布上协同组织的多种可视化，统一采用 anyviz 深色大屏美学。上方的展示动画是基于这些大屏语言重新编排的 Remotion 预览，而不是静态截图轮播。
+[`examples/`](examples) 里的每个示例都是一块完整、可直接运行的**行业数据大屏**——不是单一图表，而是一整块画布上协同组织的多种可视化，统一采用 anyviz 深色大屏美学。它们展示了同一套规范如何适配金融监控、电商运营、能源物联与城市地理分析等不同需求。
 
 - [`finance-trading`](examples/finance-trading) —— 金融实时监控：K 线 + 均线、实时分时、资金流向、板块热力
 - [`ecommerce-retail`](examples/ecommerce-retail) —— 电商运营：GMV 趋势、品类占比、区域销售地图、转化漏斗
@@ -226,20 +227,6 @@ anyviz/
 - [`city-geo`](examples/city-geo) —— 城市大数据：地图飞线 + 涟漪、城市排名、客流趋势、24h 热力
 
 四个示例均为单文件 `index.html`（ECharts 5.5.1），面向 1920×1080 设计并做了响应式适配。
-
-### 重新生成 showcase
-
-```bash
-# 渲染视频源
-cd showcase-remotion
-npm install
-npm run lint
-npm run render:showcase
-
-# 导出 README 使用的 GIF
-cd ..
-python3 scripts/make_showcase_gif.py
-```
 
 ---
 

@@ -365,6 +365,6 @@ python3 -m json.tool aesthetics/default.json > /dev/null
 
 - **Documentation issues**: Open an issue with the `documentation` label
 - **Design questions**: Discuss in issue before submitting PR
-- **Technical details**: See `CLAUDE.md` for internal workflow and architecture
+- **Implementation questions**: Open a discussion or issue with the relevant template, adapter, or guide context
 
 Thank you for contributing to make anyviz better!

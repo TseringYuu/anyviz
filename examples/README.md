@@ -1,6 +1,6 @@
 # anyviz 示例库
 
-本目录是 anyviz 的「整屏大屏」示例集，也是 `showcase-remotion/` 动画工程的视觉母体。每个示例都不是单一图表，而是一个**完整的、可直接在浏览器打开运行的行业数据大屏**，演示如何用 anyviz 的设计系统把多种图表协同组织成一块专业级可视化大屏。
+本目录是 anyviz 的「整屏大屏」示例集。每个示例都不是单一图表，而是一个**完整的、可直接在浏览器打开运行的行业数据大屏**，演示如何用 anyviz 的设计系统把多种图表协同组织成一块专业级可视化大屏。
 
 所有示例共享同一套 anyviz 深色大屏美学：底色 `#03050C`、品牌分类色板（`#4269d0` `#3ca951` `#ff725c` `#a463f2` `#efb118` `#6cc5b0`）、统一的排版与卡片规范。
 其中涉及中国地图的示例会复用 `examples/common/china.js` 本地地图注册脚本，减少对远程资源的依赖。
@@ -28,19 +28,6 @@ python3 -m http.server 8000
 ```
 
 设计面向 1920×1080 大屏，并做了响应式适配（CSS Grid + `chart.resize()`），可在普通屏幕上正常查看。所有数据均为前端生成的模拟数据，生产环境替换为真实数据源（API / CSV）即可。
-
-## 与 showcase 的关系
-
-仓库首页里的 `assets/showcase.gif` 不再由 Python 直接合成静态帧，而是通过 Remotion 工程生成视频后再导出 GIF：
-
-```bash
-cd showcase-remotion
-npm run render:showcase
-cd ..
-python3 scripts/make_showcase_gif.py
-```
-
-也就是说，这四个示例既是可运行的开源案例，也是 showcase 分镜语言的来源。
 
 ## 文件结构
 

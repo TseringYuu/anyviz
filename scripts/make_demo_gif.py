@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """Generate assets/demo.gif from the anyviz banner animation.
 
-The hyperframes/Chromium render pipeline is unavailable on this platform
-(Linux ARM64, no system Chromium), so this script reproduces the banner's
-SMIL timeline deterministically: it emits one SVG per frame with interpolated
-values, rasterizes each with cairosvg, and assembles a looping GIF with Pillow.
-It reuses the outlined wordmark geometry from make_wordmark.build() so the GIF
-matches the static banner exactly (no font-fallback gap).
+This script reproduces the banner's SMIL timeline deterministically: it emits
+one SVG per frame with interpolated values, rasterizes each with cairosvg, and
+assembles a looping GIF with Pillow. It reuses the outlined wordmark geometry
+from make_wordmark.build() so the GIF matches the static banner exactly.
 """
 import io
 import math

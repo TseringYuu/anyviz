@@ -34,11 +34,16 @@
 
 ```
 anyviz/
-├── README.md, LICENSE, SKILL.md, CLAUDE.md
+├── README.md, README.zh-CN.md, LICENSE, SKILL.md, CLAUDE.md, AGENTS.md
+├── CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, CHANGELOG.md
+├── .github/      → issue/PR 模板与 CI 工作流
 ├── aesthetics/   → default.json + 规则文档（color/typography/layout）+ themes/
 ├── guides/       → 选择/用色/一致性/定制/无障碍 五种指南
 ├── templates/    → 34 种模板，按 charts/maps/graphs/3d 分类 + TEMPLATE-SPEC.md 规范
 ├── adapters/     → 按 web/python/r 环境分类的适配器
-├── scripts/      → theme_validator.py
-└── examples/     → dashboard/report/interactive 三类示例
+├── scripts/      → theme_validator.py + make_wordmark/banner/demo_gif/showcase_gif.py
+├── assets/       → banner.svg, wordmark.svg, demo.gif, showcase.mp4, showcase.gif（脚本生成）
+├── hyperframes/  → 高保真动画展示工程（历史实验目录）
+├── showcase-remotion/ → README showcase 的 Remotion 源工程
+└── examples/     → 行业大屏示例 + README
 ```

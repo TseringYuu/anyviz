@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>anyviz · Visual Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #03050C;
+        color: #F8FAFC;
+        font-family: 'Inter', sans-serif;
+      }
+      
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #03050C;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Premium background radial glow */
+      .scene::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1400px;
+        height: 1400px;
+        background: radial-gradient(circle, rgba(66, 105, 208, 0.05) 0%, rgba(3, 5, 12, 0) 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Hide all scenes except scene1 by default */
+      .scene:not(#scene1) {
+        opacity: 0;
+      }
+
+      svg, canvas {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Chart specific styles */
+      .donut-bg { stroke: rgba(255, 255, 255, 0.02); }
+      .donut-ring { filter: drop-shadow(0 0 6px rgba(66, 105, 208, 0.25)); }
+      .heatmap-rect { stroke: #03050C; stroke-width: 2; }
+      .radar-axis { stroke: rgba(255, 255, 255, 0.05); stroke-width: 1.5; }
+      .radar-grid { stroke: rgba(255, 255, 255, 0.02); stroke-width: 1; }
+      .map-region { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+      .sankey-node { stroke: rgba(255, 255, 255, 0.15); stroke-width: 1.5; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="40"
+    >
+      <!-- 1. Line Chart -->
+      <div id="scene1" class="scene">
+        <svg id="svg1" width="1920" height="1080" data-layout-allow-overflow>
+          <defs>
+            <linearGradient id="g1-area" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4269d0" stop-opacity="0.2" />
+              <stop offset="100%" stop-color="#4269d0" stop-opacity="0.0" />
+            </linearGradient>
+            <clipPath id="clip1"><rect id="crect1" x="200" y="0" width="0" height="1080" /></clipPath>
+          </defs>
+          <g id="grid1"></g>
+          <path id="path1-area" fill="url(#g1-area)" clip-path="url(#clip1)" />
+          <path id="path1-line" fill="none" stroke="#4269d0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#clip1)" />
+          <g id="dots1"></g>
+        </svg>
+      </div>
+
+      <!-- 2. Area Chart -->
+      <div id="scene2" class="scene">
+        <svg id="svg2" width="1920" height="1080" data-layout-allow-overflow>
+          <defs>
+            <linearGradient id="g2-area0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4269d0" stop-opacity="0.25" /><stop offset="100%" stop-color="#4269d0" stop-opacity="0" /></linearGradient>
+            <linearGradient id="g2-area1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff725c" stop-opacity="0.2" /><stop offset="100%" stop-color="#ff725c" stop-opacity="0" /></linearGradient>
+            <clipPath id="clip2"><rect id="crect2" x="200" y="0" width="0" height="1080" /></clipPath>
+          </defs>
+          <g id="grid2"></g>
+          <path id="path2-area0" fill="url(#g2-area0)" clip-path="url(#clip2)" />
+          <path id="path2-line0" fill="none" stroke="#4269d0" stroke-width="4.5" clip-path="url(#clip2)" />
+          <path id="path2-area1" fill="url(#g2-area1)" clip-path="url(#clip2)" />
+          <path id="path2-line1" fill="none" stroke="#ff725c" stroke-width="4.5" clip-path="url(#clip2)" />
+        </svg>
+      </div>
+
+      <!-- 3. Bar Chart -->
+      <div id="scene3" class="scene">
+        <svg id="svg3" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid3"></g>
+          <g id="bars3"></g>
+        </svg>
+      </div>
+
+      <!-- 4. Scatter Plot -->
+      <div id="scene4" class="scene">
+        <svg id="svg4" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid4"></g>
+          <g id="dots4"></g>
+        </svg>
+      </div>
+
+      <!-- 5. Pie & Donut Chart -->
+      <div id="scene5" class="scene">
+        <svg id="svg5" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="donut5" style="transform-origin: 960px 540px;"></g>
+        </svg>
+      </div>
+
+      <!-- 6. Histogram -->
+      <div id="scene6" class="scene">
+        <svg id="svg6" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid6"></g>
+          <g id="bars6"></g>
+        </svg>
+      </div>
+
+      <!-- 7. Box Plot -->
+      <div id="scene7" class="scene">
+        <svg id="svg7" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid7"></g>
+          <g id="boxes7"></g>
+        </svg>
+      </div>
+
+      <!-- 8. Heatmap -->
+      <div id="scene8" class="scene">
+        <svg id="svg8" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="heatmap8"></g>
+        </svg>
+      </div>
+
+      <!-- 9. Radar Chart -->
+      <div id="scene9" class="scene">
+        <svg id="svg9" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="radar9" style="transform-origin: 960px 540px;"></g>
+        </svg>
+      </div>
+
+      <!-- 10. Waterfall Chart -->
+      <div id="scene10" class="scene">
+        <svg id="svg10" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid10"></g>
+          <g id="bars10"></g>
+        </svg>
+      </div>
+
+      <!-- 11. Choropleth Map -->
+      <div id="scene11" class="scene">
+        <svg id="svg11" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="map11"></g>
+        </svg>
+      </div>
+
+      <!-- 12. Bubble Map -->
+      <div id="scene12" class="scene">
+        <svg id="svg12" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="map12"></g>
+          <g id="bubbles12"></g>
+        </svg>
+      </div>
+
+      <!-- 13. Flow Map -->
+      <div id="scene13" class="scene">
+        <svg id="svg13" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="map13"></g>
+          <g id="flows13"></g>
+        </svg>
+      </div>
+
+      <!-- 14. Sankey Diagram -->
+      <div id="scene14" class="scene">
+        <svg id="svg14" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="sankey14"></g>
+        </svg>
+      </div>
+
+      <!-- 15. Chord Diagram -->
+      <div id="scene15" class="scene">
+        <svg id="svg15" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="chord15" style="transform-origin: 960px 540px;"></g>
+        </svg>
+      </div>
+
+      <!-- 16. Force-Directed Graph -->
+      <div id="scene16" class="scene">
+        <svg id="svg16" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="force16"></g>
+        </svg>
+      </div>
+
+      <!-- 17. Treemap -->
+      <div id="scene17" class="scene">
+        <svg id="svg17" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="tree17"></g>
+        </svg>
+      </div>
+
+      <!-- 18. 3D Globe -->
+      <div id="scene18" class="scene">
+        <canvas id="globe-canvas" width="1920" height="1080"></canvas>
+      </div>
+
+      <!-- 19. 3D Scatter Plot -->
+      <div id="scene19" class="scene">
+        <svg id="svg19" width="1920" height="1080" data-layout-allow-overflow>
+          <g id="grid19"></g>
+          <g id="dots19"></g>
+        </svg>
+      </div>
+
+      <!-- 20. 3D Surface Plot -->
+      <div id="scene20" class="scene">
+        <canvas id="surface-canvas" width="1920" height="1080"></canvas>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Seeded random helper for 100% deterministic generation
+      function seededRandom(seed) {
+        const x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+      }
+
+      const palette = ["#4269d0", "#3ca951", "#ff725c", "#a463f2", "#efb118", "#6cc5b0", "#ca5bb8", "#ff8ab7"];
+
+      /* ------------------------------------------------------------------ */
+      /*  1. Line Chart                                                     */
+      /* ------------------------------------------------------------------ */
+      const pts1 = [{x:200,y:800},{x:410,y:620},{x:620,y:740},{x:830,y:420},{x:1040,y:250},{x:1250,y:520},{x:1460,y:310},{x:1720,y:180}];
+      let grid1Html = "";
+      for(let y=180; y<=800; y+=124) grid1Html += `<line x1="200" y1="${y}" x2="1720" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid1").innerHTML = grid1Html;
+
+      let d1 = `M ${pts1[0].x},${pts1[0].y}`;
+      for(let i=1; i<pts1.length; i++) {
+        const cp1x = pts1[i-1].x + 90, cp1y = pts1[i-1].y;
+        const cp2x = pts1[i].x - 90, cp2y = pts1[i].y;
+        d1 += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${pts1[i].x},${pts1[i].y}`;
+      }
+      document.getElementById("path1-line").setAttribute("d", d1);
+      document.getElementById("path1-area").setAttribute("d", `${d1} L ${pts1[pts1.length-1].x},800 L ${pts1[0].x},800 Z`);
+
+      let dots1Html = "";
+      pts1.forEach((pt, idx) => {
+        dots1Html += `<circle id="dot1-${idx}" cx="${pt.x}" cy="${pt.y}" r="7" fill="#FFFFFF" stroke="#4269d0" stroke-width="4" style="transform-origin: ${pt.x}px ${pt.y}px;" />`;
+      });
+      document.getElementById("dots1").innerHTML = dots1Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  2. Area Chart                                                     */
+      /* ------------------------------------------------------------------ */
+      const pts2_0 = [{x:200,y:750},{x:500,y:500},{x:800,y:620},{x:1100,y:350},{x:1400,y:480},{x:1720,y:200}];
+      const pts2_1 = [{x:200,y:800},{x:500,y:650},{x:800,y:520},{x:1100,y:580},{x:1400,y:320},{x:1720,y:400}];
+      let grid2Html = "";
+      for(let y=200; y<=800; y+=150) grid2Html += `<line x1="200" y1="${y}" x2="1720" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid2").innerHTML = grid2Html;
+
+      let d2_0 = `M ${pts2_0[0].x},${pts2_0[0].y}`;
+      for(let i=1; i<pts2_0.length; i++) d2_0 += ` L ${pts2_0[i].x},${pts2_0[i].y}`;
+      document.getElementById("path2-line0").setAttribute("d", d2_0);
+      document.getElementById("path2-area0").setAttribute("d", `${d2_0} L 1720,800 L 200,800 Z`);
+
+      let d2_1 = `M ${pts2_1[0].x},${pts2_1[0].y}`;
+      for(let i=1; i<pts2_1.length; i++) d2_1 += ` L ${pts2_1[i].x},${pts2_1[i].y}`;
+      document.getElementById("path2-line1").setAttribute("d", d2_1);
+      document.getElementById("path2-area1").setAttribute("d", `${d2_1} L 1720,800 L 200,800 Z`);
+
+      /* ------------------------------------------------------------------ */
+      /*  3. Bar Chart                                                      */
+      /* ------------------------------------------------------------------ */
+      let grid3Html = "";
+      for(let y=200; y<=800; y+=150) grid3Html += `<line x1="300" y1="${y}" x2="1620" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid3").innerHTML = grid3Html;
+
+      const barHeights3 = [180, 340, 260, 480, 150, 390, 520, 310];
+      let bars3Html = "";
+      barHeights3.forEach((h, idx) => {
+        const x = 340 + idx * 160;
+        const y = 800 - h;
+        bars3Html += `<rect id="bar3-${idx}" x="${x}" y="${y}" width="80" height="${h}" rx="6" ry="6" fill="${palette[idx % palette.length]}" style="transform-origin: ${x + 40}px 800px;" />`;
+      });
+      document.getElementById("bars3").innerHTML = bars3Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  4. Scatter Plot                                                   */
+      /* ------------------------------------------------------------------ */
+      let grid4Html = "";
+      for(let y=150; y<=850; y+=140) grid4Html += `<line x1="200" y1="${y}" x2="1720" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid4").innerHTML = grid4Html;
+
+      let dots4Html = "";
+      for(let i=0; i<45; i++) {
+        const x = 250 + seededRandom(i * 12 + 1) * 1420;
+        const y = 180 + seededRandom(i * 12 + 2) * 640;
+        const r = 6 + seededRandom(i * 12 + 3) * 14;
+        const col = palette[Math.floor(seededRandom(i * 12 + 4) * palette.length)];
+        dots4Html += `<circle id="dot4-${i}" cx="${x}" cy="${y}" r="${r}" fill="${col}" fill-opacity="0.75" stroke="#FFFFFF" stroke-width="1.5" style="transform-origin: ${x}px ${y}px;" />`;
+      }
+      document.getElementById("dots4").innerHTML = dots4Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  5. Pie & Donut Chart                                              */
+      /* ------------------------------------------------------------------ */
+      let donutHtml = "";
+      const donutRadii = [140, 200, 260, 320, 380];
+      const donutOffsets = [0.35, 0.2, 0.5, 0.15, 0.4];
+      donutRadii.forEach((r, idx) => {
+        const c = 2 * Math.PI * r;
+        donutHtml += `<circle class="donut-bg" cx="960" cy="540" r="${r}" fill="none" stroke-width="22" />`;
+        donutHtml += `<circle class="donut-ring" id="ring5-${idx}" cx="960" cy="540" r="${r}" fill="none" stroke="${palette[idx % palette.length]}" stroke-width="22" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c}" style="transform-origin: 960px 540px; transform: rotate(-90deg);" />`;
+      });
+      document.getElementById("donut5").innerHTML = donutHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  6. Histogram                                                      */
+      /* ------------------------------------------------------------------ */
+      let grid6Html = "";
+      for(let y=200; y<=800; y+=150) grid6Html += `<line x1="250" y1="${y}" x2="1670" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid6").innerHTML = grid6Html;
+
+      const histHeights = [60, 110, 210, 380, 510, 580, 480, 350, 230, 130, 80, 40];
+      let bars6Html = "";
+      histHeights.forEach((h, idx) => {
+        const x = 280 + idx * 110;
+        const y = 800 - h;
+        bars6Html += `<rect id="bar6-${idx}" x="${x}" y="${y}" width="90" height="${h}" rx="4" ry="4" fill="#6cc5b0" style="transform-origin: ${x + 45}px 800px;" />`;
+      });
+      document.getElementById("bars6").innerHTML = bars6Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  7. Box Plot                                                       */
+      /* ------------------------------------------------------------------ */
+      let grid7Html = "";
+      for(let y=200; y<=800; y+=150) grid7Html += `<line x1="300" y1="${y}" x2="1620" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid7").innerHTML = grid7Html;
+
+      const boxSpecs = [
+        { min: 680, q1: 580, med: 500, q3: 420, max: 300, out: [220] },
+        { min: 720, q1: 620, med: 540, q3: 460, max: 350, out: [260, 240] },
+        { min: 600, q1: 480, med: 400, q3: 340, max: 220, out: [] },
+        { min: 650, q1: 540, med: 460, q3: 390, max: 280, out: [180] },
+        { min: 700, q1: 590, med: 510, q3: 430, max: 310, out: [200] }
+      ];
+      let boxes7Html = "";
+      boxSpecs.forEach((spec, idx) => {
+        const x = 380 + idx * 260;
+        boxes7Html += `<g id="box7-group-${idx}" style="transform-origin: ${x + 50}px 500px;">
+          <line x1="${x+50}" y1="${spec.min}" x2="${x+50}" y2="${spec.max}" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 4" />
+          <line x1="${x+20}" y1="${spec.min}" x2="${x+80}" y2="${spec.min}" stroke="#FFFFFF" stroke-width="2" />
+          <line x1="${x+20}" y1="${spec.max}" x2="${x+80}" y2="${spec.max}" stroke="#FFFFFF" stroke-width="2" />
+          <rect x="${x}" y="${spec.q3}" width="100" height="${spec.q1 - spec.q3}" fill="#ff725c" fill-opacity="0.85" stroke="#FFFFFF" stroke-width="2" />
+          <line x1="${x}" y1="${spec.med}" x2="${x+100}" y2="${spec.med}" stroke="#FFFFFF" stroke-width="3.5" />
+        </g>`;
+        spec.out.forEach((o, oIdx) => {
+          boxes7Html += `<circle id="box7-out-${idx}-${oIdx}" cx="${x+50}" cy="${o}" r="4" fill="none" stroke="#ff725c" stroke-width="2" style="transform-origin: ${x+50}px ${o}px;" />`;
+        });
+      });
+      document.getElementById("boxes7").innerHTML = boxes7Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  8. Heatmap                                                        */
+      /* ------------------------------------------------------------------ */
+      let heatmapHtml = "";
+      for(let r=0; r<8; r++) {
+        for(let c=0; c<8; c++) {
+          const x = 520 + c * 110;
+          const y = 100 + r * 110;
+          const val = seededRandom(r * 8 + c);
+          const opacity = 0.1 + val * 0.85;
+          heatmapHtml += `<rect class="heatmap-rect" id="heat-${r}-${c}" x="${x}" y="${y}" width="106" height="106" rx="8" ry="8" fill="#a463f2" fill-opacity="${opacity}" style="transform-origin: ${x+53}px ${y+53}px;" />`;
+        }
+      }
+      document.getElementById("heatmap8").innerHTML = heatmapHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  9. Radar Chart                                                    */
+      /* ------------------------------------------------------------------ */
+      let radarHtml = "";
+      const radarAxes = 6;
+      const radarRadius = 360;
+      // Grid rings
+      for(let r=1; r<=4; r++) {
+        const rad = (radarRadius / 4) * r;
+        let pts = [];
+        for(let i=0; i<radarAxes; i++) {
+          const ang = (i * 2 * Math.PI) / radarAxes - Math.PI / 2;
+          pts.push(`${960 + rad * Math.cos(ang)},${540 + rad * Math.sin(ang)}`);
+        }
+        radarHtml += `<polygon class="radar-grid" points="${pts.join(" ")}" fill="none" />`;
+      }
+      // Axes lines
+      for(let i=0; i<radarAxes; i++) {
+        const ang = (i * 2 * Math.PI) / radarAxes - Math.PI / 2;
+        radarHtml += `<line class="radar-axis" x1="960" y1="540" x2="${960 + radarRadius * Math.cos(ang)}" y2="${540 + radarRadius * Math.sin(ang)}" />`;
+      }
+      // Data polygons
+      const rVals0 = [0.85, 0.6, 0.75, 0.9, 0.5, 0.7];
+      const rVals1 = [0.4, 0.85, 0.5, 0.6, 0.8, 0.45];
+      let polyPts0 = [], polyPts1 = [];
+      for(let i=0; i<radarAxes; i++) {
+        const ang = (i * 2 * Math.PI) / radarAxes - Math.PI / 2;
+        polyPts0.push(`${960 + radarRadius * rVals0[i] * Math.cos(ang)},${540 + radarRadius * rVals0[i] * Math.sin(ang)}`);
+        polyPts1.push(`${960 + radarRadius * rVals1[i] * Math.cos(ang)},${540 + radarRadius * rVals1[i] * Math.sin(ang)}`);
+      }
+      radarHtml += `<polygon id="radar-poly-0" points="${polyPts0.join(" ")}" fill="#4269d0" fill-opacity="0.3" stroke="#4269d0" stroke-width="3" style="transform-origin: 960px 540px;" />`;
+      radarHtml += `<polygon id="radar-poly-1" points="${polyPts1.join(" ")}" fill="#ff725c" fill-opacity="0.25" stroke="#ff725c" stroke-width="3" style="transform-origin: 960px 540px;" />`;
+      document.getElementById("radar9").innerHTML = radarHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  10. Waterfall Chart                                               */
+      /* ------------------------------------------------------------------ */
+      let grid10Html = "";
+      for(let y=200; y<=800; y+=150) grid10Html += `<line x1="300" y1="${y}" x2="1620" y2="${y}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />`;
+      document.getElementById("grid10").innerHTML = grid10Html;
+
+      const waterVals = [320, 140, -90, 210, -160, 110, 530]; // last is cumulative
+      let bars10Html = "";
+      let currentSum = 0;
+      waterVals.forEach((val, idx) => {
+        const x = 350 + idx * 180;
+        let y, h, col;
+        if(idx === waterVals.length - 1) {
+          y = 800 - val;
+          h = val;
+          col = "#a463f2";
+        } else {
+          if(val >= 0) {
+            y = 800 - currentSum - val;
+            h = val;
+            col = "#3ca951";
+          } else {
+            y = 800 - currentSum;
+            h = Math.abs(val);
+            col = "#ff725c";
+          }
+          currentSum += val;
+        }
+        bars10Html += `<rect id="bar10-${idx}" x="${x}" y="${y}" width="90" height="${h}" rx="4" ry="4" fill="${col}" style="transform-origin: ${x + 45}px ${y + h/2}px;" />`;
+      });
+      document.getElementById("bars10").innerHTML = bars10Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  11. Choropleth Map                                                */
+      /* ------------------------------------------------------------------ */
+      // Simplified continent polygons
+      const mapRegions = [
+        { id: "reg0", pts: "300,200 450,180 520,250 480,450 350,420 280,300", fill: "#DEEBF7" }, // NA
+        { id: "reg1", pts: "480,480 580,520 540,780 440,820 400,600", fill: "#9ECAE1" }, // SA
+        { id: "reg2", pts: "750,150 1100,120 1250,220 1150,450 900,420 720,300", fill: "#08519C" }, // Eurasia
+        { id: "reg3", pts: "740,460 880,440 920,680 820,750 700,620", fill: "#4292C6" }, // Africa
+        { id: "reg4", pts: "1200,550 1350,580 1320,720 1180,700", fill: "#C6DBEF" }, // Australia
+        { id: "reg5", pts: "500,880 1400,880 1300,940 600,940", fill: "#DEEBF7" } // Antarctica
+      ];
+      let map11Html = "";
+      mapRegions.forEach(reg => {
+        map11Html += `<polygon class="map-region" id="map11-${reg.id}" points="${reg.pts}" fill="${reg.fill}" style="transform-origin: 960px 540px;" opacity="0" />`;
+      });
+      document.getElementById("map11").innerHTML = map11Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  12. Bubble Map                                                    */
+      /* ------------------------------------------------------------------ */
+      let map12Html = "";
+      mapRegions.forEach(reg => {
+        map12Html += `<polygon class="map-region" points="${reg.pts}" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" />`;
+      });
+      document.getElementById("map12").innerHTML = map12Html;
+
+      const mapBubbles = [
+        { cx: 410, cy: 280, r: 32, col: "#ff725c" },
+        { cx: 510, cy: 620, r: 24, col: "#4269d0" },
+        { cx: 980, cy: 260, r: 48, col: "#a463f2" },
+        { cx: 810, cy: 580, r: 28, col: "#3ca951" },
+        { cx: 1260, cy: 640, r: 20, col: "#efb118" }
+      ];
+      let bub12Html = "";
+      mapBubbles.forEach((bub, idx) => {
+        bub12Html += `<circle id="bub12-${idx}" cx="${bub.cx}" cy="${bub.cy}" r="${bub.r}" fill="${bub.col}" fill-opacity="0.25" stroke="${bub.col}" stroke-width="2.5" style="transform-origin: ${bub.cx}px ${bub.cy}px;" />`;
+      });
+      document.getElementById("bubbles12").innerHTML = bub12Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  13. Flow Map                                                      */
+      /* ------------------------------------------------------------------ */
+      let map13Html = "";
+      mapRegions.forEach(reg => {
+        map13Html += `<polygon class="map-region" points="${reg.pts}" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" />`;
+      });
+      document.getElementById("map13").innerHTML = map13Html;
+
+      const flowHubs = [
+        { x: 410, y: 280 }, // NA
+        { x: 980, y: 260 }, // Eurasia
+        { x: 810, y: 580 }, // Africa
+        { x: 510, y: 620 }  // SA
+      ];
+      const flowPaths = [
+        { from: 0, to: 1, ctrlX: 695, ctrlY: 120 },
+        { from: 1, to: 2, ctrlX: 930, ctrlY: 420 },
+        { from: 0, to: 3, ctrlX: 420, ctrlY: 450 },
+        { from: 3, to: 2, ctrlX: 660, ctrlY: 650 }
+      ];
+      let flows13Html = "";
+      flowPaths.forEach((path, idx) => {
+        const start = flowHubs[path.from];
+        const end = flowHubs[path.to];
+        const d = `M ${start.x},${start.y} Q ${path.ctrlX},${path.ctrlY} ${end.x},${end.y}`;
+        flows13Html += `<path id="flow-line-${idx}" d="${d}" fill="none" stroke="#6cc5b0" stroke-width="2.5" stroke-dasharray="8 6" opacity="0" />`;
+        flows13Html += `<circle id="flow-dot-${idx}" cx="${start.x}" cy="${start.y}" r="5" fill="#FFFFFF" opacity="0" />`;
+      });
+      document.getElementById("flows13").innerHTML = flows13Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  14. Sankey Diagram                                                */
+      /* ------------------------------------------------------------------ */
+      const sankeyNodes = [
+        { x: 300, y: 200, h: 220, label: "A1" },
+        { x: 300, y: 520, h: 360, label: "A2" },
+        { x: 910, y: 180, h: 310, label: "B1" },
+        { x: 910, y: 590, h: 270, label: "B2" },
+        { x: 1520, y: 250, h: 420, label: "C1" },
+        { x: 1520, y: 720, h: 160, label: "C2" }
+      ];
+      const sankeyLinks = [
+        { from: 0, to: 2, h: 140, offF: 0, offT: 0 },
+        { from: 0, to: 3, h: 80, offF: 140, offT: 0 },
+        { from: 1, to: 2, h: 170, offF: 0, offT: 140 },
+        { from: 1, to: 3, h: 190, offF: 170, offT: 80 },
+        { from: 2, to: 4, h: 250, offF: 0, offT: 0 },
+        { from: 2, to: 5, h: 60, offF: 250, offT: 0 },
+        { from: 3, to: 4, h: 170, offF: 0, offT: 250 },
+        { from: 3, to: 5, h: 100, offF: 170, offT: 60 }
+      ];
+      let sankeyHtml = "";
+      sankeyLinks.forEach((link, idx) => {
+        const startNode = sankeyNodes[link.from];
+        const endNode = sankeyNodes[link.to];
+        const yF = startNode.y + link.offF + link.h / 2;
+        const yT = endNode.y + link.offT + link.h / 2;
+        const xMid = (startNode.x + 50 + endNode.x) / 2;
+        const d = `M ${startNode.x + 50},${yF} C ${xMid},${yF} ${xMid},${yT} ${endNode.x},${yT}`;
+        sankeyHtml += `<path id="sankey-link-${idx}" d="${d}" fill="none" stroke="${palette[idx % palette.length]}" stroke-width="${link.h}" stroke-opacity="0" />`;
+      });
+      sankeyNodes.forEach((node, idx) => {
+        sankeyHtml += `<rect class="sankey-node" id="sankey-node-${idx}" x="${node.x}" y="${node.y}" width="50" height="${node.h}" fill="#1e293b" rx="4" ry="4" style="transform-origin: ${node.x + 25}px ${node.y + node.h/2}px;" />`;
+      });
+      document.getElementById("sankey14").innerHTML = sankeyHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  15. Chord Diagram                                                 */
+      /* ------------------------------------------------------------------ */
+      let chordHtml = "";
+      const chordRadius = 340;
+      const chordGroups = 8;
+      // Outer rings
+      for(let i=0; i<chordGroups; i++) {
+        const angStart = (i * 2 * Math.PI) / chordGroups + 0.05;
+        const angEnd = ((i + 1) * 2 * Math.PI) / chordGroups - 0.05;
+        const x1 = 960 + chordRadius * Math.cos(angStart);
+        const y1 = 540 + chordRadius * Math.sin(angStart);
+        const x2 = 960 + chordRadius * Math.cos(angEnd);
+        const y2 = 540 + chordRadius * Math.sin(angEnd);
+        chordHtml += `<path class="donut-ring" id="chord-ring-${i}" d="M ${x1},${y1} A ${chordRadius},${chordRadius} 0 0,1 ${x2},${y2}" fill="none" stroke="${palette[i % palette.length]}" stroke-width="16" stroke-linecap="round" opacity="0" />`;
+      }
+      // Inner ribbons (curved bezier paths to center)
+      for(let i=0; i<chordGroups; i++) {
+        const next = (i + 3) % chordGroups;
+        const ang1 = (i * 2 * Math.PI) / chordGroups + Math.PI / chordGroups;
+        const ang2 = (next * 2 * Math.PI) / chordGroups + Math.PI / chordGroups;
+        const x1 = 960 + (chordRadius - 10) * Math.cos(ang1);
+        const y1 = 540 + (chordRadius - 10) * Math.sin(ang1);
+        const x2 = 960 + (chordRadius - 10) * Math.cos(ang2);
+        const y2 = 540 + (chordRadius - 10) * Math.sin(ang2);
+        const d = `M ${x1},${y1} Q 960,540 ${x2},${y2}`;
+        chordHtml += `<path id="chord-ribbon-${i}" d="${d}" fill="none" stroke="${palette[i % palette.length]}" stroke-width="6" stroke-opacity="0" />`;
+      }
+      document.getElementById("chord15").innerHTML = chordHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  16. Force-Directed Graph                                          */
+      /* ------------------------------------------------------------------ */
+      const forceNodes = [
+        { id: 0, x: 960, y: 540, r: 24, col: "#4269d0" }, // Center
+        { id: 1, x: 740, y: 380, r: 16, col: "#3ca951" },
+        { id: 2, x: 1180, y: 380, r: 16, col: "#ff725c" },
+        { id: 3, x: 1180, y: 700, r: 16, col: "#a463f2" },
+        { id: 4, x: 740, y: 700, r: 16, col: "#efb118" },
+        { id: 5, x: 580, y: 280, r: 12, col: "#6cc5b0" },
+        { id: 6, x: 960, y: 240, r: 12, col: "#ca5bb8" },
+        { id: 7, x: 1340, y: 280, r: 12, col: "#ff8ab7" },
+        { id: 8, x: 1340, y: 800, r: 12, col: "#4269d0" },
+        { id: 9, x: 960, y: 840, r: 12, col: "#3ca951" },
+        { id: 10, x: 580, y: 800, r: 12, col: "#ff725c" }
+      ];
+      const forceLinks = [
+        { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 },
+        { from: 1, to: 5 }, { from: 1, to: 6 }, { from: 2, to: 6 }, { from: 2, to: 7 },
+        { from: 3, to: 7 }, { from: 3, to: 8 }, { from: 3, to: 9 }, { from: 4, to: 9 },
+        { from: 4, to: 10 }, { from: 4, to: 5 }
+      ];
+      let forceHtml = "";
+      forceLinks.forEach((link, idx) => {
+        const start = forceNodes[link.from];
+        const end = forceNodes[link.to];
+        forceHtml += `<line id="force-link-${idx}" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="rgba(255,255,255,0.35)" stroke-width="2" opacity="0" />`;
+      });
+      forceNodes.forEach(node => {
+        forceHtml += `<circle id="force-node-${node.id}" cx="${node.x}" cy="${node.y}" r="${node.r}" fill="${node.col}" stroke="#FFFFFF" stroke-width="1.5" style="transform-origin: ${node.x}px ${node.y}px;" />`;
+      });
+      document.getElementById("force16").innerHTML = forceHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  17. Treemap                                                       */
+      /* ------------------------------------------------------------------ */
+      const treeRects = [
+        { x: 300, y: 150, w: 640, h: 460, col: "#4269d0" },
+        { x: 300, y: 620, w: 400, h: 310, col: "#3ca951" },
+        { x: 710, y: 620, w: 230, h: 310, col: "#ff725c" },
+        { x: 950, y: 150, w: 670, h: 280, col: "#a463f2" },
+        { x: 950, y: 440, w: 320, h: 490, col: "#efb118" },
+        { x: 1280, y: 440, w: 340, h: 240, col: "#6cc5b0" },
+        { x: 1280, y: 690, w: 340, h: 240, col: "#ca5bb8" }
+      ];
+      let treeHtml = "";
+      treeRects.forEach((rect, idx) => {
+        treeHtml += `<rect id="tree-rect-${idx}" x="${rect.x}" y="${rect.y}" width="${rect.w}" height="${rect.h}" rx="6" ry="6" fill="${rect.col}" fill-opacity="0.8" stroke="#03050C" stroke-width="4" style="transform-origin: ${rect.x + rect.w/2}px ${rect.y + rect.h/2}px;" />`;
+      });
+      document.getElementById("tree17").innerHTML = treeHtml;
+
+      /* ------------------------------------------------------------------ */
+      /*  18. 3D Globe (Continents point cloud, no orbits)                  */
+      /* ------------------------------------------------------------------ */
+      const globeCanvas = document.getElementById("globe-canvas");
+      const globeCtx = globeCanvas.getContext("2d");
+      const gRadius = 350;
+      const gCenterX = 960;
+      const gCenterY = 540;
+
+      const globeProgress = { t: 0 };
+
+      // Pre-generate spherical points
+      const spherePoints = [];
+      // Continent centers on unit sphere
+      const centers = [
+        { x: 0.3, y: 0.4, z: 0.8, r: 0.65 }, // North America
+        { x: 0.2, y: -0.3, z: 0.7, r: 0.6 },  // South America
+        { x: -0.5, y: 0.5, z: -0.5, r: 0.8 }, // Eurasia
+        { x: -0.4, y: -0.1, z: -0.3, r: 0.65 }, // Africa
+        { x: -0.6, y: -0.4, z: 0.6, r: 0.45 }, // Australia
+        { x: 0, y: -0.9, z: 0, r: 0.5 }        // Antarctica
+      ];
+
+      for (let lat = -80; lat <= 80; lat += 4.5) {
+        const radLat = lat * Math.PI / 180;
+        const cosLat = Math.cos(radLat);
+        const sinLat = Math.sin(radLat);
+        
+        for (let lon = 0; lon < 360; lon += 4.5) {
+          const radLon = lon * Math.PI / 180;
+          const x0 = cosLat * Math.sin(radLon);
+          const y0 = sinLat;
+          const z0 = cosLat * Math.cos(radLon);
+
+          // Check if point is inside any continent center with added noise for organic coastlines
+          let isLand = false;
+          const noise = Math.sin(x0 * 6.5) * Math.cos(y0 * 6.5) * Math.sin(z0 * 6.5) * 0.16;
+          
+          for (let i = 0; i < centers.length; i++) {
+            const c = centers[i];
+            const dist = Math.sqrt((x0 - c.x)**2 + (y0 - c.y)**2 + (z0 - c.z)**2);
+            if (dist < c.r + noise) {
+              isLand = true;
+              break;
+            }
+          }
+
+          spherePoints.push({ x0, y0, z0, isLand });
+        }
+      }
+
+      function drawGlobe() {
+        globeCtx.clearRect(0, 0, 1920, 1080);
+        
+        // Atmosphere glow
+        const glow = globeCtx.createRadialGradient(gCenterX, gCenterY, gRadius - 20, gCenterX, gCenterY, gRadius + 120);
+        glow.addColorStop(0, "rgba(66, 105, 208, 0.16)");
+        glow.addColorStop(0.5, "rgba(66, 105, 208, 0.05)");
+        glow.addColorStop(1, "rgba(3, 5, 12, 0)");
+        globeCtx.beginPath();
+        globeCtx.arc(gCenterX, gCenterY, gRadius + 120, 0, Math.PI * 2);
+        globeCtx.fillStyle = glow;
+        globeCtx.fill();
+
+        const rotY = globeProgress.t * Math.PI * 2;
+        const tiltX = 23.4 * Math.PI / 180; // Earth's tilt
+
+        spherePoints.forEach(pt => {
+          // Rotate Y
+          const x1 = pt.x0 * Math.cos(rotY) - pt.z0 * Math.sin(rotY);
+          const z1 = pt.x0 * Math.sin(rotY) + pt.z0 * Math.cos(rotY);
+          // Rotate X (tilt)
+          const y2 = pt.y0 * Math.cos(tiltX) - z1 * Math.sin(tiltX);
+          const z2 = pt.y0 * Math.sin(tiltX) + z1 * Math.cos(tiltX);
+
+          // Only draw front hemisphere
+          if (z2 > 0) {
+            const px = gCenterX + x1 * gRadius;
+            const py = gCenterY - y2 * gRadius;
+            const size = 1.2 + z2 * 1.8;
+
+            globeCtx.beginPath();
+            if (pt.isLand) {
+              globeCtx.arc(px, py, size, 0, Math.PI * 2);
+              globeCtx.fillStyle = `rgba(66, 105, 208, ${0.4 + z2 * 0.6})`;
+              globeCtx.fill();
+            } else {
+              // Faint, sparse ocean dots to show volume
+              globeCtx.rect(px, py, 0.8, 0.8);
+              globeCtx.fillStyle = `rgba(255, 255, 255, ${0.03 * z2})`;
+              globeCtx.fill();
+            }
+          }
+        });
+      }
+
+      drawGlobe();
+
+      /* ------------------------------------------------------------------ */
+      /*  19. 3D Scatter Plot                                               */
+      /* ------------------------------------------------------------------ */
+      let grid19Html = "";
+      // 3D perspective grid lines
+      for(let i=0; i<=5; i++) {
+        const z = i * 60;
+        grid19Html += `<line x1="${400 + z}" y1="${800 - z*0.5}" x2="${1400 - z}" y2="${800 - z*0.5}" stroke="rgba(255,255,255,0.03)" />`;
+        grid19Html += `<line x1="${400 + i * 200}" y1="800" x2="${400 + i * 200 + 300}" y2="500" stroke="rgba(255,255,255,0.015)" />`;
+      }
+      document.getElementById("grid19").innerHTML = grid19Html;
+
+      let dots19Html = "";
+      for(let i=0; i<30; i++) {
+        const x = 500 + seededRandom(i * 10 + 1) * 800;
+        const y = 300 + seededRandom(i * 10 + 2) * 450;
+        const z = seededRandom(i * 10 + 3) * 300; // depth
+        const px = x + z * 0.5;
+        const py = y - z * 0.25;
+        const r = 4 + (1 - z/300) * 10;
+        const col = palette[Math.floor(seededRandom(i * 10 + 4) * palette.length)];
+        dots19Html += `<circle id="dot19-${i}" cx="${px}" cy="${py}" r="${r}" fill="${col}" fill-opacity="${0.8 - z/600}" stroke="#FFFFFF" stroke-width="1" style="transform-origin: ${px}px ${py}px;" />`;
+      }
+      document.getElementById("dots19").innerHTML = dots19Html;
+
+      /* ------------------------------------------------------------------ */
+      /*  20. 3D Surface Plot                                               */
+      /* ------------------------------------------------------------------ */
+      const surfCanvas = document.getElementById("surface-canvas");
+      const surfCtx = surfCanvas.getContext("2d");
+      const sProgress = { t: 0 };
+
+      function drawSurface() {
+        surfCtx.clearRect(0, 0, 1920, 1080);
+        surfCtx.strokeStyle = "rgba(164, 99, 242, 0.35)";
+        surfCtx.lineWidth = 1.2;
+
+        const rows = 24;
+        const cols = 24;
+        const spacingX = 40;
+        const spacingZ = 16;
+        const startX = 960 - (cols * spacingX) / 2;
+        const startY = 640;
+
+        for (let r = 0; r < rows; r++) {
+          surfCtx.beginPath();
+          for (let c = 0; c < cols; c++) {
+            // Calculate wave height using sine/cosine and time
+            const dist = Math.sqrt((r - rows/2)**2 + (c - cols/2)**2);
+            const h = Math.sin(dist * 0.4 - sProgress.t * Math.PI * 2) * 80;
+
+            const x = startX + c * spacingX + r * 12;
+            const y = startY - r * spacingZ - h;
+
+            if (c === 0) surfCtx.moveTo(x, y);
+            else surfCtx.lineTo(x, y);
+          }
+          surfCtx.stroke();
+        }
+      }
+
+      drawSurface();
+
+
+      /* ------------------------------------------------------------------ */
+      /*  Initial states (GSAP only — no CSS transform conflicts)           */
+      /* ------------------------------------------------------------------ */
+      pts1.forEach((_, idx) => gsap.set(`#dot1-${idx}`, { scale: 0 }));
+      barHeights3.forEach((_, idx) => gsap.set(`#bar3-${idx}`, { scaleY: 0 }));
+      for (let i = 0; i < 45; i++) gsap.set(`#dot4-${i}`, { scale: 0 });
+      histHeights.forEach((_, idx) => gsap.set(`#bar6-${idx}`, { scaleY: 0 }));
+      boxSpecs.forEach((spec, idx) => {
+        gsap.set(`#box7-group-${idx}`, { scale: 0 });
+        spec.out.forEach((_, oIdx) => gsap.set(`#box7-out-${idx}-${oIdx}`, { scale: 0 }));
+      });
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) gsap.set(`#heat-${r}-${c}`, { scale: 0 });
+      }
+      gsap.set("#radar-poly-0, #radar-poly-1", { scale: 0 });
+      waterVals.forEach((_, idx) => gsap.set(`#bar10-${idx}`, { scaleY: 0 }));
+      mapRegions.forEach(reg => gsap.set(`#map11-${reg.id}`, { scale: 0.9, opacity: 0 }));
+      mapBubbles.forEach((_, idx) => gsap.set(`#bub12-${idx}`, { scale: 0 }));
+      flowPaths.forEach((_, idx) => {
+        gsap.set(`#flow-line-${idx}`, { opacity: 0 });
+        gsap.set(`#flow-dot-${idx}`, { opacity: 0, scale: 0 });
+      });
+      sankeyLinks.forEach((_, idx) => gsap.set(`#sankey-link-${idx}`, { attr: { "stroke-opacity": 0 } }));
+      sankeyNodes.forEach((_, idx) => gsap.set(`#sankey-node-${idx}`, { scaleY: 0 }));
+      for (let i = 0; i < chordGroups; i++) {
+        gsap.set(`#chord-ring-${i}`, { opacity: 0 });
+        gsap.set(`#chord-ribbon-${i}`, { attr: { "stroke-opacity": 0 } });
+      }
+      forceLinks.forEach((_, idx) => gsap.set(`#force-link-${idx}`, { opacity: 0 }));
+      forceNodes.forEach(node => gsap.set(`#force-node-${node.id}`, { scale: 0 }));
+      treeRects.forEach((_, idx) => gsap.set(`#tree-rect-${idx}`, { scale: 0 }));
+      for (let i = 0; i < 30; i++) gsap.set(`#dot19-${i}`, { scale: 0 });
+
+      /* ------------------------------------------------------------------ */
+      /*  Choreography & Timeline                                           */
+      /* ------------------------------------------------------------------ */
+
+      function quadPoint(t, sx, sy, cpx, cpy, ex, ey) {
+        const mt = 1 - t;
+        return {
+          x: mt * mt * sx + 2 * mt * t * cpx + t * t * ex,
+          y: mt * mt * sy + 2 * mt * t * cpy + t * t * ey
+        };
+      }
+
+      // 1. Line Chart Entrance
+      tl.fromTo("#crect1", { attr: { width: 0 } }, { attr: { width: 1520 }, duration: 1.2, ease: "power2.inOut" }, 0.1);
+      pts1.forEach((pt, idx) => {
+        tl.fromTo(`#dot1-${idx}`, { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)", overwrite: "auto" }, 0.2 + idx * 0.08);
+      });
+
+      // 2. Area Chart Entrance
+      tl.fromTo("#crect2", { attr: { width: 0 } }, { attr: { width: 1520 }, duration: 1.2, ease: "power2.inOut" }, 2.1);
+
+      // 3. Bar Chart Entrance
+      barHeights3.forEach((h, idx) => {
+        tl.fromTo(`#bar3-${idx}`, { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: "elastic.out(1, 0.8)", overwrite: "auto" }, 4.1 + idx * 0.06);
+      });
+
+      // 4. Scatter Plot Entrance
+      for(let i=0; i<45; i++) {
+        tl.fromTo(`#dot4-${i}`, { scale: 0 }, { scale: 1, duration: 0.6, ease: "back.out(1.4)", overwrite: "auto" }, 6.1 + seededRandom(i) * 0.8);
+      }
+
+      // 5. Pie & Donut Chart Entrance
+      donutRadii.forEach((r, idx) => {
+        const c = 2 * Math.PI * r;
+        tl.fromTo(`#ring5-${idx}`, { attr: { "stroke-dashoffset": c } }, { attr: { "stroke-dashoffset": c * donutOffsets[idx] }, duration: 1.2, ease: "power2.out", overwrite: "auto" }, 8.1 + idx * 0.1);
+      });
+      tl.fromTo("#donut5", { rotation: -45 }, { rotation: 10, duration: 1.8, ease: "power2.out" }, 8.1);
+
+      // 6. Histogram Entrance
+      histHeights.forEach((h, idx) => {
+        tl.fromTo(`#bar6-${idx}`, { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: "power3.out", overwrite: "auto" }, 10.1 + idx * 0.05);
+      });
+
+      // 7. Box Plot Entrance
+      boxSpecs.forEach((spec, idx) => {
+        tl.fromTo(`#box7-group-${idx}`, { scale: 0 }, { scale: 1, duration: 0.7, ease: "back.out(1.3)", overwrite: "auto" }, 12.1 + idx * 0.1);
+        spec.out.forEach((o, oIdx) => {
+          tl.fromTo(`#box7-out-${idx}-${oIdx}`, { scale: 0 }, { scale: 1, duration: 0.4, ease: "power2.out", overwrite: "auto" }, 12.4 + idx * 0.1);
+        });
+      });
+
+      // 8. Heatmap Entrance
+      for(let r=0; r<8; r++) {
+        for(let c=0; c<8; c++) {
+          const delay = 14.1 + (r + c) * 0.06;
+          tl.fromTo(`#heat-${r}-${c}`, { scale: 0 }, { scale: 1, duration: 0.5, ease: "power2.out", overwrite: "auto" }, delay);
+        }
+      }
+
+      // 9. Radar Chart Entrance
+      tl.fromTo("#radar-poly-0", { scale: 0 }, { scale: 1, duration: 1.0, ease: "power3.out" }, 16.2);
+      tl.fromTo("#radar-poly-1", { scale: 0 }, { scale: 1, duration: 1.0, ease: "power3.out" }, 16.4);
+      tl.fromTo("#radar9", { rotation: -30 }, { rotation: 5, duration: 1.6, ease: "power2.out" }, 16.1);
+
+      // 10. Waterfall Chart Entrance
+      waterVals.forEach((val, idx) => {
+        tl.fromTo(`#bar10-${idx}`, { scaleY: 0 }, { scaleY: 1, duration: 0.7, ease: "power3.out", overwrite: "auto" }, 18.1 + idx * 0.1);
+      });
+
+      // 11. Choropleth Map Entrance
+      mapRegions.forEach(reg => {
+        tl.fromTo(`#map11-${reg.id}`, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" }, 20.1 + seededRandom(reg.id.charCodeAt(3)) * 0.5);
+      });
+
+      // 12. Bubble Map Entrance
+      mapBubbles.forEach((bub, idx) => {
+        tl.fromTo(`#bub12-${idx}`, { scale: 0 }, { scale: 1, duration: 0.7, ease: "back.out(1.5)", overwrite: "auto" }, 22.2 + idx * 0.12);
+      });
+
+      // 13. Flow Map Entrance
+      flowPaths.forEach((path, idx) => {
+        const start = flowHubs[path.from];
+        const end = flowHubs[path.to];
+        const flowProg = { t: 0 };
+        tl.fromTo(`#flow-line-${idx}`, { opacity: 0 }, { opacity: 1, duration: 0.4, overwrite: "auto" }, 24.1 + idx * 0.1);
+        tl.fromTo(`#flow-dot-${idx}`, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, overwrite: "auto" }, 24.2 + idx * 0.1);
+        tl.to(flowProg, {
+          t: 1,
+          duration: 1.2,
+          ease: "none",
+          repeat: 1,
+          overwrite: "auto",
+          onUpdate: () => {
+            const p = quadPoint(flowProg.t, start.x, start.y, path.ctrlX, path.ctrlY, end.x, end.y);
+            document.getElementById(`flow-dot-${idx}`).setAttribute("cx", p.x);
+            document.getElementById(`flow-dot-${idx}`).setAttribute("cy", p.y);
+          }
+        }, 24.3 + idx * 0.1);
+      });
+
+      // 14. Sankey Diagram Entrance
+      sankeyLinks.forEach((link, idx) => {
+        tl.fromTo(`#sankey-link-${idx}`, { attr: { "stroke-opacity": 0 } }, { attr: { "stroke-opacity": 0.25 }, duration: 1.0, ease: "power2.inOut", overwrite: "auto" }, 26.1 + idx * 0.05);
+      });
+      sankeyNodes.forEach((node, idx) => {
+        tl.fromTo(`#sankey-node-${idx}`, { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: "power2.out", overwrite: "auto" }, 26.4 + idx * 0.08);
+      });
+
+      // 15. Chord Diagram Entrance
+      for(let i=0; i<chordGroups; i++) {
+        tl.fromTo(`#chord-ring-${i}`, { opacity: 0 }, { opacity: 1, duration: 0.6, overwrite: "auto" }, 28.1 + i * 0.08);
+        tl.fromTo(`#chord-ribbon-${i}`, { attr: { "stroke-opacity": 0 } }, { attr: { "stroke-opacity": 0.2 }, duration: 1.0, ease: "power2.out", overwrite: "auto" }, 28.3 + i * 0.08);
+      }
+      tl.fromTo("#chord15", { rotation: -20 }, { rotation: 10, duration: 1.8, ease: "power2.out" }, 28.1);
+
+      // 16. Force-Directed Graph Entrance
+      forceLinks.forEach((link, idx) => {
+        tl.fromTo(`#force-link-${idx}`, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" }, 30.1 + idx * 0.05);
+      });
+      forceNodes.forEach(node => {
+        tl.fromTo(`#force-node-${node.id}`, { scale: 0 }, { scale: 1, duration: 0.6, ease: "back.out(1.5)", overwrite: "auto" }, 30.3 + node.id * 0.06);
+      });
+
+      // 17. Treemap Entrance
+      treeRects.forEach((rect, idx) => {
+        tl.fromTo(`#tree-rect-${idx}`, { scale: 0 }, { scale: 1, duration: 0.8, ease: "back.out(1.2)", overwrite: "auto" }, 32.1 + idx * 0.08);
+      });
+
+      // 18. 3D Globe Rotation
+      tl.to(globeProgress, { t: 1, duration: 2.0, ease: "none", onUpdate: drawGlobe }, 34.0);
+
+      // 19. 3D Scatter Plot Entrance
+      for(let i=0; i<30; i++) {
+        tl.fromTo(`#dot19-${i}`, { scale: 0 }, { scale: 1, duration: 0.6, ease: "back.out(1.4)", overwrite: "auto" }, 36.1 + seededRandom(i) * 0.8);
+      }
+
+      // 20. 3D Surface Plot Undulation
+      tl.to(sProgress, { t: 1, duration: 2.0, ease: "none", onUpdate: drawSurface }, 38.0);
+
+
+      /* ------------------------------------------------------------------ */
+      /*  Modular Transition Loop (Focus Pull / Blur Crossfade)             */
+      /* ------------------------------------------------------------------ */
+      for (let i = 1; i < 20; i++) {
+        const T = i * 2.0;
+        const oldScene = `#scene${i}`;
+        const newScene = `#scene${i+1}`;
+        
+        tl.to(oldScene, {
+          filter: "blur(15px)",
+          scale: 1.04,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.inOut",
+          overwrite: "auto"
+        }, T - 0.2);
+        
+        tl.set(newScene, { visibility: "visible" }, T - 0.15);
+        tl.fromTo(newScene,
+          { filter: "blur(15px)", scale: 0.96, opacity: 0 },
+          { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.4, ease: "power2.inOut", overwrite: "auto" },
+          T - 0.15
+        );
+        
+        tl.set(oldScene, { visibility: "hidden" }, T + 0.2);
+      }
+
+      /* ===== Final Scene Outro (Fade to black at the end) ===== */
+      tl.to("#scene20", { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 39.4);
+      tl.set("#scene20", { visibility: "hidden" }, 40.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,1 +1,24 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Hyperframes / Remotion render output (large binaries; regenerate locally)
+hyperframes/renders/
+remotion/out/
+
+# Local design scratch
 design/

@@ -17,7 +17,7 @@ disable-model-invocation: false
 
 ## 工作流程
 
-每次接到可视化请求时，按以下 4 个阶段顺序处理：
+每次接到可视化请求时，按以下 5 个阶段顺序处理：
 
 ### 阶段 1：数据与意图分析
 
@@ -114,6 +114,13 @@ disable-model-invocation: false
 - 3D 场景 → Three.js（Web）或 Plotly 3D（Python）
 - 快速开发 / 开箱即用美观效果 → ECharts
 
+**HTML 大屏硬约束**：
+- 每个图表根容器在 `init` 前必须有明确 `width` 和 `height` / `min-height`
+- `flex: 1` 不能替代显式高度；卡片内图表要先定高再初始化
+- 地图依赖优先使用本地注册资产或可验证的降级方案，不要只依赖远程脚本
+- 密集标签必须启用 `hideOverlap`、`overflow: 'truncate'` 或重新布局，避免文本互相遮挡
+- 同一页面的所有卡片圆角、内边距、边框和阴影应保持一致
+
 ### 阶段 4：一致性校验
 
 读取 `guides/consistency-rules.md`，对输出进行校验：
@@ -134,6 +141,11 @@ disable-model-invocation: false
 3. **红绿语义**：涨跌/正负不仅用红绿，加 ▲▼ 符号或改用蓝橙发散色板
 4. **文本替代**：提供 alt text（类型+趋势+数据出口），复杂图附数据表
 5. **交互无障碍**：键盘可达、焦点可见、触摸目标 ≥ 44px、动画可关闭
+
+**生成 HTML 仪表盘时的额外检查**：
+- 确认每个 `echarts.init(...)` 的容器在初始化前可见且非零尺寸
+- 对地图、热力图、树图等密集布局开启合理的 `containLabel` / `labelLayout`
+- 如图表内容可能拥挤，优先减小字数、收窄标签、调整图例位置，而不是默认保留所有标签
 
 ---
 
@@ -244,10 +256,12 @@ disable-model-invocation: false
 | 文件 | 用途 |
 |------|------|
 | `scripts/theme_validator.py` | 主题一致性自动验证器 |
-| `examples/dashboard/` | 仪表盘场景示例（电商、全球市场） |
-| `examples/report/` | 报告场景示例（季度销售、股票市场） |
-| `examples/interactive/` | 交互式场景示例（COVID 探索器） |
-| `demo.html` | 独立运行的 D3.js 全功能演示页 |
+| `examples/finance-trading/` | 金融/交易实时监控大屏（ECharts） |
+| `examples/ecommerce-retail/` | 电商/零售运营大屏（ECharts） |
+| `examples/iot-energy/` | 物联网/能源监控大屏（ECharts） |
+| `examples/city-geo/` | 城市/地理大数据大屏（ECharts，含地图飞线/涟漪） |
+| `examples/README.md` | 示例总索引（含技术栈与运行方式） |
+| `assets/banner.svg` · `assets/wordmark.svg` | 品牌横幅与字标（可由 `scripts/make_*.py` 重新生成） |
 
 ---
 

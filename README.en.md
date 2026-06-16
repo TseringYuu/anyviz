@@ -57,15 +57,13 @@ screens that combine multiple visualizations into one coherent canvas.
 anyviz processes every request through a five-stage workflow, so each step from raw data
 to generated code meets a professional standard:
 
-```text
-  1. Analyze        2. Aesthetics      3. Adapt          4. Consistency    5. Accessibility
-  ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
-  │ data shape │    │ unified    │    │ detect the │    │ sync entity│    │ contrast,  │
-  │ + intent → │ ─> │ color &    │ ─> │ project's  │ ─> │ colors &   │ ─> │ colorblind │
-  │ 34 chart   │    │ type scale │    │ stack →    │    │ number     │    │ safety,    │
-  │ decisions  │    │ (Tufte)    │    │ D3/ECharts │    │ formats    │    │ alt text   │
-  └────────────┘    └────────────┘    └────────────┘    └────────────┘    └────────────┘
-```
+**Analyze → Aesthetics → Adapt → Consistency → Accessibility**
+
+1. **Analyze** — map data shape and intent to one of 34 chart templates
+2. **Aesthetics** — apply unified color and type scale (Tufte)
+3. **Adapt** — detect the project stack and emit D3 / ECharts code
+4. **Consistency** — sync entity colors, number formats, and spacing
+5. **Accessibility** — contrast, colorblind safety, and alt text
 
 ---
 

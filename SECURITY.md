@@ -2,7 +2,7 @@
 
 > 中文版见文末「安全策略（中文）」。
 
-anyviz is a **specification and documentation library** (a Claude Skill), not a
+anyviz is a **specification and documentation library** for AI-assisted visualization, not a
 runtime service or executable application. It ships Markdown specs, JSON theme
 files, a small Python validation script, and example visualizations. As such,
 the security surface differs from a typical software package — there is no server,
@@ -60,7 +60,7 @@ merely referenced (report those upstream, though we welcome a heads-up).
 
 ## 安全策略（中文）
 
-anyviz 是一个**规范与文档库**（Claude Skill），并非运行时服务或可执行应用。仓库内
+anyviz 是一个面向 AI 辅助可视化的**规范与文档库**，并非运行时服务或可执行应用。仓库内
 仅包含 Markdown 规范、JSON 主题文件、一个小型 Python 校验脚本和示例可视化，因此其
 安全范畴与常规软件包不同——没有服务器、不处理用户数据、不在本仓库内进行生产部署。
 

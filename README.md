@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/anyviz/anyviz"><img src="https://img.shields.io/badge/anyviz-v1.0.0-4269d0?style=flat-square" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-3ca951?style=flat-square" alt="License"></a>
-  <a href="SKILL.md"><img src="https://img.shields.io/badge/Claude-Skill-a463f2?style=flat-square" alt="Claude Skill"></a>
+  <a href="SKILL.md"><img src="https://img.shields.io/badge/AI%20ready-workflow-a463f2?style=flat-square" alt="AI-ready workflow"></a>
   <a href="aesthetics/default.json"><img src="https://img.shields.io/badge/design-Observable_Plot-ff725c?style=flat-square" alt="Design System"></a>
   <a href="adapters/web/d3.md"><img src="https://img.shields.io/badge/engine-D3.js-efb118?style=flat-square" alt="Default Engine"></a>
   <img src="https://img.shields.io/badge/platform-Web%20%7C%20Python%20%7C%20R-6cc5b0?style=flat-square" alt="Platforms">
@@ -15,7 +15,7 @@
   <b>English</b> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-> **anyviz** is an AI-native data visualization specification and Claude Skill library.
+> **anyviz** is an AI-native data visualization specification and workflow library.
 > It gives AI assistants the judgment of a professional data designer: intelligent chart
 > selection, a rigorously tuned aesthetic system, multi-stack rendering, and design
 > consistency across every chart on a canvas.
@@ -71,10 +71,11 @@ to generated code meets a professional standard:
 
 ## Quick Start
 
-### As a Claude Skill
+### With any AI assistant
 
-Clone this repository and describe what you want in natural language. Claude loads
-`SKILL.md` and follows the anyviz pipeline automatically.
+Point your AI coding tool at this repository and describe what you want in natural
+language. `SKILL.md` is the tool-agnostic workflow entry point; the guides, templates,
+adapters, and aesthetic spec provide the supporting context.
 
 ```text
 Visualize this sales data for me
@@ -199,7 +200,7 @@ Full mapping: [`guides/customization-guide.md`](guides/customization-guide.md).
 
 ```text
 anyviz/
-├── SKILL.md                  # Claude Skill entry point (workflow + core rules)
+├── SKILL.md                  # AI workflow entry point (pipeline + core rules)
 ├── README.zh-CN.md           # Simplified Chinese documentation
 ├── aesthetics/               # Authoritative aesthetic spec
 │   ├── default.json          # Default theme (color, type, spacing, stroke, responsive)

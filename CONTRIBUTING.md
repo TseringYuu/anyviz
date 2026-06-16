@@ -185,7 +185,7 @@ The template includes mandatory checks:
 - [ ] Follows `TEMPLATE-SPEC.md` structure (if adding templates)
 - [ ] All colors reference `default.json` (exact hex values)
 - [ ] Passes `theme_validator.py` validation
-- [ ] Updated SKILL.md or README index (if applicable)
+- [ ] Updated the workflow entry point or README index (if applicable)
 - [ ] Accessibility considerations addressed
 - [ ] JSON files are valid (if modified)
 - [ ] Documentation is clear and complete

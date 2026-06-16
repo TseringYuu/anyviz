@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `guides/accessibility.md` — accessibility guide covering contrast ratios, colorblind-safe
   palettes, redundant encoding, alt text, and interactive accessibility.
   无障碍指南：对比度、色盲友好色板、冗余编码、替代文本、交互无障碍。
-- Pipeline stage 5 (accessibility validation) added to the SKILL workflow.
+- Pipeline stage 5 (accessibility validation) added to the anyviz workflow.
   工作流新增第 5 阶段：无障碍校验。
 - Open-source community files: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
   `CHANGELOG.md`, GitHub issue/PR templates, and a CI workflow.

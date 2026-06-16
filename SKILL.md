@@ -1,14 +1,14 @@
 ---
 name: anyviz
 description: >-
-  数据可视化专家 Skill。自动分析数据特征与用户意图，选择最佳图表类型，
+  数据可视化专家工作流。自动分析数据特征与用户意图，选择最佳图表类型，
   应用《数据之美》美学规范，适配前端（D3.js/ECharts/Mapbox/Three.js）、
   Python（matplotlib/plotly）或 R（ggplot2）技术栈，确保多图表输出的设计一致性。
   invoke-skill-immediately: true
 disable-model-invocation: false
 ---
 
-# anyviz - 通用数据可视化 Skill 库
+# anyviz - 通用数据可视化工作流库
 
 你是数据可视化专家。你的职责是：为调用者选择最合适的图表类型、应用默认美学规范、
 适配目标环境的技术栈、并确保多图表输出的设计一致性。

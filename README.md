@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="anyviz — AI-native data visualization" width="100%">
+  <img src="assets/banner.svg" alt="anyviz — 面向 AI 时代的数据可视化" width="100%">
 </p>
 
 <p align="center">
@@ -12,264 +12,251 @@
 </p>
 
 <p align="center">
-  <b>English</b> · <a href="README.zh-CN.md">简体中文</a>
+  <b>简体中文</b> · <a href="README.en.md">English</a>
 </p>
 
-> **anyviz** is an AI-native data visualization specification and workflow library.
-> It gives AI assistants the judgment of a professional data designer: intelligent chart
-> selection, a rigorously tuned aesthetic system, multi-stack rendering, and design
-> consistency across every chart on a canvas.
+> **anyviz** 是一个面向 AI 时代的数据可视化规范与工作流库。
+> 它为 AI 工具提供专业数据设计师级别的判断：图表选择、美学系统、
+> 多技术栈渲染，以及同一画布下多图表的设计一致性。
 
 ---
 
-## Why anyviz
+## 为什么需要 anyviz
 
-LLMs can already write charting code. What they lack is *taste* and *consistency* —
-the hundreds of small decisions that separate a default-looking chart from a
-publication-grade one. anyviz encodes those decisions as a reusable specification:
-which chart to choose, what palette to apply, how to size type, where to place labels,
-and how to keep ten charts visually coherent.
+大模型早已能写出绘图代码，缺的是**品味**与**一致性**，也就是把“默认样式的图”与“专业作品”
+区分开的那些细小但关键的决策。anyviz 把这些决策沉淀为一套可复用的规范：选哪种图、用什么色板、
+字号如何分级、标签放在哪里，以及多张图如何保持视觉连贯。
 
-- **Chart intelligence** — maps data shape and analytical intent (comparison, distribution,
-  relationship, composition, trend, geographic, hierarchical, flow) to the right chart
-  across **34 production-grade templates**.
-- **A golden aesthetic** — grounded in Tufte's data-ink ratio and ColorBrewer / Viridis
-  color science, with a perceptually balanced, colorblind-aware default theme.
-- **Environment-aware rendering** — the same spec produces consistent output on the web
-  (D3.js, ECharts, Mapbox, Three.js), in Python (Plotly, Matplotlib), and in R (ggplot2).
-- **Consistency by default** — every unspecified property is inherited from the global
-  spec, with a validator that enforces it across multi-chart layouts.
-- **Accessibility built in** — contrast, redundant encoding, and alt-text guidance are part
-  of the pipeline, not an afterthought.
+- **图表智能**——将数据形态与分析意图（比较、分布、关系、组成、趋势、地理、层次、流程）映射到
+  **34 种生产级模板**中最合适的一种。
+- **黄金美学**——植根于 Tufte 的数据墨水比与 ColorBrewer / Viridis 色彩科学，提供感知均衡、
+  色盲友好的默认主题。
+- **环境感知渲染**——同一套规范在 Web（D3.js、ECharts、Mapbox、Three.js）、Python（Plotly、
+  Matplotlib）与 R（ggplot2）上产出视觉一致的结果。
+- **一致性即默认**——任何未显式指定的属性都从全局规范继承，并由校验器在多图布局中强制执行。
+- **内建无障碍**——对比度、冗余编码与替代文本指导是流水线的一部分，而非事后补救。
 
 ---
 
-The preview below highlights the range of outputs anyviz is designed to guide:
-analytical reports, operational dashboards, geographic views, and monitoring
-screens that combine multiple visualizations into one coherent canvas.
+下面的展示图呈现了 anyviz 适用的多种输出形态：分析报告、运营仪表盘、地理可视化与监控大屏。
+这些场景都不是孤立图表，而是在同一画布中组织多种可视化，形成清晰、统一、可落地的业务视图。
 
 <p align="center">
-  <img src="assets/showcase.gif" alt="Examples of full-screen dashboard scenes designed with anyviz" width="100%">
+  <img src="assets/showcase.gif" alt="使用 anyviz 设计的多种整屏数据大屏示例" width="100%">
 </p>
 
-## The Pipeline
+## 工作流水线
 
-anyviz processes every request through a five-stage workflow, so each step from raw data
-to generated code meets a professional standard:
+anyviz 通过五阶段工作流处理每一个请求，确保从原始数据到生成代码的每一步都符合专业标准：
 
 ```text
-  1. Analyze        2. Aesthetics      3. Adapt          4. Consistency    5. Accessibility
-  ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
-  │ data shape │    │ unified    │    │ detect the │    │ sync entity│    │ contrast,  │
-  │ + intent → │ ─> │ color &    │ ─> │ project's  │ ─> │ colors &   │ ─> │ colorblind │
-  │ 34 chart   │    │ type scale │    │ stack →    │    │ number     │    │ safety,    │
-  │ decisions  │    │ (Tufte)    │    │ D3/ECharts │    │ formats    │    │ alt text   │
-  └────────────┘    └────────────┘    └────────────┘    └────────────┘    └────────────┘
+  1. 分析            2. 美学            3. 适配            4. 一致性          5. 无障碍
+ ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
+ │ 数据形态   │    │ 统一色彩   │    │ 检测项目   │    │ 同步实体   │    │ 对比度、   │
+ │ + 意图  →  │ ─> │ 与字号分级 │ ─> │ 技术栈  →  │ ─> │ 颜色与     │ ─> │ 色盲友好、 │
+ │ 34 种图表  │    │（Tufte）   │    │ D3/ECharts │    │ 数值格式   │    │ 替代文本   │
+ │ 决策       │    │            │    │            │    │            │    │            │
+ └────────────┘    └────────────┘    └────────────┘    └────────────┘    └────────────┘
 ```
 
 ---
 
-## Quick Start
+## 快速开始
 
-### With any AI assistant
+### 配合任意 AI 助手使用
 
-Point your AI coding tool at this repository and describe what you want in natural
-language. `SKILL.md` is the tool-agnostic workflow entry point; the guides, templates,
-adapters, and aesthetic spec provide the supporting context.
+将本仓库提供给你的 AI 编程工具，并用自然语言描述需求即可。`SKILL.md` 是工具无关的工作流入口；
+`guides/`、`templates/`、`adapters/` 与 `aesthetics/` 提供完整上下文。
 
 ```text
-Visualize this sales data for me
-Show population by province on a map
-Build a dashboard for our key business metrics
-Make these charts dark-themed
+帮我可视化这份销售数据
+用地图展示各省的人口分布
+制作一个仪表盘，展示关键业务指标
+把这些图表改成深色主题
 ```
 
-### As a standalone aesthetic library
+### 作为独立美学库
 
-The spec is plain JSON, so any tool or script can consume it directly.
+规范以纯 JSON 定义，任何工具或脚本都可直接引用。
 
 ```python
 import json
 
-# Load the authoritative anyviz aesthetic spec
+# 加载 anyviz 权威美学规范
 with open('aesthetics/default.json', encoding='utf-8') as f:
     theme = json.load(f)
 
-# Categorical palette
+# 分类色板
 palette = theme['color']['categorical']['palette']
-print(f"Categorical palette: {palette}")
+print(f"分类色板: {palette}")
 
-# Typographic scale
+# 排版层级
 h1 = theme['typography']['scale']['h1']
-print(f"Title: {h1['size_px']}px / weight {h1['weight']}")
+print(f"主标题: {h1['size_px']}px / 字重 {h1['weight']}")
 ```
 
 ---
 
-## Template Library (34)
+## 模板库（34 种）
 
-| Category | Count | Templates |
+| 类目 | 数量 | 模板 |
 | :--- | :---: | :--- |
-| [`templates/charts/`](templates/charts) | 20 | bar, line, scatter, area, pie/donut, histogram, box plot, heatmap, radar, waterfall, density, waffle, dot, slope, small multiples, calendar heatmap, candlestick, hexbin, parallel coordinates, scatter matrix |
-| [`templates/maps/`](templates/maps) | 3 | choropleth, bubble map, flow map |
-| [`templates/graphs/`](templates/graphs) | 8 | sankey, chord, force-directed, treemap, sunburst, dendrogram, arc diagram, alluvial |
-| [`templates/3d/`](templates/3d) | 3 | 3D globe, 3D scatter, 3D surface |
+| [`templates/charts/`](templates/charts) | 20 | 柱状、折线、散点、面积、饼图/环形、直方图、箱线、热力、雷达、瀑布、密度、华夫、点图、坡度、小倍数、日历热力、烛台、六边形分箱、平行坐标、矩阵散点 |
+| [`templates/maps/`](templates/maps) | 3 | 面量图、气泡地图、流向地图 |
+| [`templates/graphs/`](templates/graphs) | 8 | 桑基、和弦、力导向、树图、旭日、树形图、弧形图、冲积图 |
+| [`templates/3d/`](templates/3d) | 3 | 3D 地球、3D 散点、3D 曲面 |
 
-Every template follows the unified five-section structure defined in
-[`templates/TEMPLATE-SPEC.md`](templates/TEMPLATE-SPEC.md): *use cases, data format,
-aesthetic parameters, design points, and variants.*
-
----
-
-## Core Principles
-
-**1. Aesthetics first.** Maximize the data-ink ratio and eliminate chartjunk. Prefer direct
-labeling over legends, and small multiples over animation, so the data itself is the focus.
-
-**2. Consistency over customization.** Any property you don't specify is inherited from the
-global spec. Even when a caller overrides a single color, type, spacing, and gridlines stay
-strictly uniform.
-
-**3. Environment-aware adaptation.** anyviz detects the runtime and dependencies and produces
-visually consistent output across web, Python, and R — without the caller managing the stack.
-
-**4. Explainable & modifiable.** Every output ships with the reasoning behind its chart choice
-and aesthetic decisions. Nothing is a black box; any parameter can be understood and adjusted.
+每个模板都遵循 [`templates/TEMPLATE-SPEC.md`](templates/TEMPLATE-SPEC.md) 定义的统一五段式结构：
+*适用场景、数据格式、美学参数、设计要点、变体。*
 
 ---
 
-## Default Palette
+## 核心设计原则
 
-The default `modern` theme is inspired by Observable Plot's contemporary design language —
-bright, restrained, and colorblind-aware.
+**1. 美学优先。** 最大化数据墨水比，消除图表垃圾。优先直接标注而非图例，倡导小倍数图而非动画，
+让数据本身成为焦点。
 
-| | Hex | Role |
+**2. 一致性优于个性化。** 任何未指定的属性都从全局规范继承。即使调用者仅覆盖一种颜色，字体、
+间距、网格线依然严格统一。
+
+**3. 环境感知自适应。** anyviz 感知运行环境与依赖，在 Web、Python、R 上产出视觉一致的输出，
+无需调用者操心技术栈。
+
+**4. 可解释、可修改。** 每次输出都附带图表选择理由与美学决策说明。没有黑盒，任何参数都可被
+理解和调整。
+
+---
+
+## 默认色板
+
+默认 `modern` 主题受 Observable Plot 现代设计语言启发——明亮、克制、色盲友好。
+
+| | 色值 | 语义 |
 | :---: | :--- | :--- |
-| 🔵 | `#4269d0` | Primary series — stability, trust |
-| 🟢 | `#3ca951` | Secondary — growth, positive, on-target |
-| 🔴 | `#ff725c` | Contrast — warning, negative, loss |
-| 🟣 | `#a463f2` | Auxiliary — highlight, special contrast |
-| 🟡 | `#efb118` | Auxiliary — attention, caution |
-| 🩵 | `#6cc5b0` | Auxiliary — teal, neutral contrast |
-| ⚪ | `#9696a0` | Neutral gray — reference lines, "other" |
-| 🟠 | `#f5a623` | Orange — high-contrast highlight |
-| 🩷 | `#ca5bb8` | Magenta — special category |
-| 🌸 | `#ff8ab7` | Pink — auxiliary category |
+| 🔵 | `#4269d0` | 主要系列——稳定、信任 |
+| 🟢 | `#3ca951` | 次要——增长、正面、达标 |
+| 🔴 | `#ff725c` | 对比——警告、负面、亏损 |
+| 🟣 | `#a463f2` | 辅助——高亮、特殊对比 |
+| 🟡 | `#efb118` | 辅助——注意、预警 |
+| 🩵 | `#6cc5b0` | 辅助——青色、中性对比 |
+| ⚪ | `#9696a0` | 中性灰——参考线、"其他" |
+| 🟠 | `#f5a623` | 橙色——高对比高亮 |
+| 🩷 | `#ca5bb8` | 洋红——特殊类别 |
+| 🌸 | `#ff8ab7` | 粉色——辅助类别 |
 
-Full palette rationale and colorblind notes: [`guides/color-guide.md`](guides/color-guide.md)
-and [`guides/accessibility.md`](guides/accessibility.md).
+完整色板原理与色盲说明：[`guides/color-guide.md`](guides/color-guide.md) 与
+[`guides/accessibility.md`](guides/accessibility.md)。
 
 ---
 
-## Stack Adaptation
+## 技术栈自适应
 
-anyviz parses the calling context and dependencies to choose the right engine automatically:
+anyviz 解析调用场景与依赖，自动选择最合适的引擎：
 
-| Environment | Default | When | Strengths |
+| 环境 | 默认 | 触发条件 | 优势 |
 | :--- | :--- | :--- | :--- |
-| **Web** | **D3.js** | Default — zero dependencies, full custom control | Pixel-level control, no deps |
-| **Web** | **ECharts** | `echarts` already in the project, or batteries-included charts | High performance, rich interaction |
-| **Web** | **Mapbox** | Geospatial data, high-fidelity maps | Pro-grade map rendering at scale |
-| **Web** | **Three.js** | 3D space, surfaces, immersive scenes | Native 3D, hardware accelerated |
-| **Python** | **Plotly** | Jupyter, interactive analysis, dashboards | Interactive, exports to HTML |
-| **Python** | **Matplotlib** | Papers, print, static high-DPI output | Print-friendly, academic norms |
-| **R** | **ggplot2** | Statistical analysis in the R ecosystem | Declarative grammar of graphics |
+| **Web** | **D3.js** | 默认——零依赖、完全自定义 | 像素级控制、无依赖 |
+| **Web** | **ECharts** | 项目已装 `echarts`，或需开箱即用图表 | 性能高、交互丰富 |
+| **Web** | **Mapbox** | 地理空间数据、高精度地图 | 专业地图渲染、海量数据 |
+| **Web** | **Three.js** | 三维空间、曲面、沉浸式场景 | 原生 3D、硬件加速 |
+| **Python** | **Plotly** | Jupyter、交互式分析、仪表盘 | 交互强、可导出 HTML |
+| **Python** | **Matplotlib** | 论文、出版、静态高清 | 打印友好、符合学术规范 |
+| **R** | **ggplot2** | R 生态下的统计分析 | 声明式图形语法 |
 
 ---
 
-## Natural-Language Customization
+## 自然语言定制
 
-anyviz maps plain-language instructions onto aesthetic parameters while preserving consistency:
+anyviz 将自然语言指令映射到美学参数，同时保持一致性：
 
-| Dimension | You say | Maps to | Effect |
+| 维度 | 你说 | 映射到 | 效果 |
 | :--- | :--- | :--- | :--- |
-| **Theme** | "dark mode" | page `#1A1A1A`, text `#E8E8E8`, palette +15% lightness | Immersive dark canvas, high contrast |
-| **Style** | "academic / for a paper" | serif type, hide Y gridlines, keep outer frame | Restrained, publication-ready |
-| **Style** | "minimal" | drop gridlines and borders, keep core axes | Maximum data-ink ratio |
-| **Color** | "warm tones" | restrict hue to 0°–60° | Energetic, warm feel |
-| **Color** | "cool tones" | restrict hue to 180°–270° | Calm, technical feel |
-| **Type** | "bigger text" | scale all levels (H1–H6) ×1.15 | Readable on large displays |
-| **Layout** | "for mobile" | apply mobile breakpoint, 1:1 aspect | Fits narrow screens, no label overlap |
-| **Elements** | "show data labels" | enable data labels (9px, `#888888`) | Read exact values without hover |
+| **主题** | "深色模式" | 页面 `#1A1A1A`、文本 `#E8E8E8`、色板提亮 15% | 沉浸式深色大屏，高对比 |
+| **风格** | "学术/论文风格" | 衬线字体、隐藏 Y 网格线、保留外边框 | 克制、出版就绪 |
+| **风格** | "极简" | 去除网格线与边框，仅保留核心轴线 | 最大化数据墨水比 |
+| **颜色** | "暖色调" | 限制色相 0°–60° | 充满活力的暖色感受 |
+| **颜色** | "冷色调" | 限制色相 180°–270° | 冷静、科技感 |
+| **排版** | "字体大一些" | 所有层级（H1–H6）×1.15 | 大屏可读性更好 |
+| **布局** | "适合手机看" | 应用 mobile 断点、1:1 宽高比 | 适配窄屏，防标签重叠 |
+| **元素** | "显示数据标签" | 开启数据标签（9px、`#888888`） | 无需悬停即读精确值 |
 
-Full mapping: [`guides/customization-guide.md`](guides/customization-guide.md).
+完整映射：[`guides/customization-guide.md`](guides/customization-guide.md)。
 
 ---
 
-## Repository Structure
+## 目录结构
 
 ```text
 anyviz/
-├── SKILL.md                  # AI workflow entry point (pipeline + core rules)
-├── README.zh-CN.md           # Simplified Chinese documentation
-├── aesthetics/               # Authoritative aesthetic spec
-│   ├── default.json          # Default theme (color, type, spacing, stroke, responsive)
-│   ├── color.md              # Color rules & colorblind-safe palettes
-│   ├── typography.md         # Type rules & multilingual fonts
-│   ├── layout.md             # Layout rules & data-ink standards
+├── SKILL.md                  # AI 工作流入口（流水线 + 核心规则）
+├── README.md                 # 中文主文档
+├── README.en.md              # 英文备用文档
+├── aesthetics/               # 权威美学规范
+│   ├── default.json          # 默认主题（颜色、排版、间距、线条、响应式）
+│   ├── color.md              # 色彩规则与色盲友好色板
+│   ├── typography.md         # 排版规则与多语言字体
+│   ├── layout.md             # 布局规则与数据墨水比标准
 │   └── themes/               # modern · analytics · dashboard · academic
-├── guides/                   # Decision & customization guides
-│   ├── chart-selection.md    # Chart decision tree (data + intent → chart)
-│   ├── color-guide.md        # Color principles & semantic conventions
-│   ├── consistency-rules.md  # Multi-chart consistency rules
-│   ├── customization-guide.md# Natural language → aesthetic parameters
-│   └── accessibility.md      # Contrast, colorblind safety, redundant encoding, alt text
-├── templates/                # 34 chart templates
-│   ├── TEMPLATE-SPEC.md       # Unified template specification
-│   ├── charts/               # 20 statistical charts
-│   ├── maps/                 # 3 geographic charts
-│   ├── graphs/               # 8 relational & hierarchical charts
-│   └── 3d/                   # 3 three-dimensional charts
-├── adapters/                 # Stack-specific adapters (web / python / r)
-├── assets/                   # README banner, wordmark, and showcase media
-├── examples/                 # Runnable examples + per-example READMEs
+├── guides/                   # 决策与定制指南
+│   ├── chart-selection.md    # 图表选择决策树（数据 + 意图 → 图表）
+│   ├── color-guide.md        # 用色原则与语义约定
+│   ├── consistency-rules.md  # 多图表一致性规则
+│   ├── customization-guide.md# 自然语言 → 美学参数
+│   └── accessibility.md      # 对比度、色盲友好、冗余编码、替代文本
+├── templates/                # 34 种图表模板
+│   ├── TEMPLATE-SPEC.md       # 统一模板规范
+│   ├── charts/               # 20 种统计图表
+│   ├── maps/                 # 3 种地图
+│   ├── graphs/               # 8 种关系与层次图
+│   └── 3d/                   # 3 种三维图
+├── adapters/                 # 技术栈适配器（web / python / r）
+├── assets/                   # README 横幅、字标与展示素材
+├── examples/                 # 可运行示例 + 各自 README
 └── scripts/
-    ├── theme_validator.py    # Automated theme-consistency validator
-    └── make_*.py             # Reproducible brand-asset helpers
+    ├── theme_validator.py    # 主题一致性自动校验器
+    └── make_*.py             # 品牌素材的可复现生成脚本
 ```
 
 ---
 
-## Examples
+## 示例
 
-Each example in [`examples/`](examples) is a complete, runnable **industry big-screen
-dashboard** — not a single chart, but a full canvas of coordinated visualizations in the
-anyviz dark-screen aesthetic. Together they show how the same specification can support
-financial monitoring, retail operations, energy IoT, and geospatial command-center use cases.
+[`examples/`](examples) 里的每个示例都是一块完整、可直接运行的**行业数据大屏**——不是单一图表，
+而是一整块画布上协同组织的多种可视化，统一采用 anyviz 深色大屏美学。它们展示了同一套规范如何
+适配金融监控、电商运营、能源物联与城市地理分析等不同需求。
 
-- [`finance-trading`](examples/finance-trading) — real-time market monitoring: candlestick + MAs, intraday indices, capital flow, sector heatmap
-- [`ecommerce-retail`](examples/ecommerce-retail) — retail operations: GMV trend, category mix, regional sales map, conversion funnel
-- [`iot-energy`](examples/iot-energy) — smart-energy IoT: live power curves, energy mix, device gauges, topology graph, alarms
-- [`city-geo`](examples/city-geo) — urban big-data: map flight-lines + ripples, city rankings, footfall trends, 24h heatmap
+- [`finance-trading`](examples/finance-trading) —— 金融实时监控：K 线 + 均线、实时分时、资金流向、板块热力
+- [`ecommerce-retail`](examples/ecommerce-retail) —— 电商运营：GMV 趋势、品类占比、区域销售地图、转化漏斗
+- [`iot-energy`](examples/iot-energy) —— 智慧能源物联：实时功率曲线、能源结构、设备仪表盘、拓扑图、告警
+- [`city-geo`](examples/city-geo) —— 城市大数据：地图飞线 + 涟漪、城市排名、客流趋势、24h 热力
 
-All four are single-file `index.html` (ECharts 5.5.1), built for 1920×1080 and responsive.
+四个示例均为单文件 `index.html`（ECharts 5.5.1），面向 1920×1080 设计并做了响应式适配。
 
 ---
 
-## Contributing
+## 参与贡献
 
-Contributions are welcome — new templates, adapters, and guide improvements especially.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the template structure, validation steps, and PR
-process, and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community expectations.
+欢迎贡献——尤其是新模板、适配器与指南改进。模板结构、校验步骤与 PR 流程见
+[CONTRIBUTING.md](CONTRIBUTING.md)，社区规范见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
 
 ```bash
-# Validate a theme config locally
+# 本地校验主题配置
 python3 scripts/theme_validator.py -c examples/test_config_valid.json
 ```
 
 ---
 
-## License
+## 许可
 
 [MIT](LICENSE)
 
 ---
 
-## References
+## 学术与理论参考
 
-anyviz is grounded in the classics of information visualization:
+anyviz 的设计植根于信息可视化领域的经典著作：
 
-- **Edward Tufte** — *The Visual Display of Quantitative Information* (data-ink ratio, chartjunk)
-- **Nathan Yau** — *Data Points: Visualization That Means Something* (perceptual design, data storytelling)
-- **ColorBrewer 2.0** — *Color Advice for Cartography* (perceptually balanced, colorblind-safe palettes)
-- **Viridis** — *Perceptually Uniform Colormaps* (high perceptual resolution, print- and colorblind-safe)
+- **Edward Tufte** —— *The Visual Display of Quantitative Information*（数据墨水比、消除图表垃圾）
+- **Nathan Yau** —— *Data Points: Visualization That Means Something*（感知设计、数据叙事）
+- **ColorBrewer 2.0** —— *Color Advice for Cartography*（感知均衡、色盲友好色板）
+- **Viridis** —— *Perceptually Uniform Colormaps*（高感知分辨率、打印与色盲友好）

@@ -8,6 +8,7 @@ on:
 jobs:
   publish-npm:
     name: Publish to npmjs.com
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -50,6 +51,7 @@ jobs:
       - name: Publish @TseringYuu/anyviz
         run: |
           npm pkg set name="@TseringYuu/anyviz"
-          npm publish --access public
+          npm pkg delete publishConfig.registry
+          npm publish --registry=https://npm.pkg.github.com --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

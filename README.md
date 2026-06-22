@@ -245,6 +245,12 @@ python3 scripts/theme_validator.py -c examples/test_config_valid.json
 
 ---
 
+## 社区与友链
+
+- [LINUX DO](https://linux.do) — 新一代综合社区，讨论、分享、共建
+
+---
+
 ## 许可
 
 [MIT](LICENSE)

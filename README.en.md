@@ -259,6 +259,12 @@ python3 scripts/theme_validator.py -c examples/test_config_valid.json
 
 ---
 
+## Community
+
+- [LINUX DO](https://linux.do) — A community for discussion, sharing, and collaboration
+
+---
+
 ## License
 
 [MIT](LICENSE)

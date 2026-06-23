@@ -12,6 +12,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added 新增
 
+- `guides/legend-layout.md` — legend positioning rules covering viewBox bounds checking,
+  label collision avoidance, 2×N grid layout for ≥4 items, horizontal centering, and
+  academic theme line-style differentiation. Based on real-world layout bugs encountered
+  in multi-chart document generation.
+  图例布局规则：viewBox 边界检查、标签避让、4 项以上 2×N 网格、水平居中、学术主题线型冗余。
+  基于多图表文档生成中遇到的实际布局 bug 总结。
+- `aesthetics/themes/academic.json` — added `line_style_differentiation` section defining
+  stroke-dasharray mapping for series 0-4+ (solid / long-dash / short-dash / dotted / cycle).
+  Academic 主题新增线型差异化配置，定义系列 0-4+ 的 stroke-dasharray 映射。
+- `templates/charts/bar-chart.md` — added design points 6-7 (negative bar label clearance,
+  horizontal diverging bar label separation) and expanded Diverging Bar variant with
+  concrete layout diagrams and common-error callouts.
+  柱状图模板新增负值标签避让规则和横向双向条形图标签分侧规则。
+- `templates/charts/radar-chart.md` — added design points 7-8 (legend vs dimension label
+  avoidance, academic theme multi-entity line-style differentiation).
+  雷达图模板新增图例与维度标签避让规则和学术主题多实体线型区分规则。
+- `templates/charts/line-chart.md` — added design points 6-7 (legend bounds checking,
+  dual-axis legend annotation).
+  折线图模板新增图例边界检查和双轴图例标注规则。
+
 - **Chart template library expanded from 20 to 34 templates** / 图表模板库由 20 种扩充至 34 种:
   - `charts/`: density plot, waffle chart, dot plot, slope chart, small multiples,
     calendar heatmap, candlestick chart, hexbin plot, parallel coordinates, scatter matrix

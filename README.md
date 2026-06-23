@@ -201,6 +201,7 @@ anyviz/
 │   ├── color-guide.md        # 用色原则与语义约定
 │   ├── consistency-rules.md  # 多图表一致性规则
 │   ├── customization-guide.md# 自然语言 → 美学参数
+│   ├── legend-layout.md      # 图例布局规则（边界检查、避让、居中、网格）
 │   └── accessibility.md      # 对比度、色盲友好、冗余编码、替代文本
 ├── templates/                # 34 种图表模板
 │   ├── TEMPLATE-SPEC.md       # 统一模板规范

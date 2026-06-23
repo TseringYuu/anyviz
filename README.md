@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/anyviz"><img src="https://img.shields.io/npm/v/anyviz?style=flat-square&color=4269d0" alt="npm"></a>
-  <a href="https://github.com/TseringYuu/anyviz"><img src="https://img.shields.io/badge/anyviz-v1.0.0-4269d0?style=flat-square" alt="Version"></a>
+  <a href="https://github.com/TseringYuu/anyviz"><img src="https://img.shields.io/badge/anyviz-v1.0.1-4269d0?style=flat-square" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-3ca951?style=flat-square" alt="License"></a>
   <a href="SKILL.md"><img src="https://img.shields.io/badge/AI%20ready-workflow-a463f2?style=flat-square" alt="AI-ready workflow"></a>
   <a href="aesthetics/default.json"><img src="https://img.shields.io/badge/design-Observable_Plot-ff725c?style=flat-square" alt="Design System"></a>

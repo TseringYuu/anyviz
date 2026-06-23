@@ -127,6 +127,8 @@ description: >-
    字体颜色、线宽等必须一致，除非调用者明确指定了差异
 2. **主题一致性**：所有图表使用相同的色板、字体族、间距规则
 3. **标注一致性**：数据标签的格式（小数点位数、单位、日期格式）统一
+4. **图例布局**：多系列图例须通过 viewBox 边界检查，避免与轴标签重叠；≥4 项使用 2×N 网格。
+   详见 `guides/legend-layout.md`
 
 可选：运行 `scripts/theme_validator.py` 对输出 JSON 进行自动校验。
 
@@ -226,6 +228,7 @@ description: >-
 | `guides/chart-selection.md` | 图表选择决策树：数据特征 + 意图 → 图表类型 |
 | `guides/color-guide.md` | 用色原则：何时用哪种色板、颜色禁忌、语义约定 |
 | `guides/consistency-rules.md` | 多图表设计一致性校验规则（8 条规则 + 完整核对示例） |
+| `guides/legend-layout.md` | 图例布局规则：viewBox 边界、标签避让、2×N 网格、居中、学术线型冗余 |
 | `guides/customization-guide.md` | 自然语言到美学参数完整映射表（风格/颜色/排版/布局/元素） |
 | `guides/accessibility.md` | 无障碍标准：对比度、色盲友好、冗余编码、alt text、交互无障碍 |
 

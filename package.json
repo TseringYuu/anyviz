@@ -1,6 +1,6 @@
 {
   "name": "anyviz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-native data visualization specification and workflow library — chart selection, aesthetics, multi-stack adapters, and consistency rules.",
   "main": "index.js",
   "types": "index.d.ts",

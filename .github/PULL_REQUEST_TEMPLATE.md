@@ -21,6 +21,8 @@
       / 颜色与美学参数引用 default.json，未使用魔法值
 - [ ] `python3 scripts/theme_validator.py -c <config>` passes for any new example configs
       / 新增示例配置通过 theme_validator 校验
+- [ ] `npm run validate` passes when package exports, themes, guides, or examples change
+      / 修改包导出、主题、指南或示例时，完整通过 npm run validate
 - [ ] Updated the workflow entry point, `README.md`, and related docs where applicable
       / 已同步更新工作流入口、README 与相关文档索引（如适用）
 - [ ] Accessibility considered (contrast, colorblind-safe encoding, redundant cues)

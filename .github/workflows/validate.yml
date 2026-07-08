@@ -17,9 +17,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Theme validator — valid config should pass
-        run: |
-          python3 scripts/theme_validator.py -c examples/test_config_valid.json
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Package validation — theme and exports
+        run: npm run validate
 
       - name: Theme validator — invalid config should fail
         run: |
@@ -57,9 +61,9 @@ jobs:
               echo "::error file=$f::invalid JSON"
               fail=1
             fi
-          done < <(find aesthetics -name '*.json')
+          done < <(find aesthetics examples -name '*.json')
           if [ "$fail" -ne 0 ]; then
             echo "One or more JSON files are invalid."
             exit 1
           fi
-          echo "All aesthetics JSON files are valid."
+          echo "All aesthetics and example JSON files are valid."

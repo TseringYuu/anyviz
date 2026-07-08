@@ -69,6 +69,8 @@ examples/
 |------|------|
 | `guides/chart-selection.md` | 根据数据类型和意图选择图表 |
 | `aesthetics/default.json` | 加载默认美学参数（颜色、排版、间距） |
+| `guides/legend-layout.md` | 检查图例边界、避让、居中与安全距离 |
+| `guides/academic-publication.md` | 论文、研究报告与装订文档图表规则 |
 | `guides/consistency-rules.md` | 多图表一致性规则 |
 | `guides/accessibility.md` | 无障碍检查清单 |
 | `templates/TEMPLATE-SPEC.md` | 图表模板统一结构规范 |

@@ -185,6 +185,7 @@ The template includes mandatory checks:
 - [ ] Follows `TEMPLATE-SPEC.md` structure (if adding templates)
 - [ ] All colors reference `default.json` (exact hex values)
 - [ ] Passes `theme_validator.py` validation
+- [ ] Passes package export validation when public entry points or guides change
 - [ ] Updated the workflow entry point or README index (if applicable)
 - [ ] Accessibility considerations addressed
 - [ ] JSON files are valid (if modified)
@@ -238,6 +239,9 @@ All numeric values must be explicit:
 Verify aesthetic consistency in chart configurations:
 
 ```bash
+# Run the full local validation chain
+npm run validate
+
 # Validate single chart config
 python3 scripts/theme_validator.py --config examples/test_config_valid.json
 
@@ -252,7 +256,20 @@ The validator checks:
 - Typography parameters match `default.json` defaults
 - Color palettes use `default.json` values
 - Spacing aligns with specification
+- Canvas-level title alignment, legend clearance, export visual centering, and source-note policy
 - Multi-chart consistency (titles, legends, labels, margins)
+
+### Package Export Validation
+
+When adding or renaming public guides, themes, package entry points, or npm export-map entries,
+run:
+
+```bash
+npm run validate:exports
+```
+
+This check confirms that `anyviz.guides.*` resolves to files present in the package and stays
+consistent with the documented guide index.
 
 ### Template Structure Validation
 
@@ -277,7 +294,7 @@ done
 
 ### JSON Validation
 
-Verify all JSON files are valid:
+Verify aesthetics and example JSON files are valid:
 
 ```bash
 # Check aesthetics and example configs
@@ -289,9 +306,10 @@ done
 ### GitHub Actions CI
 
 On every push and PR, the CI pipeline (`/.github/workflows/validate.yml`) automatically:
-1. Runs `theme_validator.py` against test configurations
-2. Checks all templates for required sections
-3. Validates all JSON files
+1. Runs `npm run validate` against theme and package-export checks
+2. Verifies the invalid fixture is rejected by `theme_validator.py`
+3. Checks all templates for required sections
+4. Validates all aesthetics and example JSON files
 
 If any check fails, the PR cannot be merged. Review the CI logs to fix issues.
 
@@ -337,8 +355,8 @@ If any check fails, the PR cannot be merged. Review the CI logs to fix issues.
 ### 提交 PR 前的校验
 
 ```bash
-# 1. 校验美学一致性
-python3 scripts/theme_validator.py --config examples/test_config_valid.json
+# 1. 运行完整本地校验链
+npm run validate
 
 # 2. 检查模板五段式结构
 for f in templates/**/*.md; do
@@ -355,7 +373,7 @@ python3 -m json.tool aesthetics/default.json > /dev/null
 
 - [ ] 新模板遵循五段式规范
 - [ ] 所有颜色取自 `default.json`
-- [ ] 通过 `theme_validator.py` 校验
+- [ ] 通过 `npm run validate` 校验
 - [ ] 无障碍指南已考虑
 - [ ] JSON 文件合法
 

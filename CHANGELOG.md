@@ -8,6 +8,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 本变更日志遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式与
 [语义化版本](https://semver.org/lang/zh-CN/) 规范。
 
+## [1.0.2] - 2026-07-08
+
+### Added 新增
+
+- `guides/academic-publication.md` — publication rules for academic papers, university
+  research projects, bound Word/PDF documents, captions, source notes, legend clearance,
+  visual centering after export, and timeline marker aspect preservation.
+  新增学术论文与研究报告图表规则，覆盖题注、资料来源、装订文档、导出后视觉居中、图例安全距离与时间轴节点防变形。
+- `aesthetics/default.json` now defines canvas-anchored title alignment, legend clearance
+  safe areas, export visual-centering policy, and default embedded-source policy.
+  默认美学规范新增画布级标题居中、图例安全区、导出视觉居中与图内资料来源策略。
+- `aesthetics/themes/academic.json` now includes a `publication` section for formal
+  research-report and thesis contexts.
+  Academic 主题新增 `publication` 区块，面向高校研究项目、论文、研究报告与装订文档。
+- Package entry points now expose core guide paths through `anyviz.guides.*`, with matching
+  npm export-map entries for all core guides.
+  npm 入口新增 `anyviz.guides.*`，并在 export map 中公开全部核心指南路径。
+- `scripts/check_package_exports.js` validates that published guide APIs resolve to files
+  present in the package.
+  新增包导出校验脚本，确保指南 API 与实际文件一致。
+
+### Changed 变更
+
+- Matplotlib, D3, ECharts, and ggplot2 adapters now document canvas-level titles, dedicated
+  legend bands, safer legend-to-plot spacing, and publication-friendly export behavior.
+  各技术栈适配指南统一补充画布级标题、图例安全带、图例与绘图区间距、出版型导出规则。
+- README, README.en, SKILL, layout, consistency, and legend guides now include explicit
+  references to chart centering, title centering, legend clearance, and academic publication
+  behavior.
+  主文档、工作流入口与相关指南补充图表居中、标题居中、图例间距与论文出版场景规则。
+- `npm run validate` now runs both theme validation and package-export validation.
+  主验证命令同时覆盖主题规范与包入口导出一致性。
+
+### Fixed 修复
+
+- Theme validation now rejects charts that disable export visual centering, use axis-centered
+  titles where canvas-centered titles are required, or place legends too close to titles,
+  axes, data labels, or plot areas.
+  主题校验器现在会拦截导出视觉居中关闭、标题以坐标轴而非画布居中、图例与标题/轴/标签/绘图区过近等问题。
+- Academic source-note rules now prevent duplicate source notes inside chart images when
+  the document layer already renders captions and source paragraphs.
+  学术场景下避免图像内部与文档层重复绘制资料来源说明。
+- Timeline guidance now avoids aspect distortion caused by axis-transform circles, favoring
+  scatter/symbol markers that preserve circular geometry.
+  时间轴规则避免使用易被拉伸的坐标轴变换圆形，优先采用保持圆形比例的 scatter/symbol 节点。
+
 ## [1.0.1] - 2026-06-17
 
 ### Added 新增
@@ -90,5 +136,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Legacy raster logo and pre-rendered promo media, replaced by SVG assets.
   移除旧位图 logo 与预渲染宣传素材。
 
+[1.0.2]: https://github.com/TseringYuu/anyviz/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/TseringYuu/anyviz/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/TseringYuu/anyviz/releases/tag/v1.0.0

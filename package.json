@@ -1,6 +1,6 @@
 {
   "name": "anyviz",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AI-native data visualization specification and workflow library — chart selection, aesthetics, multi-stack adapters, and consistency rules.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,9 +14,13 @@
     "./aesthetics/themes/analytics.json": "./aesthetics/themes/analytics.json",
     "./aesthetics/themes/dashboard.json": "./aesthetics/themes/dashboard.json",
     "./aesthetics/themes/academic.json": "./aesthetics/themes/academic.json",
+    "./guides/chart-selection.md": "./guides/chart-selection.md",
+    "./guides/color-guide.md": "./guides/color-guide.md",
     "./guides/academic-publication.md": "./guides/academic-publication.md",
-    "./guides/legend-layout.md": "./guides/legend-layout.md",
     "./guides/consistency-rules.md": "./guides/consistency-rules.md",
+    "./guides/customization-guide.md": "./guides/customization-guide.md",
+    "./guides/legend-layout.md": "./guides/legend-layout.md",
+    "./guides/accessibility.md": "./guides/accessibility.md",
     "./SKILL.md": "./SKILL.md",
     "./package.json": "./package.json"
   },

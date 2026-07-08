@@ -17,9 +17,13 @@ module.exports = {
   skillPath: path.join(root, 'SKILL.md'),
   resolve: (subpath) => path.join(root, subpath),
   guides: {
+    chartSelection: path.join(root, 'guides/chart-selection.md'),
+    colorGuide: path.join(root, 'guides/color-guide.md'),
     academicPublication: path.join(root, 'guides/academic-publication.md'),
-    legendLayout: path.join(root, 'guides/legend-layout.md'),
     consistencyRules: path.join(root, 'guides/consistency-rules.md'),
+    customizationGuide: path.join(root, 'guides/customization-guide.md'),
+    legendLayout: path.join(root, 'guides/legend-layout.md'),
+    accessibility: path.join(root, 'guides/accessibility.md'),
   },
   defaultTheme: () => readJson('aesthetics/default.json'),
   themes: {

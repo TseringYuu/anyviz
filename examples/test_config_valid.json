@@ -9,7 +9,25 @@
         "h5": { "size_px": 10, "color": "#555555" }
       },
       "spacing": {
-        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 }
+        "chart_margin": { "top": 48, "right": 36, "bottom": 56, "left": 56 },
+        "title_to_legend_gap": 16,
+        "legend_to_plot_gap": 20
+      },
+      "title": {
+        "anchor": "canvas",
+        "alignment": "center"
+      },
+      "legend": {
+        "clearance_px": {
+          "title_to_legend": 16,
+          "legend_to_plot": 20,
+          "legend_to_axis_label": 16,
+          "legend_to_data_label": 16
+        }
+      },
+      "export": {
+        "visual_centering": { "enabled": true },
+        "embedded_source_policy": "off_by_default"
       },
       "stroke": {
         "line": { "width_px": 2.0 },
@@ -31,7 +49,25 @@
         "h5": { "size_px": 10, "color": "#555555" }
       },
       "spacing": {
-        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 }
+        "chart_margin": { "top": 48, "right": 36, "bottom": 56, "left": 56 },
+        "title_to_legend_gap": 16,
+        "legend_to_plot_gap": 20
+      },
+      "title": {
+        "anchor": "canvas",
+        "alignment": "center"
+      },
+      "legend": {
+        "clearance_px": {
+          "title_to_legend": 16,
+          "legend_to_plot": 20,
+          "legend_to_axis_label": 16,
+          "legend_to_data_label": 16
+        }
+      },
+      "export": {
+        "visual_centering": { "enabled": true },
+        "embedded_source_policy": "off_by_default"
       },
       "stroke": {
         "line": { "width_px": 2.0 },

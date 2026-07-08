@@ -62,6 +62,7 @@ const theme = anyviz.defaultTheme();
 const dashboardTheme = anyviz.themes.dashboard();
 
 console.log(anyviz.skillPath);
+console.log(anyviz.guides.academicPublication);
 console.log(theme.color.categorical.palette);
 console.log(dashboardTheme.name);
 ```
@@ -212,10 +213,13 @@ anyviz 将自然语言指令映射到美学参数，同时保持一致性：
 | :--- | :--- | :--- | :--- |
 | **主题** | "深色模式" | 页面 `#1A1A1A`、文本 `#E8E8E8`、色板提亮 15% | 沉浸式深色大屏，高对比 |
 | **风格** | "学术/论文风格" | 衬线字体、隐藏 Y 网格线、保留外边框 | 克制、出版就绪 |
+| **风格** | "高校研究项目/论文图表" | 启用 academic publication 规则、外置题注与资料来源、禁用图内重复来源 | 适配装订文档、研究报告与正式评审材料 |
 | **风格** | "极简" | 去除网格线与边框，仅保留核心轴线 | 最大化数据墨水比 |
 | **颜色** | "暖色调" | 限制色相 0°–60° | 充满活力的暖色感受 |
 | **颜色** | "冷色调" | 限制色相 180°–270° | 冷静、科技感 |
 | **排版** | "字体大一些" | 所有层级（H1–H6）×1.15 | 大屏可读性更好 |
+| **布局** | "图表居中 / 标题居中" | 标题以画布为锚点居中，导出后执行视觉内容居中检查 | 避免 Word、论文或报告中出现视觉偏移 |
+| **布局** | "图例离图远一点" | 图例启用安全带与最小间距，优先避让标题、轴标签与数据标签 | 防止图例与图表元素过近或互相挤压 |
 | **布局** | "适合手机看" | 应用 mobile 断点、1:1 宽高比 | 适配窄屏，防标签重叠 |
 | **元素** | "显示数据标签" | 开启数据标签（9px、`#888888`） | 无需悬停即读精确值 |
 
@@ -236,7 +240,8 @@ anyviz/
 │   ├── typography.md         # 排版规则与多语言字体
 │   ├── layout.md             # 布局规则与数据墨水比标准
 │   └── themes/               # modern · analytics · dashboard · academic
-├── guides/                   # 决策与定制指南
+├── guides/                   # 决策、定制与出版指南
+│   ├── academic-publication.md# 论文、研究报告与装订文档图表规则
 │   ├── chart-selection.md    # 图表选择决策树（数据 + 意图 → 图表）
 │   ├── color-guide.md        # 用色原则与语义约定
 │   ├── consistency-rules.md  # 多图表一致性规则

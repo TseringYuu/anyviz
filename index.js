@@ -16,6 +16,11 @@ module.exports = {
   version: require('./package.json').version,
   skillPath: path.join(root, 'SKILL.md'),
   resolve: (subpath) => path.join(root, subpath),
+  guides: {
+    academicPublication: path.join(root, 'guides/academic-publication.md'),
+    legendLayout: path.join(root, 'guides/legend-layout.md'),
+    consistencyRules: path.join(root, 'guides/consistency-rules.md'),
+  },
   defaultTheme: () => readJson('aesthetics/default.json'),
   themes: {
     modern: () => readJson('aesthetics/themes/modern.json'),

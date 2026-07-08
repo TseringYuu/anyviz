@@ -28,6 +28,9 @@ option = {
 ```javascript
 const typography = {
   title: {
+    left: 'center',
+    top: 12,
+    textAlign: 'center',
     textStyle: {
       fontSize: 16,        // h1
       fontWeight: 600,     // h1 weight
@@ -41,6 +44,9 @@ const typography = {
     }
   },
   legend: {
+    top: 44,
+    left: 'center',
+    orient: 'horizontal',
     textStyle: {
       fontSize: 10,        // h5
       fontWeight: 400,
@@ -68,13 +74,16 @@ const typography = {
 ```javascript
 const spacing = {
   grid: {
-    top: 60,      // top margin + title space
-    right: 30,
-    bottom: 50,
-    left: 60
+    top: 96,      // title + legend band + legend-to-plot gap
+    right: 36,
+    bottom: 56,
+    left: 56,
+    containLabel: true
   }
 };
 ```
+
+顶部图例应放在标题下方的独立区域，`grid.top` 必须为标题和图例预留空间。图例底部到绘图区顶部至少保留 20px；论文和出版主题建议至少 24px。
 
 ### 线条样式
 ```javascript

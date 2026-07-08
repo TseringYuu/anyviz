@@ -29,7 +29,8 @@ theme_anyviz <- function() {
 
     # 排版
     plot.title = element_text(size = 16, face = 'bold', color = '#1A1A1A',
-                              hjust = 0, margin = margin(b = 8)),
+                              hjust = 0.5, margin = margin(b = 16)),
+    plot.title.position = 'plot',
     plot.subtitle = element_text(size = 13, color = '#555555',
                                  margin = margin(b = 8)),
     axis.title = element_text(size = 11, color = '#333333'),
@@ -42,10 +43,11 @@ theme_anyviz <- function() {
     legend.text = element_text(size = 10, color = '#555555'),
     legend.title = element_text(size = 10, color = '#555555'),
     legend.key = element_rect(fill = 'white', color = NA),
-    legend.margin = margin(b = -5),
+    legend.box = 'horizontal',
+    legend.margin = margin(t = 0, r = 0, b = 20, l = 0),
 
     # 边距
-    plot.margin = margin(t = 40, r = 30, b = 50, l = 60),
+    plot.margin = margin(t = 48, r = 36, b = 56, l = 56),
 
     # 轴线
     axis.line = element_line(color = '#333333', linewidth = 0.5),

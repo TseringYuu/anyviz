@@ -65,7 +65,7 @@ mpl.rcParams.update({
     # 保存
     'savefig.dpi': 150,
     'savefig.bbox': 'tight',
-    'savefig.pad_inches': 0.1,
+    'savefig.pad_inches': 0.18,
 
     # LaTeX（可选，学术场景）
     # 'text.usetex': True,
@@ -82,7 +82,7 @@ fig, ax = plt.subplots(figsize=(10, 6.25))
 
 # 间距
 fig.subplots_adjust(
-    top=0.92,      # 留标题空间
+    top=0.86,      # 留标题与图例空间
     right=0.96,
     bottom=0.12,   # 留轴标签空间
     left=0.10
@@ -97,9 +97,11 @@ for i, series in enumerate(data):
             markerfacecolor=CATEGORICAL_10[i],
             markeredgewidth=0)
 
-# 标题
-ax.set_title('Chart Title', fontsize=16, fontweight=600,
-             color='#1A1A1A', pad=8)
+# 标题：以完整画布居中，不以坐标轴绘图区居中
+ax.set_title('')
+fig.text(0.5, 0.965, 'Chart Title',
+         ha='center', va='top',
+         fontsize=16, fontweight=600, color='#1A1A1A')
 
 # 轴标签
 ax.set_xlabel('X Axis', fontsize=11, color='#333333', labelpad=6)
@@ -110,12 +112,75 @@ ax.grid(True, color='#E0E0E0', linewidth=0.5, linestyle=(0, (2, 2)))
 ax.set_axisbelow(True)  # 网格在数据下层
 
 # 图例
-ax.legend(fontsize=10, loc='best', frameon=True,
-          edgecolor='#D0D0D0', framealpha=0.9)
+ax.legend(
+    fontsize=10,
+    loc='upper center',
+    bbox_to_anchor=(0.5, 1.12),
+    ncol=3,
+    frameon=True,
+    edgecolor='#D0D0D0',
+    framealpha=0.9,
+    borderaxespad=0.0,
+    columnspacing=2.0
+)
 
 # 去除顶部和右侧边框（Tufte 原则）
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
+```
+
+### 静态导出后的视觉居中
+
+Matplotlib 的 `bbox_inches='tight'` 会按可见元素裁切图像。若左右标签、双轴或外置图例不对称，图片插入 Word/PDF 后可能出现“图片框居中但视觉不居中”。出版、论文和报告场景建议导出后补齐留白。
+
+```python
+from pathlib import Path
+from PIL import Image
+
+
+def recenter_visual_content(path: str | Path, threshold: int = 245) -> None:
+    image = Image.open(path).convert('RGB')
+    width, height = image.size
+    pixels = image.load()
+
+    xs, ys = [], []
+    for y in range(height):
+        for x in range(width):
+            r, g, b = pixels[x, y]
+            if min(r, g, b) < threshold:
+                xs.append(x)
+                ys.append(y)
+
+    if not xs:
+        image.save(path)
+        return
+
+    left, right = min(xs), max(xs)
+    top, bottom = min(ys), max(ys)
+    crop = image.crop((left, top, right + 1, bottom + 1))
+
+    margin_x = max(left, width - right - 1)
+    margin_y = max(top, height - bottom - 1)
+    canvas = Image.new(
+        'RGB',
+        (right - left + 1 + margin_x * 2, bottom - top + 1 + margin_y * 2),
+        'white'
+    )
+    canvas.paste(crop, (margin_x, margin_y))
+    canvas.save(path)
+
+
+fig.savefig(output_path, dpi=220, bbox_inches='tight', pad_inches=0.18)
+recenter_visual_content(output_path)
+```
+
+### 时间轴节点防变形
+
+宽扁时间轴中不要用 `Circle(..., transform=ax.transAxes)` 绘制节点，因为坐标轴比例会把圆点拉成椭圆。使用 `scatter` 或等比坐标。
+
+```python
+ax.scatter([x], [0.5], s=220, color='#333333',
+           transform=ax.transAxes, zorder=3)
 ```
 
 ### 柱状图

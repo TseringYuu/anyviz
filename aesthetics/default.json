@@ -103,8 +103,18 @@
     "element_padding": 10,
     "legend_item_gap": 14,
     "title_to_chart_gap": 10,
+    "title_to_legend_gap": 16,
+    "legend_to_plot_gap": 20,
     "axis_label_to_tick_gap": 8,
     "data_label_offset": 6
+  },
+
+  "title": {
+    "anchor": "canvas",
+    "alignment": "center",
+    "x_ratio": 0.5,
+    "avoid_axis_centering": true,
+    "description": "主标题默认以完整画布为参照水平居中，而不是以坐标轴绘图区为参照。含双轴、长轴标签、外置图例或不对称标签时必须保持画布级居中。"
   },
 
   "stroke": {
@@ -155,7 +165,20 @@
     "item_gap": 16,
     "symbol_size_px": 10,
     "symbol_stroke_width_px": 0,
-    "max_items_before_wrap": 6
+    "max_items_before_wrap": 6,
+    "alignment": "center",
+    "clearance_px": {
+      "title_to_legend": 16,
+      "legend_to_plot": 20,
+      "legend_to_axis_label": 16,
+      "legend_to_data_label": 16
+    },
+    "safe_area": {
+      "inside_viewbox": true,
+      "min_edge_padding_px": 10,
+      "wrap_when_items_gte": 4,
+      "wrapped_row_gap_px": 22
+    }
   },
 
   "axis": {
@@ -192,5 +215,16 @@
       "square": 1.0,
       "portrait": 0.75
     }
+  },
+
+  "export": {
+    "visual_centering": {
+      "enabled": true,
+      "description": "导出 PNG/PDF/SVG 后应保持可见内容的视觉中心与画布中心一致；紧裁切后如左右留白不对称，需要补齐画布留白。",
+      "pixel_threshold": 245,
+      "balance_horizontal_padding": true,
+      "balance_vertical_padding": true
+    },
+    "embedded_source_policy": "off_by_default"
   }
 }

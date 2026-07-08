@@ -87,6 +87,21 @@ Make these charts dark-themed
 
 The spec is plain JSON, so any tool or script can consume it directly.
 
+```bash
+npm install anyviz
+```
+
+```js
+const anyviz = require('anyviz');
+
+const theme = anyviz.defaultTheme();
+const academicTheme = anyviz.themes.academic();
+
+console.log(anyviz.guides.academicPublication);
+console.log(theme.color.categorical.palette);
+console.log(academicTheme.publication.export.dpi_min);
+```
+
 ```python
 import json
 
@@ -184,10 +199,13 @@ anyviz maps plain-language instructions onto aesthetic parameters while preservi
 | :--- | :--- | :--- | :--- |
 | **Theme** | "dark mode" | page `#1A1A1A`, text `#E8E8E8`, palette +15% lightness | Immersive dark canvas, high contrast |
 | **Style** | "academic / for a paper" | serif type, hide Y gridlines, keep outer frame | Restrained, publication-ready |
+| **Style** | "research report / thesis charts" | apply academic publication rules, external captions and source notes, no duplicated in-chart sources | Suitable for bound documents, formal research reports, and review materials |
 | **Style** | "minimal" | drop gridlines and borders, keep core axes | Maximum data-ink ratio |
 | **Color** | "warm tones" | restrict hue to 0°–60° | Energetic, warm feel |
 | **Color** | "cool tones" | restrict hue to 180°–270° | Calm, technical feel |
 | **Type** | "bigger text" | scale all levels (H1–H6) ×1.15 | Readable on large displays |
+| **Layout** | "center the chart / title" | anchor titles to the full canvas and verify visual centering after export | Prevents apparent offsets in Word, papers, and reports |
+| **Layout** | "move the legend farther away" | use legend safe bands and minimum clearance from titles, axes, and labels | Keeps legends from crowding chart elements |
 | **Layout** | "for mobile" | apply mobile breakpoint, 1:1 aspect | Fits narrow screens, no label overlap |
 | **Elements** | "show data labels" | enable data labels (9px, `#888888`) | Read exact values without hover |
 
@@ -208,7 +226,8 @@ anyviz/
 │   ├── typography.md         # Type rules & multilingual fonts
 │   ├── layout.md             # Layout rules & data-ink standards
 │   └── themes/               # modern · analytics · dashboard · academic
-├── guides/                   # Decision & customization guides
+├── guides/                   # Decision, customization, and publication guides
+│   ├── academic-publication.md# Charts for papers, research reports, and bound documents
 │   ├── chart-selection.md    # Chart decision tree (data + intent → chart)
 │   ├── color-guide.md        # Color principles & semantic conventions
 │   ├── consistency-rules.md  # Multi-chart consistency rules

@@ -8,7 +8,23 @@
         "h4": { "size_px": 10, "color": "#666666" }
       },
       "spacing": {
-        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 }
+        "chart_margin": { "top": 40, "right": 30, "bottom": 50, "left": 60 },
+        "title_to_legend_gap": 8,
+        "legend_to_plot_gap": 8
+      },
+      "title": {
+        "anchor": "axes",
+        "alignment": "left"
+      },
+      "legend": {
+        "clearance_px": {
+          "title_to_legend": 8,
+          "legend_to_plot": 8
+        }
+      },
+      "export": {
+        "visual_centering": { "enabled": false },
+        "embedded_source_policy": "always"
       },
       "stroke": {
         "line": { "width_px": 2.0 }
@@ -24,7 +40,23 @@
         "h4": { "size_px": 12, "color": "#999999" }
       },
       "spacing": {
-        "chart_margin": { "top": 20, "right": 10, "bottom": 30, "left": 40 }
+        "chart_margin": { "top": 20, "right": 10, "bottom": 30, "left": 40 },
+        "title_to_legend_gap": 8,
+        "legend_to_plot_gap": 8
+      },
+      "title": {
+        "anchor": "axes",
+        "alignment": "left"
+      },
+      "legend": {
+        "clearance_px": {
+          "title_to_legend": 8,
+          "legend_to_plot": 8
+        }
+      },
+      "export": {
+        "visual_centering": { "enabled": false },
+        "embedded_source_policy": "always"
       },
       "stroke": {
         "line": { "width_px": 3.0 }

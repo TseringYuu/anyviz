@@ -27,7 +27,25 @@ DEFAULT_SPEC = {
         "h6": {"size_px": 9, "weight": 400, "color": "#888888"},
     },
     "spacing": {
-        "chart_margin": {"top": 40, "right": 30, "bottom": 50, "left": 60}
+        "chart_margin": {"top": 48, "right": 36, "bottom": 56, "left": 56},
+        "legend_to_plot_gap": 20,
+        "title_to_legend_gap": 16,
+    },
+    "title": {
+        "anchor": "canvas",
+        "alignment": "center",
+    },
+    "legend": {
+        "clearance_px": {
+            "title_to_legend": 16,
+            "legend_to_plot": 20,
+            "legend_to_axis_label": 16,
+            "legend_to_data_label": 16,
+        }
+    },
+    "export": {
+        "visual_centering": {"enabled": True},
+        "embedded_source_policy": "off_by_default",
     },
     "stroke": {
         "line": {"width_px": 2.0},
@@ -88,6 +106,80 @@ def validate_spacing(config: Dict) -> List[str]:
                 f"[间距] chart_margin.{key}: 期望 {expected}px, "
                 f"实际 {actual}px"
             )
+
+    for key in ["legend_to_plot_gap", "title_to_legend_gap"]:
+        actual = spacing.get(key)
+        expected = DEFAULT_SPEC["spacing"][key]
+        if actual is not None and actual < expected:
+            issues.append(
+                f"[间距] {key}: 至少 {expected}px, 实际 {actual}px — 图例或标题可能与图表主体过近"
+            )
+
+    return issues
+
+
+def validate_title_layout(config: Dict) -> List[str]:
+    """验证标题是否以整张画布为参照居中。"""
+    issues = []
+    title = config.get("title", {})
+    if not title:
+        return issues
+
+    expected_anchor = DEFAULT_SPEC["title"]["anchor"]
+    expected_alignment = DEFAULT_SPEC["title"]["alignment"]
+
+    actual_anchor = title.get("anchor")
+    if actual_anchor is not None and actual_anchor != expected_anchor:
+        issues.append(
+            f"[标题] anchor: 期望 {expected_anchor}, 实际 {actual_anchor} — 主标题应以整张画布居中"
+        )
+
+    actual_alignment = title.get("alignment")
+    if actual_alignment is not None and actual_alignment != expected_alignment:
+        issues.append(
+            f"[标题] alignment: 期望 {expected_alignment}, 实际 {actual_alignment}"
+        )
+
+    return issues
+
+
+def validate_legend_layout(config: Dict) -> List[str]:
+    """验证图例与标题、绘图区和标签之间的安全距离。"""
+    issues = []
+    legend = config.get("legend", {})
+    if not legend:
+        return issues
+
+    clearance = legend.get("clearance_px", {})
+    expected = DEFAULT_SPEC["legend"]["clearance_px"]
+    for key, minimum in expected.items():
+        actual = clearance.get(key)
+        if actual is not None and actual < minimum:
+            issues.append(
+                f"[图例] clearance_px.{key}: 至少 {minimum}px, 实际 {actual}px"
+            )
+
+    return issues
+
+
+def validate_export_policy(config: Dict) -> List[str]:
+    """验证导出时的视觉居中与来源说明策略。"""
+    issues = []
+    export = config.get("export", {})
+    visual_centering = export.get("visual_centering", {})
+    if "enabled" in visual_centering and not visual_centering["enabled"]:
+        issues.append("[导出] visual_centering.enabled 应为 true，避免紧裁切造成视觉偏移")
+
+    policy = export.get("embedded_source_policy")
+    if policy is not None and policy not in {"off_by_default", "forbidden_when_document_caption_exists"}:
+        issues.append(
+            "[导出] embedded_source_policy 应为 off_by_default 或 forbidden_when_document_caption_exists"
+        )
+
+    publication = config.get("publication", {})
+    source_note = publication.get("source_note", {})
+    if source_note.get("outside_chart") is True and source_note.get("inside_chart") is True:
+        issues.append("[论文] source_note 不能同时要求 inside_chart 与 outside_chart，避免资料来源重复")
 
     return issues
 
@@ -274,6 +366,9 @@ def main():
     for chart in charts:
         all_issues.extend(validate_typography(chart))
         all_issues.extend(validate_spacing(chart))
+        all_issues.extend(validate_title_layout(chart))
+        all_issues.extend(validate_legend_layout(chart))
+        all_issues.extend(validate_export_policy(chart))
         all_issues.extend(validate_stroke(chart))
         all_issues.extend(validate_color_palette(chart))
 

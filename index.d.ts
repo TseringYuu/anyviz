@@ -13,6 +13,11 @@ export interface AnyvizPackage {
   version: string;
   skillPath: string;
   resolve: (subpath: string) => string;
+  guides: {
+    academicPublication: string;
+    legendLayout: string;
+    consistencyRules: string;
+  };
   defaultTheme: () => AnyvizTheme;
   themes: {
     modern: () => AnyvizTheme;

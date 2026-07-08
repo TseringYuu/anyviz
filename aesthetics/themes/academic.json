@@ -50,6 +50,45 @@
     "grid": { "show_x": false, "show_y": false }
   },
 
+  "publication": {
+    "document_context": ["学术论文", "高校研究项目", "研究报告", "装订文档"],
+    "title": {
+      "inside_chart": true,
+      "anchor": "canvas",
+      "alignment": "center",
+      "avoid_axis_centering": true
+    },
+    "caption": {
+      "outside_chart": true,
+      "alignment": "center",
+      "numbering_required": true,
+      "format": "图 N-M 标题"
+    },
+    "source_note": {
+      "inside_chart": false,
+      "outside_chart": true,
+      "alignment": "center",
+      "font_role": "h6",
+      "consistent_across_document": true,
+      "deduplicate": true
+    },
+    "timeline": {
+      "preserve_marker_aspect": true,
+      "preferred_marker_method": "scatter_or_symbol",
+      "avoid_axes_transform_circle": true
+    },
+    "legend": {
+      "min_gap_to_plot_px": 24,
+      "place_in_dedicated_band": true,
+      "line_style_redundancy": true
+    },
+    "export": {
+      "visual_centering_required": true,
+      "dpi_min": 220,
+      "embedded_source_policy": "forbidden_when_document_caption_exists"
+    }
+  },
+
   "line_style_differentiation": {
     "description": "灰度色板仅靠明度差异区分系列，3 个以上系列时必须叠加线型差异。图例标记线段必须使用与数据线相同的 stroke-dasharray。",
     "series_styles": [

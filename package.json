@@ -14,6 +14,9 @@
     "./aesthetics/themes/analytics.json": "./aesthetics/themes/analytics.json",
     "./aesthetics/themes/dashboard.json": "./aesthetics/themes/dashboard.json",
     "./aesthetics/themes/academic.json": "./aesthetics/themes/academic.json",
+    "./guides/academic-publication.md": "./guides/academic-publication.md",
+    "./guides/legend-layout.md": "./guides/legend-layout.md",
+    "./guides/consistency-rules.md": "./guides/consistency-rules.md",
     "./SKILL.md": "./SKILL.md",
     "./package.json": "./package.json"
   },
@@ -34,7 +37,9 @@
     "assets/wordmark.svg"
   ],
   "scripts": {
-    "validate": "python3 scripts/theme_validator.py -c examples/test_config_valid.json",
+    "validate": "npm run validate:theme && npm run validate:exports",
+    "validate:theme": "python3 scripts/theme_validator.py -c examples/test_config_valid.json",
+    "validate:exports": "node scripts/check_package_exports.js",
     "prepublishOnly": "npm run validate"
   },
   "repository": {

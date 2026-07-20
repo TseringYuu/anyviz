@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 本变更日志遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式与
 [语义化版本](https://semver.org/lang/zh-CN/) 规范。
 
+## [Unreleased]
+
+### Added 新增
+
+- Native shell installers for macOS, Linux, and Windows install the complete anyviz Agent
+  Skill into the shared Agent Skills directory and every detected agent-specific skill root,
+  without requiring Node.js or Python.
+  新增 macOS、Linux 与 Windows 原生安装脚本，无需 Node.js 或 Python，即可把完整 anyviz
+  Agent Skill 安装到通用目录与检测到的各 Agent 独立目录。
+- Installer regression coverage verifies initial installation, supporting resources,
+  agent detection, and idempotent updates.
+  新增安装器回归测试，覆盖首次安装、配套资源、Agent 检测与幂等更新。
+
 ## [1.0.2] - 2026-07-08
 
 ### Added 新增

@@ -28,6 +28,8 @@
     "index.js",
     "index.d.ts",
     "SKILL.md",
+    "install.sh",
+    "install.ps1",
     "README.md",
     "README.en.md",
     "LICENSE",
@@ -41,9 +43,10 @@
     "assets/wordmark.svg"
   ],
   "scripts": {
-    "validate": "npm run validate:theme && npm run validate:exports",
+    "validate": "npm run validate:theme && npm run validate:exports && npm run validate:installer",
     "validate:theme": "python3 scripts/theme_validator.py -c examples/test_config_valid.json",
     "validate:exports": "node scripts/check_package_exports.js",
+    "validate:installer": "sh -n install.sh && sh scripts/test_install.sh",
     "prepublishOnly": "npm run validate"
   },
   "repository": {

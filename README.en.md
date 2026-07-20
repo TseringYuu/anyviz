@@ -76,6 +76,24 @@ Point your AI coding tool at this repository and describe what you want in natur
 language. `SKILL.md` is the tool-agnostic workflow entry point; the guides, templates,
 adapters, and aesthetic spec provide the supporting context.
 
+Install for every detected agent on macOS or Linux:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.sh | sh
+```
+
+On Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.ps1 | iex
+```
+
+The installer uses only system shell tools—no Node.js or Python. The shared Agent Skills
+directory covers Codex, Cursor, OpenCode, OpenClaw, Cline, Kimi Code CLI, Warp, Zed, and
+other compatible tools. It also detects native skill roots for Claude Code, Hermes Agent,
+Gemini CLI, GitHub Copilot, Windsurf, Goose, and more. Run the same command again to update.
+An unmanaged skill with the same name is preserved as a timestamped backup before installation.
+
 ```text
 Visualize this sales data for me
 Show population by province on a map

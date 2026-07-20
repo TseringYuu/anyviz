@@ -37,6 +37,23 @@
 把 anyviz 作为 AI 助手的可视化工作流上下文使用。AI 需要优先读取 [`SKILL.md`](SKILL.md)，
 并按需查阅 `guides/`、`templates/`、`adapters/` 与 `aesthetics/`。
 
+macOS / Linux 一键安装到当前用户的所有已检测 Agent：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.sh | sh
+```
+
+Windows PowerShell：
+
+```powershell
+irm https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.ps1 | iex
+```
+
+安装器不依赖 Node.js 或 Python。通用 Agent Skills 目录覆盖 Codex、Cursor、OpenCode、
+OpenClaw、Cline、Kimi Code CLI、Warp、Zed 等工具，并自动检测 Claude Code、Hermes Agent、
+Gemini CLI、GitHub Copilot、Windsurf、Goose 等使用独立目录的工具。重复执行同一命令即可更新；
+若目标位置已有非安装器管理的同名 Skill，原目录会先保留为带时间戳的备份。
+
 ```text
 请使用 anyviz 工作流，帮我可视化这份销售数据
 用地图展示各省的人口分布，并保持适合报告的浅色主题
@@ -44,7 +61,7 @@
 把这些图表统一改成深色大屏风格
 ```
 
-如果你的工具支持通过仓库或目录加入上下文，直接添加本仓库即可；如果支持自定义 Skill，
+如果你的工具支持通过仓库或目录加入上下文，也可直接添加本仓库；如果支持自定义 Skill，
 将 [`SKILL.md`](SKILL.md) 与相关资源目录一起加入工具上下文。
 
 ### 在项目中安装

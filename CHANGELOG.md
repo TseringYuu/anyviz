@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-08-06
+
 ### Added 新增
 
 - Native shell installers for macOS, Linux, and Windows install the complete anyviz Agent
@@ -20,6 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Installer regression coverage verifies initial installation, supporting resources,
   agent detection, and idempotent updates.
   新增安装器回归测试，覆盖首次安装、配套资源、Agent 检测与幂等更新。
+
+### Changed 变更
+
+- All 53 runtime prompt files were compressed while preserving chart-selection behavior,
+  hard constraints, accessibility rules, adapter code, and template data contracts.
+  精简全部 53 个运行时提示文件，保留选图行为、硬约束、无障碍规则、适配器代码与模板数据契约。
+- The main skill now uses progressive disclosure, and all 34 chart templates share shorter,
+  consistent section names for faster scanning and lower context usage.
+  主技能改用渐进式加载；34 个图表模板统一短章节名，降低上下文占用并提升检索效率。
 
 ## [1.0.2] - 2026-07-08
 
@@ -149,6 +160,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Legacy raster logo and pre-rendered promo media, replaced by SVG assets.
   移除旧位图 logo 与预渲染宣传素材。
 
+[Unreleased]: https://github.com/TseringYuu/anyviz/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/TseringYuu/anyviz/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/TseringYuu/anyviz/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/TseringYuu/anyviz/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/TseringYuu/anyviz/releases/tag/v1.0.0

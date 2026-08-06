@@ -1,12 +1,9 @@
 # Plotly (Python) 适配器
 
-## 适用场景
-- Python 环境下的交互式图表
-- Jupyter Notebook / JupyterLab
-- Dash 应用
-- 需要内置交互（缩放、悬停、选择）的场景
+## 用途
+- Python/Jupyter/Dash 交互图；内置缩放、悬停、选择。
 
-## 核心映射：美学 → Plotly
+## 映射
 
 ### 全局模板
 ```python
@@ -130,9 +127,9 @@ fig.add_trace(go.Heatmap(
 ))
 ```
 
-## Plotly 默认配置
+## 默认
 
-- **渲染器**：Jupyter 中用 'notebook'，脚本中用 'browser'
-- **Hover 模板**：统一格式 `%{x}<br>%{y:.1f}`
-- **动画**：transition 默认 duration 500ms
-- **响应式**：`config={'responsive': True}`
+- 渲染器：Jupyter `notebook`；脚本 `browser`。
+- Hover 统一 `%{x}<br>%{y:.1f}`；信息也须键盘可达。
+- transition 500ms；低动态模式关闭。
+- 响应式：`config={'responsive': True}`。

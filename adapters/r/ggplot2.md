@@ -1,11 +1,9 @@
 # ggplot2 适配器
 
-## 适用场景
-- R 语言数据分析
-- 统计可视化
-- 学术论文图表（与 knitr/rmarkdown 集成）
+## 用途
+- R 统计可视化、论文、knitr/rmarkdown。
 
-## 核心映射：美学 → ggplot2
+## 映射
 
 ### 全局主题
 ```r
@@ -110,9 +108,7 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
   theme(legend.position = 'none')  # 类别已在 X 轴上
 ```
 
-## ggplot2 默认配置
+## 默认
 
-- **主题**：theme_minimal() 为基础，叠加 anyviz 定制
-- **色板**：scale_color_manual / scale_fill_manual 使用 categorical_10
-- **保存**：ggsave(dpi = 150, bg = 'white')
-- **宽度/高度**：默认 width = 8, height = 5 (inches)，保持 1.6:1
+- 基于 `theme_minimal()`；`scale_color_manual`/`scale_fill_manual` 用 `categorical_10`。
+- `ggsave(dpi=150, bg='white')`；默认 8×5in，宽高比 1.6。

@@ -1,12 +1,9 @@
 # Matplotlib 适配器
 
-## 适用场景
-- Python 数据分析脚本
-- Jupyter Notebook 嵌入图表
-- 学术论文和出版级图表（高 DPI）
-- 需要精确控制每个视觉元素的场景
+## 用途
+- Python/Jupyter、学术出版、高 DPI、精确样式控制。
 
-## 核心映射：美学 → Matplotlib
+## 映射
 
 ### 全局样式设置
 ```python
@@ -131,7 +128,7 @@ ax.spines['right'].set_visible(False)
 
 ### 静态导出后的视觉居中
 
-Matplotlib 的 `bbox_inches='tight'` 会按可见元素裁切图像。若左右标签、双轴或外置图例不对称，图片插入 Word/PDF 后可能出现“图片框居中但视觉不居中”。出版、论文和报告场景建议导出后补齐留白。
+`bbox_inches='tight'` 可能造成可见边界不对称。出版、论文、报告导出后补齐留白。
 
 ```python
 from pathlib import Path
@@ -176,7 +173,7 @@ recenter_visual_content(output_path)
 
 ### 时间轴节点防变形
 
-宽扁时间轴中不要用 `Circle(..., transform=ax.transAxes)` 绘制节点，因为坐标轴比例会把圆点拉成椭圆。使用 `scatter` 或等比坐标。
+宽扁时间轴不用 `Circle(..., transform=ax.transAxes)`；改用 `scatter` 或等比坐标。
 
 ```python
 ax.scatter([x], [0.5], s=220, color='#333333',
@@ -210,9 +207,8 @@ ax.scatter(x, y,
            linewidth=0.5)
 ```
 
-## Matplotlib 默认配置
+## 默认
 
-- **DPI**：屏幕显示 100，保存 150
-- **图片格式**：保存为 PNG（光栅）或 PDF/SVG（矢量，出版用）
-- **中文字体**：自动检测系统可用中文字体，或允许调用者指定
-- **色板**：从 `default.json` 的 categorical 色板导入
+- 屏幕 100 DPI；保存 150 DPI，出版按需求提高。
+- PNG 光栅；PDF/SVG 矢量。
+- 检测中文字体或接受用户指定；色板从 `aesthetics/default.json` 导入。

@@ -1,285 +1,91 @@
 ---
 name: anyviz
 description: >-
-  数据可视化专家工作流。自动分析数据特征与用户意图，选择最佳图表类型，
-  应用《数据之美》美学规范，适配前端（D3.js/ECharts/Mapbox/Three.js）、
-  Python（matplotlib/plotly）或 R（ggplot2）技术栈，确保多图表输出的设计一致性。
+  Use when 用户请求选择、创建、改进或统一数据可视化，并需按数据与意图选择图表、主题及
+  D3.js、ECharts、Mapbox、Three.js、Matplotlib、Plotly 或 ggplot2 技术栈。
 ---
 
-# anyviz - 通用数据可视化工作流库
+# anyviz
 
-你是数据可视化专家。你的职责是：为调用者选择最合适的图表类型、应用默认美学规范、
-适配目标环境的技术栈、并确保多图表输出的设计一致性。
+为数据与意图选图，应用统一美学，生成目标环境可运行代码。只加载当前任务所需资源。
 
----
+## 流程
 
-## 工作流程
+### 1. 分析
 
-每次接到可视化请求时，按以下 5 个阶段顺序处理：
+- 数据：变量数量、数值/类别/时间/地理/层次类型、规模、分布、缺失、异常。
+- 意图：比较、分布、关系、组成、趋势、地理、层次、流程。
 
-### 阶段 1：数据与意图分析
+### 2. 选图与主题
 
-分析调用者提供的数据特征和可视化意图：
+1. 读 `guides/chart-selection.md`；单图不足时用组合图或多视图。
+2. 读对应模板：`templates/charts/`、`maps/`、`graphs/`、`3d/`。新增或修改模板遵循 `templates/TEMPLATE-SPEC.md`。
+3. 按场景加载主题：
 
-1. **数据特征分析**
-   - 变量数量与类型（数值/类别/时间/地理/层次）
-   - 数据规模与分布
-   - 是否存在缺失值或异常值
+| 场景 | 主题 |
+|---|---|
+| 报告、PPT、PDF、邮件、商业汇报 | `analytics` |
+| 大屏、监控、实时看板、深色仪表盘 | `dashboard` |
+| 论文、期刊、学位论文、印刷 | `academic` |
+| 网页、交互产品、社交媒体、通用 | `modern` |
 
-2. **意图识别**
-   - 比较（compare）：对比不同类别或时间点的数值
-   - 分布（distribute）：展示数据的分布形态
-   - 关系（relate）：探索变量之间的相关性
-   - 组成（compose）：展示部分与整体的关系
-   - 趋势（trend）：展示随时间的变化趋势
-   - 地理（geo）：空间数据的可视化
-   - 层次（hierarchy）：树形结构的展示
-   - 流程（flow）：数据流动与转换
+场景模糊且风格影响结果时询问；否则默认 `modern`。同一输出只用一个主题。
 
-3. **查阅图表选择指南**
-   - 读取 `guides/chart-selection.md`，根据数据结构 + 意图选择最佳图表类型
-   - 如果单一图表无法满足需求，考虑组合图表或多视图方案
-   - 选定图表类型后，查阅 `templates/` 目录下对应模板（34 种模板可选）获取数据格式和设计细节：
-     - `templates/charts/` — 20 种统计图表（柱状/折线/散点/面积/饼图/直方图/箱线/热力/雷达/瀑布/密度/华夫/点图/坡度/小倍数/日历热力/烛台/六边形分箱/平行坐标/矩阵散点）
-     - `templates/maps/` — 3 种地图（面量/气泡/流向）
-     - `templates/graphs/` — 8 种关系/层次图（桑基/和弦/力导向/树图/旭日/树形图/弧形图/冲积图）
-     - `templates/3d/` — 3 种 3D 图（地球/散点/曲面）
-   - 新建或修改模板时，遵循 `templates/TEMPLATE-SPEC.md` 的统一结构规范
+### 3. 应用美学
 
-4. **推断主题方案**
-   - 根据调用者的使用场景，从 `aesthetics/themes/` 中选择最合适的配色主题：
+- 先读权威配置 `aesthetics/default.json` 与所选 `aesthetics/themes/*.json`。
+- 按需读：色彩 `aesthetics/color.md`、排版 `aesthetics/typography.md`、布局 `aesthetics/layout.md`。
+- 色板选择读 `guides/color-guide.md`；自然语言定制读 `guides/customization-guide.md`。
+- 用户明确值覆盖主题；主题覆盖默认值。覆盖项传递到同一输出全部图表。
+- 主标题按完整画布居中。顶部图例独占安全带；静态导出检查可见内容中心。
 
-| 使用场景关键词                              | 推荐主题        | 特征                              |
-|--------------------------------------------|-----------------|-----------------------------------|
-| 数据分析报告 / PPT / PDF / 邮件 / 商业汇报    | `analytics`    | 沉稳专业，中低饱和度，白底优化       |
-| 数据大屏 / 监控面板 / 实时看板 / 深色仪表盘    | `dashboard`    | 高对比度，深色背景，发光质感         |
-| 学术论文 / 期刊 / 学位论文 / 印刷出版         | `academic`     | 灰度安全，极简克制，打印友好         |
-| 网页嵌入 / 交互产品 / 社交媒体 / 通用场景      | `modern`       | 明快现代，圆角设计，白底&浅色底通用   |
+### 4. 选技术栈
 
-   - **若场景明确**：直接加载对应主题文件（如 `aesthetics/themes/analytics.json`）
-   - **若场景模糊**：使用 AskUserQuestion 询问用户偏好风格
-   - 同一输出中的所有图表使用同一主题
+| 环境/条件 | 选择 | 适配器 |
+|---|---|---|
+| Web 已装 ECharts；或要求快速开箱 | ECharts | `adapters/web/echarts.md` |
+| Web 已装 Mapbox；地理交互 | Mapbox | `adapters/web/mapbox.md` |
+| Web 已装 Three.js；3D | Three.js | `adapters/web/three.md` |
+| Web 无已知依赖；高定制 | D3.js | `adapters/web/d3.md` |
+| Python 交互/Jupyter | Plotly | `adapters/python/plotly.md` |
+| Python 论文/出版 | Matplotlib | `adapters/python/matplotlib.md` |
+| R/统计 | ggplot2 | `adapters/r/ggplot2.md` |
 
-### 阶段 2：应用美学规范
+地理优先 Mapbox（Web）或 Plotly Mapbox（Python）；3D 优先 Three.js 或 Plotly 3D。先检查项目依赖，不凭空引入库。
 
-读取 `aesthetics/default.json`，应用默认美学规则。同时参考详细设计文档：
+#### HTML 大屏硬约束
 
-1. **颜色系统** — 基于数据类型选择合适的色板（分类/顺序/发散/高亮），详见 `aesthetics/color.md`
-2. **排版系统** — 标题、轴标签、图例、注释的字号与字重层级，详见 `aesthetics/typography.md`
-3. **间距系统** — 边距、内边距、元素间距的统一标准，详见 `aesthetics/layout.md`
-4. **样式系统** — 线宽、点大小、透明度、虚线样式的规范
-5. **标注系统** — 数据标签、高亮、参考线的样式
+- `init` 前根容器必须可见、非零，并有明确 `width` 与 `height`/`min-height`；`flex: 1` 不算显式高度。
+- 地图使用本地注册资产或已验证降级，不只依赖远程脚本。
+- 密集标签启用 `hideOverlap`、截断、抽稀或重排。
+- 卡片圆角、内边距、边框、阴影一致。
 
-**画布级布局硬约束**：主标题默认以完整画布居中；顶部图例必须与标题和绘图区保持安全距离；
-静态导出后应检查可见内容中心，避免 Word/PDF 中出现“图片框居中但视觉偏移”的问题。
+### 5. 校验
 
-**用色决策**：当需要判断使用哪种色板时，查阅 `guides/color-guide.md`（涵盖分类/顺序/发散色板的使用条件、颜色禁忌、语义约定）。
+多图表读 `guides/consistency-rules.md`：统一字体角色、实体颜色、间距、线点样式、数值格式、标注、图表语义、交互。图例 ≥4 项用 2×N 网格；细则见 `guides/legend-layout.md`。
 
-当调用者通过自然语言描述美学偏好时（如"颜色更活泼一些"、"字体大一点"、"使用公司品牌色"），
-查阅 `guides/customization-guide.md` 的完整映射表，将这些自然语言指令映射到对应的美学属性上进行覆盖。
+论文/报告另读 `guides/academic-publication.md`：检查题注、来源、图例间距、时间轴节点、导出居中。
 
-### 阶段 3：技术栈适配
+全部输出读 `guides/accessibility.md`：
 
-检测或询问目标环境，选择对应的适配器：
+- 文本/背景对比度 ≥4.5:1；大字与数据元素 ≥3:1。
+- 关键区分至少两种编码；红绿语义加 ▲▼/＋−，或改蓝橙。
+- 提供 alt text（类型、趋势、数据出口）；复杂图附表或 CSV。
+- 交互支持键盘、可见焦点、≥44px 触摸目标、非 hover 信息入口、`prefers-reduced-motion`。
 
-**前端环境**
-- D3.js → `adapters/web/d3.md`
-- ECharts → `adapters/web/echarts.md`
-- Mapbox → `adapters/web/mapbox.md`
-- Three.js → `adapters/web/three.md`
+可选运行 `scripts/theme_validator.py` 校验输出 JSON。
 
-**Python 环境**
-- Matplotlib → `adapters/python/matplotlib.md`
-- Plotly → `adapters/python/plotly.md`
+## 输出契约
 
-**R 环境**
-- ggplot2 → `adapters/r/ggplot2.md`
+1. 用 1–2 句说明选图理由。
+2. 给出主题、配色与关键设计决策。
+3. 给出含数据转换和显式美学参数的完整可运行代码；不依赖库默认值。
+4. 多图表列出已核验的共同属性。
 
-如果调用者未指定环境，按以下优先级选择：
+## 资源
 
-**Web 前端**：首先检查用户项目是否已有依赖库，按以下逻辑判断：
-- 项目已安装 ECharts（package.json 含 echarts / HTML 已引入 echarts）→ 使用 ECharts
-- 项目已安装 Mapbox（package.json 含 mapbox-gl）→ 使用 Mapbox
-- 项目已安装 Three.js → 使用 Three.js
-- **以上均未检测到 → 默认使用 D3.js**（零依赖，直接引入 CDN 即可）
-
-**Python 环境**：
-- 交互式 / Jupyter → Plotly
-- 出版 / 学术论文 → Matplotlib
-
-**R 环境**：
-- 统计可视化 → ggplot2
-
-**特殊场景**：
-- 地理数据 → Mapbox（Web）或 Plotly Mapbox（Python）
-- 3D 场景 → Three.js（Web）或 Plotly 3D（Python）
-- 快速开发 / 开箱即用美观效果 → ECharts
-
-**HTML 大屏硬约束**：
-- 每个图表根容器在 `init` 前必须有明确 `width` 和 `height` / `min-height`
-- `flex: 1` 不能替代显式高度；卡片内图表要先定高再初始化
-- 地图依赖优先使用本地注册资产或可验证的降级方案，不要只依赖远程脚本
-- 密集标签必须启用 `hideOverlap`、`overflow: 'truncate'` 或重新布局，避免文本互相遮挡
-- 同一页面的所有卡片圆角、内边距、边框和阴影应保持一致
-
-### 阶段 4：一致性校验
-
-读取 `guides/consistency-rules.md`，对输出进行校验：
-
-1. **跨图表一致性**：同一输出中的多个图表，同级别组件（标题、轴标签、图例）的字体大小、
-   字体颜色、线宽等必须一致，除非调用者明确指定了差异
-2. **主题一致性**：所有图表使用相同的色板、字体族、间距规则
-3. **标注一致性**：数据标签的格式（小数点位数、单位、日期格式）统一
-4. **图例布局**：多系列图例须通过 viewBox 边界检查，避免与轴标签重叠；≥4 项使用 2×N 网格。
-   详见 `guides/legend-layout.md`
-5. **论文图表**：学术论文、研究报告和装订文档需额外执行题注、资料来源、时间轴节点和导出居中检查。
-   详见 `guides/academic-publication.md`
-
-可选：运行 `scripts/theme_validator.py` 对输出 JSON 进行自动校验。
-
-### 阶段 5：无障碍校验
-
-读取 `guides/accessibility.md`，确保输出对色觉障碍、低视力、键盘操作等场景友好：
-
-1. **对比度**：文本与背景 ≥ 4.5:1（大字 ≥ 3:1），数据元素与背景 ≥ 3:1
-2. **冗余编码**：多类别区分不能仅靠颜色，叠加形状/线型/标签/纹理
-3. **红绿语义**：涨跌/正负不仅用红绿，加 ▲▼ 符号或改用蓝橙发散色板
-4. **文本替代**：提供 alt text（类型+趋势+数据出口），复杂图附数据表
-5. **交互无障碍**：键盘可达、焦点可见、触摸目标 ≥ 44px、动画可关闭
-
-**生成 HTML 仪表盘时的额外检查**：
-- 确认每个 `echarts.init(...)` 的容器在初始化前可见且非零尺寸
-- 对地图、热力图、树图等密集布局开启合理的 `containLabel` / `labelLayout`
-- 如图表内容可能拥挤，优先减小字数、收窄标签、调整图例位置，而不是默认保留所有标签
-
----
-
-## 核心美学规范
-
-以下为 `modern` 主题的默认参数。其他主题的参数见 `aesthetics/themes/` 目录下的对应 JSON 文件。
-
-### 默认色板 — Modern 主题
-
-受 Observable Plot 现代设计语言启发，默认色板应满足：
-- 明亮克制：灰度使用节制，避免上世纪 90 年代图表感
-- 色彩区分：相邻颜色色相间距足够，可轻松区分
-- 色盲友好：对红绿色盲可区分
-- 打印兼容：在灰度下仍可区分
-
-默认 10 色色板：
-```
-#5B8DE0  #4CB880  #EE7B6F  #9B7ED8  #E8B33F
-#5CC0C8  #9CA3AF  #F09050  #A3C95A  #E87DB5
-```
-
-### 默认排版层级
-
-| 层级 | 元素                | 字号 | 字重  | 颜色      |
-|------|---------------------|------|-------|-----------|
-| H1   | 图表主标题           | 16px | 600  | #1a1a1a  |
-| H2   | 子标题/副标题         | 13px | 400  | #555555  |
-| H3   | 轴标签               | 11px | 400  | #333333  |
-| H4   | 刻度标签              | 10px | 400  | #666666  |
-| H5   | 图例/注释            | 10px | 400  | #555555  |
-| H6   | 数据标签/脚注         | 9px  | 400  | #888888  |
-
-### 默认间距系统
-
-- 图表边距：上 48px / 右 36px / 下 56px / 左 56px
-- 多图间距：图表之间最小 28px
-- 元素内边距：10px
-
-### 默认线条与点样式
-
-- 折线宽度：2.2px，平滑插值（monotone）
-- 点样式：白色描边（2px），填充主色，散点 r=4.5px / 折线数据点 r=3.5px
-- 网格线：仅 Y 轴网格，0.5px 宽，颜色 #E8E8E8，虚线 [2,2]
-- 轴线：0.8px 宽，颜色 #CCCCCC
-- 柱状图：圆角 5px，宽度比 0.65
-
----
-
-## 技术栈快速选择
-
-根据调用者描述中的关键词判断：
-
-| 关键词                     | 技术栈                  |
-|----------------------------|-------------------------|
-| 网页/前端/HTML/浏览器/交互   | D3.js（默认）           |
-| 项目已有 ECharts/快速开发     | ECharts                |
-| 高度自定义/特殊效果/动态      | D3.js                  |
-| 地图/地理位置/空间分布        | Mapbox / D3.js         |
-| 3D/立体/模型/场景            | Three.js               |
-| Python/数据分析/jupyter     | Plotly（默认）          |
-| Python/学术/论文/出版        | Matplotlib              |
-| R/tidyverse/统计            | ggplot2                 |
-
----
-
-## 资源索引
-
-### 美学设计文档
-| 文件 | 用途 |
-|------|------|
-| `aesthetics/default.json` | 默认主题参数（颜色/排版/间距/线条），权威配置来源 |
-| `aesthetics/color.md` | 色彩规则：色板与数据类型匹配、色盲友好、语义一致性、NL 指令映射 |
-| `aesthetics/typography.md` | 排版规则：字体层级、字体选择、中文适配、NL 指令映射 |
-| `aesthetics/layout.md` | 布局规则：数据墨水比、视觉层次、尺寸比例、NL 指令映射 |
-| `aesthetics/themes/*.json` | 四套预设主题（modern/analytics/dashboard/academic） |
-
-### 决策指南
-| 文件 | 用途 |
-|------|------|
-| `guides/chart-selection.md` | 图表选择决策树：数据特征 + 意图 → 图表类型 |
-| `guides/color-guide.md` | 用色原则：何时用哪种色板、颜色禁忌、语义约定 |
-| `guides/consistency-rules.md` | 多图表设计一致性校验规则（8 条规则 + 完整核对示例） |
-| `guides/legend-layout.md` | 图例布局规则：viewBox 边界、标签避让、2×N 网格、居中、学术线型冗余 |
-| `guides/academic-publication.md` | 学术论文与研究报告图表规则：题注、资料来源、图例间距、导出居中、时间轴防变形 |
-| `guides/customization-guide.md` | 自然语言到美学参数完整映射表（风格/颜色/排版/布局/元素） |
-| `guides/accessibility.md` | 无障碍标准：对比度、色盲友好、冗余编码、alt text、交互无障碍 |
-
-### 模板库（34 种）
-| 分类 | 数量 | 包含 |
-|------|------|------|
-| `templates/charts/` | 20 | 柱状/折线/散点/面积/饼图/直方图/箱线/热力/雷达/瀑布/密度/华夫/点图/坡度/小倍数/日历热力/烛台/六边形分箱/平行坐标/矩阵散点 |
-| `templates/maps/` | 3 | 面量图/气泡地图/流向地图 |
-| `templates/graphs/` | 8 | 桑基图/和弦图/力导向图/树图/旭日图/树形图/弧形图/冲积图 |
-| `templates/3d/` | 3 | 3D地球/3D散点/曲面图 |
-
-> 模板统一结构规范见 `templates/TEMPLATE-SPEC.md`。
-
-### 适配器
-| 环境 | 文件 |
-|------|------|
-| Web-D3 | `adapters/web/d3.md` |
-| Web-ECharts | `adapters/web/echarts.md` |
-| Web-Mapbox | `adapters/web/mapbox.md` |
-| Web-Three.js | `adapters/web/three.md` |
-| Python-Matplotlib | `adapters/python/matplotlib.md` |
-| Python-Plotly | `adapters/python/plotly.md` |
-| R-ggplot2 | `adapters/r/ggplot2.md` |
-
-### 工具与示例
-| 文件 | 用途 |
-|------|------|
-| `scripts/theme_validator.py` | 主题一致性自动验证器 |
-| `examples/finance-trading/` | 金融/交易实时监控大屏（ECharts） |
-| `examples/ecommerce-retail/` | 电商/零售运营大屏（ECharts） |
-| `examples/iot-energy/` | 物联网/能源监控大屏（ECharts） |
-| `examples/city-geo/` | 城市/地理大数据大屏（ECharts，含地图飞线/涟漪） |
-| `examples/README.md` | 示例总索引（含技术栈与运行方式） |
-| `assets/banner.svg` · `assets/wordmark.svg` | 品牌横幅与字标（可由 `scripts/make_*.py` 重新生成） |
-
----
-
-## 输出格式
-
-生成可视化时，输出应包含：
-
-1. **简要说明**：为什么选择这种图表类型（1-2 句话）
-2. **美学摘要**：应用的配色方案和关键设计决策（如果需要可折叠）
-3. **完整代码**：可直接运行的代码，包含所有数据转换和样式配置
-4. **一致性检查清单**：如果是多图表输出，列出验证过的共同属性
-
-代码中的美学参数必须明确写死（如字体大小 = 16），而不是依赖库的默认值。
-这样确保在不同环境下输出一致。
+- 图表选择：`guides/chart-selection.md`
+- 美学：`aesthetics/default.json`、`aesthetics/themes/*.json`、`aesthetics/*.md`
+- 定制与校验：`guides/color-guide.md`、`guides/customization-guide.md`、`guides/consistency-rules.md`、`guides/legend-layout.md`、`guides/academic-publication.md`、`guides/accessibility.md`
+- 34 个模板：`templates/charts/` 20、`maps/` 3、`graphs/` 8、`3d/` 3
+- 适配器：`adapters/web/`、`adapters/python/`、`adapters/r/`

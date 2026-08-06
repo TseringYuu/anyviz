@@ -1,11 +1,9 @@
 # Three.js 适配器
 
-## 适用场景
-- 3D 数据可视化（曲面、散点、地球）
-- VR/AR 数据展示
-- 数据艺术装置
+## 用途
+- 3D 曲面、散点、地球、VR/AR、数据艺术。
 
-## 核心映射：美学 → Three.js
+## 映射
 
 ### 场景初始化
 ```javascript
@@ -71,10 +69,9 @@ labelDiv.style.color = '#666666';
 labelDiv.style.fontFamily = "'Helvetica Neue', Arial, sans-serif";
 ```
 
-## Three.js 默认配置
+## 默认
 
-- **渲染器**：WebGLRenderer，抗锯齿开启
-- **像素比**：限制在 ≤ 2（性能考虑）
-- **轨道控制器**：OrbitControls，启用阻尼（damping 0.1）
-- **相机**：透视相机 FOV 45°，近裁面 0.1，远裁面 1000
-- **输出**：截图时导出为 PNG，2x 分辨率
+- `WebGLRenderer` 抗锯齿；像素比 ≤2。
+- `OrbitControls` 阻尼 0.1。
+- 透视相机 FOV 45°，裁面 0.1–1000。
+- PNG 截图 2x；交互提供键盘与静态替代。

@@ -32,6 +32,7 @@
     "install.ps1",
     "README.md",
     "README.en.md",
+    "README.zh-CN.md",
     "LICENSE",
     "aesthetics/",
     "adapters/",

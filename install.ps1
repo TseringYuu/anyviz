@@ -2,7 +2,10 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 2.0
 
 $Repository = "TseringYuu/anyviz"
-$ArchiveUrl = "https://github.com/$Repository/archive/refs/heads/main.zip"
+# Reviewed payload; update both pins using docs/installer-security.md.
+$SourceCommit = "625ac015042d3d1987328b3e08cf629bbb377f61"
+$ArchiveSha256 = "9b04472bd9061505b5f937055ed5bf769905e6bb09333fc813a3631d94ed8b20"
+$ArchiveUrl = "https://codeload.github.com/$Repository/zip/$SourceCommit"
 $AnyvizUserHome = if ($env:ANYVIZ_HOME) { $env:ANYVIZ_HOME } else { $env:USERPROFILE }
 $SourceRoot = $env:ANYVIZ_SOURCE_DIR
 $DetectCommands = $env:ANYVIZ_DETECT_COMMANDS -ne "0"
@@ -126,6 +129,11 @@ try {
         New-Item -ItemType Directory -Force -Path $extractRoot | Out-Null
 
         Invoke-WebRequest -UseBasicParsing -Uri $ArchiveUrl -OutFile $archivePath
+        # Verify before extraction or writing to any agent skill directory.
+        $actualSha256 = (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash
+        if ($actualSha256 -ne $ArchiveSha256) {
+            Fail "archive SHA-256 mismatch; nothing installed"
+        }
         Expand-Archive -Path $archivePath -DestinationPath $extractRoot -Force
         $sourceDirectory = Get-ChildItem -Path $extractRoot -Directory | Select-Object -First 1
         if (-not $sourceDirectory) {

@@ -60,7 +60,7 @@ Get-Content ./anyviz-install.ps1
 ./anyviz-install.ps1
 ```
 
-The installer detects supported agent skill directories and installs a shared copy. An unmanaged existing skill is backed up before replacement. See [install.sh](install.sh) and [install.ps1](install.ps1) for the exact behavior. Run again to update.
+The installer detects supported agent skill directories and installs a shared copy. An unmanaged existing skill is backed up before replacement. See [install.sh](install.sh) and [install.ps1](install.ps1) for the exact behavior. Downloads are pinned to a reviewed commit and checked with SHA-256 before extraction. A saved installer always installs the same snapshot; review a new installer to update. See the [integrity and update policy](docs/installer-security.md).
 
 Prefer manual setup? Clone the repository and ask your assistant to read [`SKILL.md`](SKILL.md), following your agent's instructions for loading custom skills.
 

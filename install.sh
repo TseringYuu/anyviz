@@ -3,7 +3,10 @@
 set -eu
 
 REPOSITORY="TseringYuu/anyviz"
-ARCHIVE_URL="https://codeload.github.com/${REPOSITORY}/tar.gz/refs/heads/main"
+# Reviewed payload; update both pins using docs/installer-security.md.
+SOURCE_COMMIT="625ac015042d3d1987328b3e08cf629bbb377f61"
+ARCHIVE_SHA256="152a3ee418e85bfba5b378079dac2520918bfe0711c0e4862d52cb25bc3e2360"
+ARCHIVE_URL="https://codeload.github.com/${REPOSITORY}/tar.gz/${SOURCE_COMMIT}"
 ANYVIZ_USER_HOME="${ANYVIZ_HOME:-${HOME:-}}"
 TEMP_ROOT=""
 SOURCE_ROOT="${ANYVIZ_SOURCE_DIR:-}"
@@ -39,15 +42,27 @@ else
   mkdir -p "$SOURCE_ROOT"
 
   if command -v curl >/dev/null 2>&1; then
-    curl -fsSL --retry 3 "$ARCHIVE_URL" -o "$ARCHIVE_PATH" || fail 'download failed'
+    curl -fsSL --proto '=https' --proto-redir '=https' --retry 3 "$ARCHIVE_URL" -o "$ARCHIVE_PATH" || fail 'download failed'
   elif command -v wget >/dev/null 2>&1; then
-    wget -qO "$ARCHIVE_PATH" "$ARCHIVE_URL" || fail 'download failed'
+    wget --https-only -qO "$ARCHIVE_PATH" "$ARCHIVE_URL" || fail 'download failed'
   else
     fail 'curl or wget is required'
   fi
 
+  # Verify bytes against the reviewed installer before extraction or writes.
+  if command -v sha256sum >/dev/null 2>&1; then
+    ACTUAL_SHA256="$(sha256sum "$ARCHIVE_PATH" | awk '{print $1}')"
+  elif command -v shasum >/dev/null 2>&1; then
+    ACTUAL_SHA256="$(shasum -a 256 "$ARCHIVE_PATH" | awk '{print $1}')"
+  else
+    fail 'sha256sum or shasum is required for integrity verification'
+  fi
+  [ "$ACTUAL_SHA256" = "$ARCHIVE_SHA256" ] || fail 'archive SHA-256 mismatch; nothing installed'
+
   tar -xzf "$ARCHIVE_PATH" -C "$SOURCE_ROOT" --strip-components=1 || fail 'archive extraction failed'
 fi
+
+[ -f "$SOURCE_ROOT/SKILL.md" ] || fail "verified archive is missing SKILL.md"
 
 install_skill() {
   AGENT_NAME="$1"

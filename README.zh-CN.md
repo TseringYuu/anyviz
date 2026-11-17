@@ -62,7 +62,7 @@ Get-Content ./anyviz-install.ps1
 ./anyviz-install.ps1
 ```
 
-安装器检测受支持的 Agent skill 目录并安装共享副本。如果目标位置已有非安装器管理的同名 skill，会先备份再替换。具体行为见 [install.sh](install.sh) 和 [install.ps1](install.ps1)，再次运行即可更新。
+安装器检测受支持的 Agent skill 目录并安装共享副本。如果目标位置已有非安装器管理的同名 skill，会先备份再替换。具体行为见 [install.sh](install.sh) 和 [install.ps1](install.ps1)。下载内容固定到已审查的提交，解压前校验 SHA-256；保存的安装器始终安装同一快照，更新时请重新阅读新版安装器。详见[完整性与更新策略](docs/installer-security.md)。
 
 也可以手动克隆仓库，按照所用工具加载自定义 skill 的方式，让助手读取 [`SKILL.md`](SKILL.md)。
 

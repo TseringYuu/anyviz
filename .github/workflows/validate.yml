@@ -67,3 +67,12 @@ jobs:
             exit 1
           fi
           echo "All aesthetics and example JSON files are valid."
+
+  windows-installer:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verified archive and tamper rejection
+        shell: pwsh
+        run: ./scripts/test_install.ps1

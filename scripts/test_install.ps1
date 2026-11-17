@@ -13,7 +13,8 @@ try {
     Compress-Archive -Path $payload -DestinationPath $fixtureArchive
     $digest = (Get-FileHash $fixtureArchive -Algorithm SHA256).Hash
     $installer = Get-Content (Join-Path $ProjectRoot 'install.ps1') -Raw
-    $installer = [regex]::Replace($installer, '(?m)^\$ArchiveSha256 = ".*"$', ('$ArchiveSha256 = "' + $digest + '"'))
+    $installer = [regex]::Replace($installer, '(?m)^\$ArchiveSha256 = ".*"\r?$', ('$ArchiveSha256 = "' + $digest + '"'))
+    if (-not $installer.Contains($digest)) { throw 'Fixture digest was not pinned in test installer' }
     $testInstaller = Join-Path $TestRoot 'install.ps1'
     Set-Content $testInstaller $installer
     $mockState = @{ Archive = $fixtureArchive; Tamper = $false }

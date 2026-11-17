@@ -2,7 +2,7 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/wordmark-light.svg">
-    <img src="assets/wordmark.svg" alt="AnyViz" width="296" height="88">
+    <img src="assets/wordmark.svg" alt="anyviz" width="220" height="90">
   </picture>
 </p>
 

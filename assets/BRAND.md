@@ -1,8 +1,9 @@
 # AnyViz identity
 
-The connected A/V mark turns plotted points into letterforms: the identity is
-about finding a useful visual form for data, not only upward financial growth.
-The wordmark is outlined for consistent rendering without installed fonts.
+The README wordmark contains only the lowercase letters `anyviz`, with no
+accompanying symbol or decorative graphics. Its outlined geometry renders
+consistently without installed fonts. The earlier icon files are retained for
+compatibility with other surfaces, but are not used in the README.
 
 - `wordmark.svg` / `icon.svg`: transparent, automatically adapt to the viewer's
   `prefers-color-scheme` where supported.
@@ -13,6 +14,6 @@ The wordmark is outlined for consistent rendering without installed fonts.
 
 Regenerate all six files with `python3 scripts/build_brand.py` (standard library
 only). `python3 scripts/make_wordmark.py` also forwards to the current generator.
-Keep the mark's open space around the three plotted points; do not add a white
-background rectangle. The older animated banner/GIF artwork is retained as
+Keep the README wordmark monochrome and transparent; do not append a symbol
+or add a background rectangle. The older animated banner/GIF artwork is retained as
 legacy demonstration material and is not the primary logo.

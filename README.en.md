@@ -1,17 +1,21 @@
 <p align="center"><img src="assets/wordmark.svg" alt="AnyViz" width="240"></p>
 
-<h1 align="center">Charts that belong in the document.</h1>
+<h1 align="center">Tell AI the goal. Let it work out the chart.</h1>
 
-<p align="center">An open-source visualization skill for AI coding agents.<br>Choose the right chart. Keep every figure coherent. Make the final page readable.</p>
+<p align="center">An open-source skill that helps AI agents choose and create visualizations for the task at hand.<br>From a single chart to a report or dashboard, without making you direct every design decision.</p>
 
 <p align="center"><b>English</b> · <a href="README.zh-CN.md">简体中文</a> · <a href="https://anyviz.aiware.store">Website</a> · <a href="examples/">Examples</a></p>
 <p align="center"><a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-4269d0?style=flat-square" alt="MIT license"></a> <a href="https://www.npmjs.com/package/anyviz"><img src="https://img.shields.io/npm/v/anyviz?style=flat-square&color=4269d0" alt="Published npm version"></a> <a href="SKILL.md"><img src="https://img.shields.io/badge/Agent_Skill-SKILL.md-3ca951?style=flat-square" alt="Agent Skill"></a></p>
 
-## See the work first
+## Your intent, not a chart specification
 
-**A chart can look good in isolation and still fail on the page.** AnyViz gives an agent guidance for chart choice, typography, color, legends, captions, and consistent multi-chart layouts. The goal is not more decoration: it is a figure the reader can actually use.
+**Describe what you need to understand or communicate. You should not have to become a visualization designer first.** AnyViz guides your AI agent to interpret the data and usage context, choose suitable charts and a rendering approach, then create and check the output with its available tools.
 
-Start with **[Report Studio](examples/report-studio/)**, a document-oriented example, then explore the four industry dashboards. Inspect the data and implementation rather than taking a marketing claim on trust.
+A report, an interactive dashboard, a research figure, or a quick analysis calls for different decisions. The aim is to let the agent handle chart selection, styling, layout, and consistency, so you can focus on the question and the result. Share constraints you already know; you do not need to prescribe every color, label, or chart type.
+
+## See it across different scenarios
+
+Explore **[Report Studio](examples/report-studio/)** for document figures, or choose an industry dashboard below. These examples show different applications of the same workflow, not a product limited to reports or dashboards.
 
 [![Report Studio: complete report page with coordinated figures](examples/report-studio/preview.png)](examples/report-studio/report.pdf)
 
@@ -31,14 +35,14 @@ Dashboard previews below use simulated data, not live services or customer deplo
 
 ## What changes with AnyViz?
 
-Your agent already knows how to write chart code. AnyViz supplies a reusable set of design decisions:
+Your agent already knows how to write chart code. AnyViz gives it a reusable decision process, rather than asking you to supply all the design choices:
 
-- **Choose for the question.** Comparison, trend, distribution, relationship, composition, geography, hierarchy, or flow: start with the reader's task, not a chart type.
-- **Design for the destination.** A report needs readable type at its final physical size; a dashboard needs hierarchy and responsive layout. Four themes cover different contexts.
-- **Keep figures consistent.** Reuse entity colors, units, number formats, type scales, and spacing across a document or canvas.
-- **Check the finished page.** Avoid duplicated captions and sources, crowded legends, awkward alignment, and color-only distinctions. Review the actual export, not just the source code.
+- **Understand the task.** Use the data, audience, question, and destination to decide what the visualization needs to communicate.
+- **Choose and draw.** Select an appropriate chart and use the project's available stack to generate it, instead of starting from an arbitrary template.
+- **Adapt to the context.** Fit the typography, colors, interaction, and layout to the output, whether it is a document figure, an analysis, or a dashboard.
+- **Handle the details.** Keep units, entity colors, and formatting coherent; check labels, legends, contrast, and the finished output. Surface missing data or consequential uncertainty instead of inventing an answer.
 
-These are specifications, templates, and workflow instructions, **not a new rendering engine or an autonomous PDF/Word converter**. Your agent and its tools generate the result. Model behavior varies; inspect the data, code, and final output before publishing. The examples are demonstrations, not a controlled benchmark or a promise of publication acceptance.
+AnyViz is a skill made of specifications, templates, and workflow instructions. **Your AI agent and its tools do the reasoning and rendering**; AnyViz is not a standalone renderer or an autonomous PDF/Word converter. Capabilities depend on the model and tools available. Review the result and important data before publishing. Examples are demonstrations, not a controlled benchmark or a guarantee of correctness.
 
 ## Get started
 
@@ -64,22 +68,30 @@ The installer detects supported agent skill directories and installs a shared co
 
 Prefer manual setup? Clone the repository and ask your assistant to read [`SKILL.md`](SKILL.md), following your agent's instructions for loading custom skills.
 
-### 2. Give it a concrete brief
+### 2. Say what you want to achieve
+
+Once the skill is loaded, start with the data and the outcome. For example:
 
 ```text
-Read AnyViz's SKILL.md and the academic publication guide.
-Use this CSV to create figures for an A4 research report.
-Keep colors and units consistent across figures. Place captions and sources
-outside the plots, avoid overlapping legends, and check readability at the
-final document size. Export SVG where supported and a PDF preview.
-Explain chart choices and flag missing or uncertain data. Do not invent data.
+Use AnyViz to help me understand what changed in this sales data.
+Choose and draw the charts that best explain it.
 ```
 
-For a dashboard, specify its audience, key question, stack, and screen size instead. AnyViz's [customization guide](guides/customization-guide.md) maps requests such as “academic,” “larger labels,” or “move the legend” to design parameters.
+```text
+Use AnyViz to visualize these results for my research report.
+Choose a clear presentation that fits an A4 page.
+```
 
-### 3. Inspect and iterate
+```text
+Use AnyViz to build an operations dashboard from this data in our current app.
+Help the team see performance and spot what needs attention.
+```
 
-Check values against the source, units and axes, label collisions, contrast, and the final exported layout. Ask the agent to fix what you can see. For a reproducible starting point, use the [examples](examples/).
+You do not need to name a chart type or specify the design details. Add any real constraints you have, such as the audience, output format, or brand colors. The agent can use AnyViz's guides to work out the rest. If key information is missing, it may need to clarify rather than guess.
+
+### 3. Review the result, not every design setting
+
+Check that the result answers your question and that important figures match your source. Refine it in ordinary language, such as “make the regional difference clearer” or “this needs to fit in my report.” The [customization guide](guides/customization-guide.md) helps the agent translate that feedback into design changes; you should not need to micromanage the chart configuration.
 
 ## Inside the skill
 

@@ -56,3 +56,22 @@ The report keeps one caption and one source strategy. Every SVG has an accessibl
 ## Verification
 
 Rebuild with `python3 build.py`; inspect all three PDF pages after modifying layout. Check 390px and desktop widths, six loaded chart images, no horizontal page overflow, and totals reconciled by assertions. This sample does not require a CDN, network request, API key or charting-library installation to render.
+
+## Editable Word edition
+
+[Download the Word report](report.docx). Headings, narrative, captions and page layout are editable Word content. The six charts are embedded high-resolution PNGs, **not native editable Word charts**; edit the CSV and regenerate chart assets to change the data. SVG originals remain available for vector reuse.
+
+With `python-docx` installed:
+
+```sh
+python3 examples/report-studio/export_docx.py
+```
+
+This uses the committed `charts/png/` images. After changing CSV data, run `build.py` and refresh those images with the optional `export_chart_png.cjs` helper (requires Playwright and Chrome), then regenerate Word:
+
+```sh
+node examples/report-studio/export_chart_png.cjs
+python3 examples/report-studio/export_docx.py
+```
+
+The Word edition is designed for three A4 pages and was rendered with LibreOffice for visual checks. Word versions and font substitutions may slightly change pagination. It retains the same six figures and disclosures as the HTML/PDF edition, with prose adapted to editable document flow.

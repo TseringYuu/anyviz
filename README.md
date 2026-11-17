@@ -15,7 +15,7 @@ Start with **[Report Studio](examples/report-studio/)**, a document-oriented exa
 
 [![Report Studio: complete report page with coordinated figures](examples/report-studio/preview.png)](examples/report-studio/report.pdf)
 
-[Read the actual PDF](examples/report-studio/report.pdf) · [Explore the source and reproduction steps](examples/report-studio/)
+[Read the actual PDF](examples/report-studio/report.pdf) · [Download Word edition](examples/report-studio/report.docx) · [Explore the source and reproduction steps](examples/report-studio/)
 
 | Make something useful | Explore |
 | --- | --- |

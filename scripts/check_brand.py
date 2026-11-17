@@ -23,5 +23,5 @@ for name in ['README.md','README.en.md','README.zh-CN.md']:
     text=(ROOT/name).read_text()
     for mode in ['dark','light']:
         assert f'media="(prefers-color-scheme: {mode})" srcset="assets/wordmark-{mode}.svg"' in text
-    assert 'src="assets/wordmark.svg" alt="anyviz" width="220" height="90"' in text
+    assert 'src="assets/wordmark.svg" alt="anyviz" width="280" height="102"' in text
 print('Six font-independent brand assets and README theme sources verified.')

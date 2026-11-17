@@ -7,6 +7,8 @@ for name in ['city-geo','ecommerce-retail','finance-trading','iot-energy']:
     h = (r/'examples'/name/'index.html').read_text()
     assert 'demo-shell.css' in h and 'demo-shell.js' in h, name
     assert re.search(r'<html[^>]*lang="en"', h), name
+    assert 'integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous"' in h, name
+    assert 'https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js' in h, name
 for asset in ['demo-shell.css','demo-shell.js']:
     assert (r/'examples/common'/asset).is_file()
 p = r/'examples/report-studio'

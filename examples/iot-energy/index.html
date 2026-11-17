@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>智慧能源物联监控中心</title>
+  <title>Energy operations</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -267,18 +267,20 @@
       .chart-xl { height: 320px; }
     }
   </style>
+  <link rel="stylesheet" href="../common/demo-shell.css">
+  <script src="../common/demo-shell.js"></script>
 </head>
-<body>
+<body data-demo="iot-energy">
   <!-- Header -->
   <div class="header">
     <div class="header-left">
       <div class="logo">anyviz</div>
-      <div class="title">智慧能源物联监控中心</div>
+      <div class="title">Energy operations</div>
     </div>
     <div class="header-right">
       <div class="live-badge">
         <div class="live-dot"></div>
-        <span>LIVE</span>
+        <span>SIMULATION</span>
       </div>
       <div class="clock" id="clock">00:00:00</div>
     </div>
@@ -289,33 +291,33 @@
     <!-- KPI Row -->
     <div class="grid" id="kpiRow">
       <div class="kpi-card">
-        <div class="kpi-label">总发电量</div>
+        <div class="kpi-label">Energy generated</div>
         <div class="kpi-value" id="kpi1Value">2,850</div>
         <div class="kpi-unit">kWh</div>
         <div id="chart-kpi1" class="kpi-spark"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">实时负荷</div>
+        <div class="kpi-label">Current load</div>
         <div class="kpi-value" id="kpi2Value">18.5</div>
         <div class="kpi-unit">MW</div>
         <div id="chart-kpi2" class="kpi-spark"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">设备在线率</div>
+        <div class="kpi-label">Devices online</div>
         <div class="kpi-value" id="kpi3Value">98.2</div>
         <div class="kpi-unit">%</div>
         <div id="chart-kpi3" class="kpi-spark"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">碳减排</div>
+        <div class="kpi-label">Avoided emissions</div>
         <div class="kpi-value" id="kpi4Value">1,245</div>
-        <div class="kpi-unit">吨</div>
+        <div class="kpi-unit">tonnes</div>
         <div id="chart-kpi4" class="kpi-spark"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">告警数</div>
+        <div class="kpi-label">Active alerts</div>
         <div class="kpi-value" id="kpi5Value">3</div>
-        <div class="kpi-unit">起</div>
+        <div class="kpi-unit">alerts</div>
         <div id="chart-kpi5" class="kpi-spark"></div>
       </div>
     </div>
@@ -363,7 +365,7 @@
     </div>
 
     <div class="footer">
-      数据来源：IoT 监控平台 | 更新频率：实时 | 最后更新：<span id="lastUpdate">2024-12-20 12:00:00</span>
+      Synthetic IoT data · | Simulated updates | Browser time: <span id="lastUpdate">2024-12-20 12:00:00</span>
     </div>
   </div>
 
@@ -406,7 +408,7 @@
       const m = String(now.getMinutes()).padStart(2, '0');
       const s = String(now.getSeconds()).padStart(2, '0');
       document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-      document.getElementById('lastUpdate').textContent = now.toLocaleString('zh-CN');
+      document.getElementById('lastUpdate').textContent = now.toLocaleString('en-US');
     }
     updateClock();
     setInterval(updateClock, 1000);
@@ -449,7 +451,7 @@
         const elem = document.getElementById(kpi.id);
         const variation = (Math.random() - 0.5) * 2 * kpi.variance;
         const newVal = kpi.base + variation;
-        const formatted = idx === 1 ? newVal.toFixed(1) : (idx === 2 ? newVal.toFixed(1) : Math.round(newVal).toLocaleString('zh-CN'));
+        const formatted = idx === 1 ? newVal.toFixed(1) : (idx === 2 ? newVal.toFixed(1) : Math.round(newVal).toLocaleString('en-US'));
         elem.textContent = formatted;
       });
     }
@@ -463,7 +465,7 @@
 
     setInterval(updateKpiValues, 3000);
 
-    // ===== 图表 1: 实时功率曲线（多条折线 + 渐变面积） =====
+    // ===== 图表 1: 实时Power曲线（多条折线 + 渐变面积） =====
     (function() {
       const chart = echarts.init(document.getElementById('chart-power'));
       const times = Array.from({length: 24}, (_, i) => `${String(i).padStart(2, '0')}:00`);
@@ -473,7 +475,7 @@
 
       chart.setOption({
         ...baseOption,
-        title: { text: '实时功率与负荷曲线', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Generation and demand', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'axis',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -482,7 +484,7 @@
           axisPointer: { type: 'cross' }
         },
         legend: {
-          data: ['光伏发电', '用电负荷', '储能'],
+          data: ['Solar generation', 'Demand', 'Storage'],
           top: 10,
           right: 20,
           textStyle: { fontSize: 11, color: '#9696a0', fontFamily: FONT }
@@ -497,14 +499,14 @@
         },
         yAxis: {
           type: 'value',
-          name: '功率 (kW)',
+          name: 'Power (kW)',
           nameTextStyle: LABEL_STYLE,
           axisLabel: AXIS_LABEL_STYLE,
           splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)', width: 0.5 } }
         },
         series: [
           {
-            name: '光伏发电',
+            name: 'Solar generation',
             type: 'line',
             data: genData,
             color: COLOR_PALETTE[0],
@@ -518,7 +520,7 @@
             }
           },
           {
-            name: '用电负荷',
+            name: 'Demand',
             type: 'line',
             data: loadData,
             color: COLOR_PALETTE[2],
@@ -532,7 +534,7 @@
             }
           },
           {
-            name: '储能',
+            name: 'Storage',
             type: 'line',
             data: storageData,
             color: COLOR_PALETTE[5],
@@ -545,21 +547,21 @@
       window.addEventListener('resize', () => chart.resize());
     })();
 
-    // ===== 图表 2: 能源结构占比（环形图）=====
+    // ===== 图表 2: Generation mix（环形图）=====
     (function() {
       const chart = echarts.init(document.getElementById('chart-energy-mix'));
       const data = [
-        { value: 42, name: '光伏' },
-        { value: 28, name: '风电' },
-        { value: 18, name: '储能' },
-        { value: 12, name: '市电' }
+        { value: 42, name: 'Solar' },
+        { value: 28, name: 'Wind' },
+        { value: 18, name: 'Storage' },
+        { value: 12, name: 'Grid' }
       ];
 
       const colors = [COLOR_PALETTE[0], COLOR_PALETTE[4], COLOR_PALETTE[5], COLOR_PALETTE[6]];
 
       chart.setOption({
         ...baseOption,
-        title: { text: '能源结构占比', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Generation mix', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'item',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -598,16 +600,16 @@
       const chart = echarts.init(document.getElementById('chart-gauge'));
       chart.setOption({
         ...baseOption,
-        title: { text: '系统关键指标', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'System metrics', textStyle: TITLE_STYLE, left: 20, top: 10 },
         grid: { top: 80, right: 0, bottom: 0, left: 0 },
         series: [
           {
-            name: '负载率',
+            name: 'Load rate',
             type: 'gauge',
             radius: '30%',
             center: ['25%', '55%'],
             min: 0, max: 100,
-            data: [{ value: 68, name: '负载率' }],
+            data: [{ value: 68, name: 'Load rate' }],
             splitNumber: 10,
             axisLine: {
               lineStyle: {
@@ -622,12 +624,12 @@
             detail: { valueAnimation: true, formatter: '{value}%', color: '#F8FAFC', fontSize: 16, fontWeight: 600 }
           },
           {
-            name: '电压',
+            name: 'Voltage',
             type: 'gauge',
             radius: '30%',
             center: ['55%', '55%'],
             min: 380, max: 420,
-            data: [{ value: 405, name: '电压(V)' }],
+            data: [{ value: 405, name: 'Voltage(V)' }],
             splitNumber: 8,
             axisLine: {
               lineStyle: {
@@ -642,12 +644,12 @@
             detail: { valueAnimation: true, formatter: '{value}V', color: '#F8FAFC', fontSize: 16, fontWeight: 600 }
           },
           {
-            name: '温度',
+            name: 'Temperature',
             type: 'gauge',
             radius: '30%',
             center: ['85%', '55%'],
             min: 0, max: 50,
-            data: [{ value: 28, name: '温度(°C)' }],
+            data: [{ value: 28, name: 'Temperature(°C)' }],
             splitNumber: 10,
             axisLine: {
               lineStyle: {
@@ -670,12 +672,12 @@
     // ===== 图表 4: 区域能耗对比（横向条形）=====
     (function() {
       const chart = echarts.init(document.getElementById('chart-regional'));
-      const regions = ['东北区域', '华北区域', '华东区域', '华南区域', '西南区域', '西北区域'];
+      const regions = ['Northeast region', 'North region', 'East region', 'South region', 'Southwest region', 'Northwest region'];
       const consumption = [450, 520, 680, 620, 380, 290];
 
       chart.setOption({
         ...baseOption,
-        title: { text: '各区域实时能耗对比', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Energy use by region', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'axis',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -715,10 +717,10 @@
       window.addEventListener('resize', () => chart.resize());
     })();
 
-    // ===== 图表 5: 24小时能耗热力图 =====
+    // ===== 图表 5: Hourly energy demand =====
     (function() {
       const chart = echarts.init(document.getElementById('chart-heatmap'));
-      const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       const hours = Array.from({length: 24}, (_, i) => `${String(i).padStart(2, '0')}h`);
 
       const data = [];
@@ -732,7 +734,7 @@
 
       chart.setOption({
         ...baseOption,
-        title: { text: '24小时能耗热力图', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Hourly energy demand', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'item',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -757,7 +759,7 @@
         visualMap: {
           min: 20,
           max: 100,
-          text: ['高', '低'],
+          text: ['High', 'Low'],
           realtime: true,
           inRange: {
             color: ['#0b0f1a', COLOR_PALETTE[0], COLOR_PALETTE[4], COLOR_PALETTE[2]]
@@ -775,14 +777,14 @@
       window.addEventListener('resize', () => chart.resize());
     })();
 
-    // ===== 告警列表 =====
+    // ===== Alerts =====
     (function() {
       const alarms = [
-        { level: 'critical', text: '华东区域变压器温度过高', time: '2分钟前' },
-        { level: 'warning', text: '储能系统SOC不足', time: '5分钟前' },
-        { level: 'warning', text: '风电场通讯中断', time: '8分钟前' },
-        { level: 'normal', text: '东北区域设备维护完成', time: '12分钟前' },
-        { level: 'normal', text: '系统自检完成', time: '25分钟前' }
+        { level: 'critical', text: 'East region transformer overheating', time: '2 min ago' },
+        { level: 'warning', text: 'Battery state of charge low', time: '5 min ago' },
+        { level: 'warning', text: 'Wind farm communication interrupted', time: '8 min ago' },
+        { level: 'normal', text: 'Northeast equipment maintenance completed', time: '12 min ago' },
+        { level: 'normal', text: 'System self-test completed', time: '25 min ago' }
       ];
 
       const listHtml = alarms.map(a => `
@@ -795,7 +797,7 @@
 
       document.getElementById('alert-list').innerHTML = `
         <div style="font-size: 14px; font-weight: 600; color: #F8FAFC; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-          告警滚动列表
+          Recent alerts
         </div>
         ${listHtml}
       `;
@@ -806,39 +808,39 @@
       const chart = echarts.init(document.getElementById('chart-topology'));
 
       const nodes = [
-        { name: '中央监控', x: 0, y: 0, symbolSize: 45, itemStyle: { color: COLOR_PALETTE[0] } },
-        { name: '光伏A', itemStyle: { color: COLOR_PALETTE[0] } },
-        { name: '光伏B', itemStyle: { color: COLOR_PALETTE[0] } },
-        { name: '光伏C', itemStyle: { color: COLOR_PALETTE[0] } },
-        { name: '风电1', itemStyle: { color: COLOR_PALETTE[4] } },
-        { name: '风电2', itemStyle: { color: COLOR_PALETTE[4] } },
-        { name: '储能系统', itemStyle: { color: COLOR_PALETTE[5] } },
-        { name: '变压器1', itemStyle: { color: COLOR_PALETTE[3] } },
-        { name: '变压器2', itemStyle: { color: COLOR_PALETTE[3] } },
-        { name: '用户A', itemStyle: { color: COLOR_PALETTE[1] } },
-        { name: '用户B', itemStyle: { color: COLOR_PALETTE[1] } },
-        { name: '用户C', itemStyle: { color: COLOR_PALETTE[1] } }
+        { name: 'Control center', x: 0, y: 0, symbolSize: 45, itemStyle: { color: COLOR_PALETTE[0] } },
+        { name: 'SolarA', itemStyle: { color: COLOR_PALETTE[0] } },
+        { name: 'SolarB', itemStyle: { color: COLOR_PALETTE[0] } },
+        { name: 'SolarC', itemStyle: { color: COLOR_PALETTE[0] } },
+        { name: 'Wind1', itemStyle: { color: COLOR_PALETTE[4] } },
+        { name: 'Wind2', itemStyle: { color: COLOR_PALETTE[4] } },
+        { name: 'Battery storage', itemStyle: { color: COLOR_PALETTE[5] } },
+        { name: 'Transformer1', itemStyle: { color: COLOR_PALETTE[3] } },
+        { name: 'Transformer2', itemStyle: { color: COLOR_PALETTE[3] } },
+        { name: 'ConsumerA', itemStyle: { color: COLOR_PALETTE[1] } },
+        { name: 'ConsumerB', itemStyle: { color: COLOR_PALETTE[1] } },
+        { name: 'ConsumerC', itemStyle: { color: COLOR_PALETTE[1] } }
       ];
 
       const links = [
-        { source: '中央监控', target: '光伏A' },
-        { source: '中央监控', target: '光伏B' },
-        { source: '中央监控', target: '光伏C' },
-        { source: '中央监控', target: '风电1' },
-        { source: '中央监控', target: '风电2' },
-        { source: '中央监控', target: '储能系统' },
-        { source: '光伏A', target: '变压器1' },
-        { source: '光伏B', target: '变压器1' },
-        { source: '风电1', target: '变压器2' },
-        { source: '储能系统', target: '变压器1' },
-        { source: '变压器1', target: '用户A' },
-        { source: '变压器1', target: '用户B' },
-        { source: '变压器2', target: '用户C' }
+        { source: 'Control center', target: 'SolarA' },
+        { source: 'Control center', target: 'SolarB' },
+        { source: 'Control center', target: 'SolarC' },
+        { source: 'Control center', target: 'Wind1' },
+        { source: 'Control center', target: 'Wind2' },
+        { source: 'Control center', target: 'Battery storage' },
+        { source: 'SolarA', target: 'Transformer1' },
+        { source: 'SolarB', target: 'Transformer1' },
+        { source: 'Wind1', target: 'Transformer2' },
+        { source: 'Battery storage', target: 'Transformer1' },
+        { source: 'Transformer1', target: 'ConsumerA' },
+        { source: 'Transformer1', target: 'ConsumerB' },
+        { source: 'Transformer2', target: 'ConsumerC' }
       ];
 
       chart.setOption({
         ...baseOption,
-        title: { text: '设备拓扑与连接', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Device network', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'item',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -882,18 +884,18 @@
       window.addEventListener('resize', () => chart.resize());
     })();
 
-    // ===== 图表 7: 告警分布（环形）=====
+    // ===== 图表 7: Alert distribution（环形）=====
     (function() {
       const chart = echarts.init(document.getElementById('chart-alarm-dist'));
       const data = [
-        { value: 1245, name: '正常', itemStyle: { color: SEMANTIC_COLOR.normal } },
-        { value: 28, name: '告警', itemStyle: { color: SEMANTIC_COLOR.warning } },
-        { value: 7, name: '严重', itemStyle: { color: SEMANTIC_COLOR.critical } }
+        { value: 1245, name: 'Normal', itemStyle: { color: SEMANTIC_COLOR.normal } },
+        { value: 28, name: 'Warning', itemStyle: { color: SEMANTIC_COLOR.warning } },
+        { value: 7, name: 'Critical', itemStyle: { color: SEMANTIC_COLOR.critical } }
       ];
 
       chart.setOption({
         ...baseOption,
-        title: { text: '设备状态分布', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Device status', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'item',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',
@@ -929,7 +931,7 @@
     // ===== 图表 8: 效率排名榜（条形）=====
     (function() {
       const chart = echarts.init(document.getElementById('chart-efficiency'));
-      const facilities = ['光伏园区A', '光伏园区B', '风电场1', '储能中心', '微网试点'];
+      const facilities = ['Solar parkA', 'Solar parkB', 'Wind farm1', 'Battery hub', 'Microgrid pilot'];
       const efficiency = [94.2, 91.5, 88.3, 85.6, 82.1];
 
       const colors_ranking = efficiency.map(e =>
@@ -938,7 +940,7 @@
 
       chart.setOption({
         ...baseOption,
-        title: { text: '能效排名榜', textStyle: TITLE_STYLE, left: 20, top: 10 },
+        title: { text: 'Efficiency ranking', textStyle: TITLE_STYLE, left: 20, top: 10 },
         tooltip: {
           trigger: 'axis',
           backgroundColor: 'rgba(11, 15, 26, 0.9)',

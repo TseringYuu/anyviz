@@ -43,11 +43,12 @@
     "assets/wordmark.svg"
   ],
   "scripts": {
-    "validate": "npm run validate:theme && npm run validate:exports && npm run validate:installer",
+    "validate": "npm run validate:theme && npm run validate:exports && npm run validate:installer && npm run validate:showcases",
     "validate:theme": "python3 scripts/theme_validator.py -c examples/test_config_valid.json",
     "validate:exports": "node scripts/check_package_exports.js",
     "validate:installer": "sh -n install.sh && sh scripts/test_install.sh",
-    "prepublishOnly": "npm run validate"
+    "prepublishOnly": "npm run validate",
+    "validate:showcases": "python3 scripts/check_showcases.py"
   },
   "repository": {
     "type": "git",

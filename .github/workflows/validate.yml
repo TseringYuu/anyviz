@@ -36,12 +36,12 @@ jobs:
 
       - name: Template structure check (five required sections)
         run: |
-          required=("## 适用场景" "## 数据格式" "## 美学参数" "## 设计要点" "## 变体")
+          required=("## (适用场景|用途)" "## (数据格式|数据)" "## (美学参数|参数)" "## (设计要点|规则)" "## 变体")
           fail=0
           while IFS= read -r f; do
             case "$f" in */TEMPLATE-SPEC.md) continue ;; esac
             for section in "${required[@]}"; do
-              if ! grep -qF "$section" "$f"; then
+              if ! grep -qE "^${section}$" "$f"; then
                 echo "::error file=$f::missing section '$section'"
                 fail=1
               fi

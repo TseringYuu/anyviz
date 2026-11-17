@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>电商运营数据中心</title>
+  <title>Retail performance</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
   <script src="../common/china.js"></script>
   <style>
@@ -295,19 +295,21 @@
       background: rgba(255, 255, 255, 0.15);
     }
   </style>
+  <link rel="stylesheet" href="../common/demo-shell.css">
+  <script src="../common/demo-shell.js"></script>
 </head>
 
-<body>
+<body data-demo="ecommerce-retail">
   <!-- 顶部标题栏 -->
   <div class="dashboard-header">
     <div class="header-left">
       <div class="header-branding">anyviz</div>
-      <div class="header-title">电商运营数据中心</div>
+      <div class="header-title">Retail performance</div>
     </div>
     <div class="header-right">
       <div class="live-indicator">
         <div class="live-dot"></div>
-        <span>LIVE</span>
+        <span>SIMULATION</span>
       </div>
       <div class="clock" id="clock">--:--:--</div>
     </div>
@@ -321,61 +323,61 @@
       <div class="kpi-row">
         <!-- KPI 1: GMV -->
         <div class="kpi-card">
-          <div class="kpi-label">当日 GMV</div>
-          <div class="kpi-value">¥8,240</div>
+          <div class="kpi-label">Daily GMV (CNY)</div>
+          <div class="kpi-value">¥82.4m</div>
           <div class="kpi-detail">
-            <span class="kpi-trend up">↑ 12.5% (同比)</span>
+            <span class="kpi-trend up">↑ 12.5% (YoY)</span>
             <div class="kpi-sparkline" id="sparkline1"></div>
           </div>
         </div>
 
-        <!-- KPI 2: 订单数 -->
+        <!-- KPI 2: Orders -->
         <div class="kpi-card">
-          <div class="kpi-label">订单数</div>
-          <div class="kpi-value">1,264</div>
+          <div class="kpi-label">Orders</div>
+          <div class="kpi-value">126,400</div>
           <div class="kpi-detail">
-            <span class="kpi-trend up">↑ 8.3% (环比)</span>
+            <span class="kpi-trend up">↑ 8.3% (vs previous period)</span>
             <div class="kpi-sparkline" id="sparkline2"></div>
           </div>
         </div>
 
-        <!-- KPI 3: 客单价 -->
+        <!-- KPI 3: Average order value -->
         <div class="kpi-card">
-          <div class="kpi-label">客单价</div>
+          <div class="kpi-label">Average order value</div>
           <div class="kpi-value">¥652</div>
           <div class="kpi-detail">
-            <span class="kpi-trend up">↑ 3.8% (环比)</span>
+            <span class="kpi-trend up">↑ 3.8% (vs previous period)</span>
             <div class="kpi-sparkline" id="sparkline3"></div>
           </div>
         </div>
 
-        <!-- KPI 4: 转化率 -->
+        <!-- KPI 4: Conversion rate -->
         <div class="kpi-card">
-          <div class="kpi-label">转化率</div>
+          <div class="kpi-label">Conversion rate</div>
           <div class="kpi-value">3.24%</div>
           <div class="kpi-detail">
-            <span class="kpi-trend down">↓ 0.2% (环比)</span>
+            <span class="kpi-trend down">↓ 0.2% (vs previous period)</span>
             <div class="kpi-sparkline" id="sparkline4"></div>
           </div>
         </div>
 
-        <!-- KPI 5: 退款率 -->
+        <!-- KPI 5: Refund rate -->
         <div class="kpi-card">
-          <div class="kpi-label">退款率</div>
+          <div class="kpi-label">Refund rate</div>
           <div class="kpi-value">1.8%</div>
           <div class="kpi-detail">
-            <span class="kpi-trend down">↓ 0.1% (环比)</span>
+            <span class="kpi-trend down">↓ 0.1% (vs previous period)</span>
             <div class="kpi-sparkline" id="sparkline5"></div>
           </div>
         </div>
       </div>
 
-      <!-- 第 2 行：销售趋势 (左) + 品类分布 (右) -->
+      <!-- 第 2 行：Revenue trend (左) + Category mix (右) -->
       <div class="chart-card sales-trend">
         <div class="chart-title">
           <div>
-            <div>销售趋势</div>
-            <div class="chart-subtitle">近 7 天 GMV 与订单量对标</div>
+            <div>Revenue trend</div>
+            <div class="chart-subtitle">GMV and orders · last 7 days</div>
           </div>
         </div>
         <div class="chart-container" id="chart-sales-trend"></div>
@@ -384,19 +386,19 @@
       <div class="chart-card category-dist">
         <div class="chart-title">
           <div>
-            <div>品类分布</div>
-            <div class="chart-subtitle">当月销售额占比</div>
+            <div>Category mix</div>
+            <div class="chart-subtitle">Share of monthly revenue</div>
           </div>
         </div>
         <div class="chart-container" id="chart-category"></div>
       </div>
 
-      <!-- 第 3 行：区域销售地图 (左) + 转化漏斗 (右) -->
+      <!-- 第 3 行：区域销售地图 (左) + Conversion funnel (右) -->
       <div class="chart-card region-map">
         <div class="chart-title">
           <div>
-            <div>区域销售热力</div>
-            <div class="chart-subtitle">各省销售额 Top 15</div>
+            <div>Regional revenue</div>
+            <div class="chart-subtitle">Revenue by province · CNY 10k · top 15</div>
           </div>
         </div>
         <div class="chart-container" id="chart-map"></div>
@@ -405,8 +407,8 @@
       <div class="chart-card conversion-funnel">
         <div class="chart-title">
           <div>
-            <div>转化漏斗</div>
-            <div class="chart-subtitle">用户路径转化分析</div>
+            <div>Conversion funnel</div>
+            <div class="chart-subtitle">From discovery to purchase</div>
           </div>
         </div>
         <div class="chart-container" id="chart-funnel"></div>
@@ -416,8 +418,8 @@
       <div class="chart-card channel-source">
         <div class="chart-title">
           <div>
-            <div>渠道来源</div>
-            <div class="chart-subtitle">订单分布</div>
+            <div>Acquisition channels</div>
+            <div class="chart-subtitle">Share of orders</div>
           </div>
         </div>
         <div class="chart-container" id="chart-channel"></div>
@@ -426,8 +428,8 @@
       <div class="chart-card top-products">
         <div class="chart-title">
           <div>
-            <div>热销 TOP 商品</div>
-            <div class="chart-subtitle">近 24 小时销售额排行</div>
+            <div>Best-selling products</div>
+            <div class="chart-subtitle">Revenue · last 24 hours</div>
           </div>
         </div>
         <div class="chart-container" id="chart-topproducts"></div>
@@ -541,7 +543,7 @@
       }
     });
 
-    // ===== 1. 销售趋势折线 + 柱 =====
+    // ===== 1. Revenue trend折线 + 柱 =====
     function initSalesTrend() {
       const chartDom = document.getElementById('chart-sales-trend');
       const myChart = echarts.init(chartDom, 'dark-dashboard');
@@ -560,14 +562,14 @@
         yAxis: [
           {
             type: 'value',
-            name: '订单数',
+            name: 'Orders (100s)',
             position: 'left',
             axisLabel: { formatter: '{value}', fontSize: 11 },
             splitLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.04)' } }
           },
           {
             type: 'value',
-            name: 'GMV (万元)',
+            name: 'GMV (CNY 10k)',
             position: 'right',
             axisLabel: { formatter: '{value}', fontSize: 11 },
             splitLine: { show: false }
@@ -575,18 +577,18 @@
         ],
         series: [
           {
-            name: '订单数',
+            name: 'Orders (100s)',
             type: 'bar',
             yAxisIndex: 0,
-            data: [1120, 1235, 1280, 1156, 1224, 1264, 1310],
+            data: [1120, 1235, 1280, 1156, 1224, 1250, 1264],
             itemStyle: { color: colors.blue, opacity: 0.7, borderRadius: [5, 5, 0, 0] },
             barWidth: '60%'
           },
           {
-            name: 'GMV',
+            name: 'GMV (CNY 10k)',
             type: 'line',
             yAxisIndex: 1,
-            data: [7200, 7860, 8125, 7950, 8080, 8240, 8350],
+            data: [7200, 7860, 8125, 7950, 8080, 8150, 8240],
             lineStyle: { width: 2.5, color: colors.coral },
             itemStyle: { color: colors.coral, borderWidth: 0 },
             areaStyle: {
@@ -606,7 +608,7 @@
       charts.salesTrend = myChart;
     }
 
-    // ===== 2. 品类分布 - 环形图 =====
+    // ===== 2. Category mix - 环形图 =====
     function initCategoryDist() {
       const chartDom = document.getElementById('chart-category');
       const myChart = echarts.init(chartDom, 'dark-dashboard');
@@ -615,17 +617,17 @@
         tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
         series: [
           {
-            name: '品类销售额',
+            name: 'Category revenue',
             type: 'pie',
             radius: ['35%', '65%'],
             center: ['50%', '50%'],
             data: [
-              { value: 3850, name: '服装箱包', itemStyle: { color: colors.blue } },
-              { value: 2640, name: '美妆个护', itemStyle: { color: colors.green } },
-              { value: 2280, name: '食品酒水', itemStyle: { color: colors.coral } },
-              { value: 1620, name: '家居日用', itemStyle: { color: colors.purple } },
-              { value: 1520, name: '电子产品', itemStyle: { color: colors.amber } },
-              { value: 980, name: '其他', itemStyle: { color: colors.teal } }
+              { value: 3850, name: 'Apparel and bags', itemStyle: { color: colors.blue } },
+              { value: 2640, name: 'Beauty', itemStyle: { color: colors.green } },
+              { value: 2280, name: 'Food and beverage', itemStyle: { color: colors.coral } },
+              { value: 1620, name: 'Home essentials', itemStyle: { color: colors.purple } },
+              { value: 1520, name: 'Electronics', itemStyle: { color: colors.amber } },
+              { value: 980, name: 'Other', itemStyle: { color: colors.teal } }
             ],
             emphasis: {
               itemStyle: {
@@ -655,28 +657,28 @@
       charts.categoryDist = myChart;
     }
 
-    // ===== 3. 区域销售热力 - 中国地图 (降级方案) =====
+    // ===== 3. Regional revenue - 中国地图 (降级方案) =====
     function initRegionMap() {
       const chartDom = document.getElementById('chart-map');
       const myChart = echarts.init(chartDom, 'dark-dashboard');
 
-      // 模拟数据：各省销售额
+      // 模拟数据：各省Revenue
       const provinceData = [
-        { name: '广东', value: 3240 },
-        { name: '浙江', value: 2860 },
-        { name: '上海', value: 2420 },
-        { name: '江苏', value: 2180 },
-        { name: '四川', value: 1950 },
-        { name: '湖北', value: 1680 },
-        { name: '山东', value: 1540 },
-        { name: '北京', value: 1420 },
-        { name: '福建', value: 1280 },
-        { name: '湖南', value: 1120 },
-        { name: '安徽', value: 980 },
-        { name: '河南', value: 890 },
-        { name: '陕西', value: 720 },
-        { name: '云南', value: 560 },
-        { name: '重庆', value: 480 }
+        { name: 'Guangdong', value: 3240 },
+        { name: 'Zhejiang', value: 2860 },
+        { name: 'Shanghai', value: 2420 },
+        { name: 'Jiangsu', value: 2180 },
+        { name: 'Sichuan', value: 1950 },
+        { name: 'Hubei', value: 1680 },
+        { name: 'Shandong', value: 1540 },
+        { name: 'Beijing', value: 1420 },
+        { name: 'Fujian', value: 1280 },
+        { name: 'Hunan', value: 1120 },
+        { name: 'Anhui', value: 980 },
+        { name: 'Henan', value: 890 },
+        { name: 'Shaanxi', value: 720 },
+        { name: 'Yunnan', value: 560 },
+        { name: 'Chongqing', value: 480 }
       ];
 
       const maxValue = Math.max(...provinceData.map(d => d.value));
@@ -715,7 +717,7 @@
           },
           series: [
             {
-              name: '销售额 (万元)',
+              name: 'Revenue (CNY 10k)',
               type: 'map',
               geoIndex: 0,
               data: provinceData
@@ -723,7 +725,7 @@
           ],
           tooltip: {
             trigger: 'item',
-            formatter: '{b}: ¥{c} 万'
+            formatter: '{b}: CNY {c} × 10k'
           }
         };
 
@@ -739,21 +741,21 @@
     // 区域销售地图 - 降级方案（气泡散点）
     function initRegionMapFallback(myChart, data) {
       const geoCoords = {
-        '广东': [113.3, 23.1],
-        '浙江': [120.2, 30.2],
-        '上海': [121.5, 31.2],
-        '江苏': [118.8, 32.0],
-        '四川': [104.1, 30.7],
-        '湖北': [114.3, 30.6],
-        '山东': [117.0, 36.7],
-        '北京': [116.5, 39.9],
-        '福建': [119.3, 26.1],
-        '湖南': [113.0, 28.2],
-        '安徽': [117.2, 31.9],
-        '河南': [113.6, 34.8],
-        '陕西': [108.9, 34.3],
-        '云南': [102.9, 25.0],
-        '重庆': [106.6, 29.6]
+        'Guangdong': [113.3, 23.1],
+        'Zhejiang': [120.2, 30.2],
+        'Shanghai': [121.5, 31.2],
+        'Jiangsu': [118.8, 32.0],
+        'Sichuan': [104.1, 30.7],
+        'Hubei': [114.3, 30.6],
+        'Shandong': [117.0, 36.7],
+        'Beijing': [116.5, 39.9],
+        'Fujian': [119.3, 26.1],
+        'Hunan': [113.0, 28.2],
+        'Anhui': [117.2, 31.9],
+        'Henan': [113.6, 34.8],
+        'Shaanxi': [108.9, 34.3],
+        'Yunnan': [102.9, 25.0],
+        'Chongqing': [106.6, 29.6]
       };
 
       const scatterData = data.map(item => [
@@ -782,7 +784,7 @@
         },
         series: [
           {
-            name: '销售额',
+            name: 'Revenue',
             type: 'scatter',
             coordinateSystem: 'geo',
             data: scatterData,
@@ -815,7 +817,7 @@
           trigger: 'item',
           formatter: function (params) {
             if (params.componentSubType === 'scatter') {
-              return params.value[3] + ': ¥' + params.value[2] + ' 万';
+              return params.value[3] + ': CNY ' + params.value[2] + ' × 10k';
             }
             return '';
           }
@@ -825,7 +827,7 @@
       myChart.setOption(option);
     }
 
-    // ===== 4. 转化漏斗 =====
+    // ===== 4. Conversion funnel =====
     function initConversionFunnel() {
       const chartDom = document.getElementById('chart-funnel');
       const myChart = echarts.init(chartDom, 'dark-dashboard');
@@ -852,11 +854,11 @@
             sort: 'descending',
             gap: 2,
             data: [
-              { value: 100, name: '曝光', itemStyle: { color: colors.blue } },
-              { value: 72, name: '点击', itemStyle: { color: colors.green } },
-              { value: 48, name: '加购', itemStyle: { color: colors.coral } },
-              { value: 32.4, name: '下单', itemStyle: { color: colors.purple } },
-              { value: 31.48, name: '支付', itemStyle: { color: colors.amber } }
+              { value: 100, name: 'Impressions', itemStyle: { color: colors.blue } },
+              { value: 72, name: 'Clicks', itemStyle: { color: colors.green } },
+              { value: 48, name: 'Add to cart', itemStyle: { color: colors.coral } },
+              { value: 32.4, name: 'Order placed', itemStyle: { color: colors.purple } },
+              { value: 31.48, name: 'Payment', itemStyle: { color: colors.amber } }
             ],
             emphasis: {
               label: { fontSize: 12 },
@@ -876,7 +878,7 @@
       charts.conversionFunnel = myChart;
     }
 
-    // ===== 5. 渠道来源 - 横向堆叠条 =====
+    // ===== 5. Acquisition channels - 横向堆叠条 =====
     function initChannelSource() {
       const chartDom = document.getElementById('chart-channel');
       const myChart = echarts.init(chartDom, 'dark-dashboard');
@@ -891,7 +893,7 @@
         },
         yAxis: {
           type: 'category',
-          data: ['渠道占比'],
+          data: ['Channel share'],
           axisLabel: { fontSize: 11 }
         },
         series: [
@@ -904,7 +906,7 @@
             label: { show: true, position: 'inside', fontSize: 10, color: colors.textPrimary, formatter: '{c}%' }
           },
           {
-            name: '小程序',
+            name: 'Mini app',
             type: 'bar',
             stack: 'total',
             data: [28],
@@ -941,12 +943,12 @@
       const myChart = echarts.init(chartDom, 'dark-dashboard');
 
       const products = [
-        { name: '夏季新款T恤', value: 3420 },
-        { name: '防晒霜 SPF50', value: 2860 },
-        { name: '运动休闲鞋', value: 2540 },
-        { name: '无线蓝牙耳机', value: 2180 },
-        { name: '牛仔裤男款', value: 1950 },
-        { name: '护肤面膜套装', value: 1680 }
+        { name: 'Summer collectionT恤', value: 3420 },
+        { name: 'Sunscreen SPF50', value: 2860 },
+        { name: 'Sneakers', value: 2540 },
+        { name: 'Wireless earbuds', value: 2180 },
+        { name: 'Denim jeans', value: 1950 },
+        { name: 'Skincare set', value: 1680 }
       ];
 
       const option = {
@@ -964,7 +966,7 @@
         },
         series: [
           {
-            name: '销售额',
+            name: 'Revenue',
             type: 'bar',
             data: products.map(p => p.value),
             itemStyle: {

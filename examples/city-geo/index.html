@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>城市大数据可视化中心 | anyviz</title>
+  <title>City intelligence | anyviz</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
   <script src="../common/china.js"></script>
   <style>
@@ -321,7 +321,7 @@
       height: 280px;
     }
 
-    /* ========== 城市运行态势摘要 ========== */
+    /* ========== Operations brief ========== */
     .ops-summary {
       grid-column: 1 / -1;
       grid-row: 4;
@@ -433,20 +433,22 @@
       background: rgba(255, 255, 255, 0.2);
     }
   </style>
+  <link rel="stylesheet" href="../common/demo-shell.css">
+  <script src="../common/demo-shell.js"></script>
 </head>
-<body>
+<body data-demo="city-geo">
   <div class="container">
     <!-- 顶部标题栏 -->
     <div class="header">
       <div class="header-left">
         <div class="logo-text">anyviz</div>
-        <div class="title">城市大数据可视化中心</div>
+        <div class="title">City intelligence</div>
       </div>
       <div class="header-right">
         <div class="clock" id="clockDisplay">2026-06-13 14:30:45</div>
         <div class="live-indicator">
           <div class="live-dot"></div>
-          <span>LIVE</span>
+          <span>SIMULATION</span>
         </div>
       </div>
     </div>
@@ -456,96 +458,96 @@
       <!-- KPI 行 -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">常住人口</div>
+          <div class="kpi-label">Residents</div>
           <div class="kpi-value">8,524</div>
-          <div class="kpi-unit">万人</div>
+          <div class="kpi-unit">10k people</div>
           <div class="kpi-trend">↑ 2.3% YoY</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">GDP(累计)</div>
+          <div class="kpi-label">Cumulative GDP</div>
           <div class="kpi-value">12.8</div>
-          <div class="kpi-unit">万亿元</div>
+          <div class="kpi-unit">CNY tn</div>
           <div class="kpi-trend">↑ 5.1% YoY</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">客流总量</div>
+          <div class="kpi-label">Total visits</div>
           <div class="kpi-value">2,847</div>
-          <div class="kpi-unit">万人次</div>
+          <div class="kpi-unit">10k visits</div>
           <div class="kpi-trend">↑ 8.7% YoY</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">覆盖城市数</div>
+          <div class="kpi-label">Cities covered</div>
           <div class="kpi-value">284</div>
-          <div class="kpi-unit">个</div>
+          <div class="kpi-unit">cities</div>
           <div class="kpi-trend">↑ 12 new</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">实时活跃</div>
+          <div class="kpi-label">Active residents</div>
           <div class="kpi-value">384</div>
-          <div class="kpi-unit">万人</div>
+          <div class="kpi-unit">10k people</div>
           <div class="kpi-trend">↑ 3.2% now</div>
         </div>
       </div>
 
       <!-- 中央地图 + 右侧栏 -->
       <div class="map-section">
-        <div class="map-title">中国主要城市分布地图</div>
+        <div class="map-title">Major cities · China</div>
         <div id="mapChart"></div>
       </div>
 
       <div class="right-column">
         <!-- 城市排名 TOP 10 -->
         <div class="ranking-card">
-          <div class="card-header">城市排名 TOP 10（客流量）</div>
+          <div class="card-header">Top 10 cities by visits</div>
           <div class="ranking-list">
             <div class="ranking-item">
               <div class="ranking-rank">1</div>
-              <div class="ranking-name">上海</div>
+              <div class="ranking-name">Shanghai</div>
               <div class="ranking-value">584.2</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">2</div>
-              <div class="ranking-name">北京</div>
+              <div class="ranking-name">Beijing</div>
               <div class="ranking-value">542.8</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">3</div>
-              <div class="ranking-name">广州</div>
+              <div class="ranking-name">Guangzhou</div>
               <div class="ranking-value">438.1</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">4</div>
-              <div class="ranking-name">深圳</div>
+              <div class="ranking-name">Shenzhen</div>
               <div class="ranking-value">416.5</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">5</div>
-              <div class="ranking-name">杭州</div>
+              <div class="ranking-name">Hangzhou</div>
               <div class="ranking-value">328.7</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">6</div>
-              <div class="ranking-name">成都</div>
+              <div class="ranking-name">Chengdu</div>
               <div class="ranking-value">298.3</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">7</div>
-              <div class="ranking-name">西安</div>
+              <div class="ranking-name">Xian</div>
               <div class="ranking-value">256.9</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">8</div>
-              <div class="ranking-name">南京</div>
+              <div class="ranking-name">Nanjing</div>
               <div class="ranking-value">218.4</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">9</div>
-              <div class="ranking-name">武汉</div>
+              <div class="ranking-name">Wuhan</div>
               <div class="ranking-value">197.6</div>
             </div>
             <div class="ranking-item">
               <div class="ranking-rank">10</div>
-              <div class="ranking-name">重庆</div>
+              <div class="ranking-name">Chongqing</div>
               <div class="ranking-value">184.2</div>
             </div>
           </div>
@@ -553,55 +555,55 @@
 
         <!-- 区域占比（环形图） -->
         <div class="ranking-card">
-          <div class="card-header">区域分布占比</div>
+          <div class="card-header">Regional share</div>
           <div id="pieChart"></div>
         </div>
       </div>
 
       <!-- 下方三卡布局 -->
       <div class="bottom-row">
-        <!-- 客流趋势 -->
+        <!-- Visitor trend -->
         <div class="chart-card">
-          <div class="card-header">客流趋势（近 30 天）</div>
+          <div class="card-header">Visitor trend · last 30 days</div>
           <div id="trendChart"></div>
         </div>
 
-        <!-- 人口年龄结构 -->
+        <!-- Population by age -->
         <div class="chart-card">
-          <div class="card-header">人口年龄结构</div>
+          <div class="card-header">Population by age</div>
           <div id="ageChart"></div>
         </div>
 
         <!-- 24小时热力 -->
         <div class="chart-card">
-          <div class="card-header">24 小时客流热力</div>
+          <div class="card-header">Hourly visitor intensity</div>
           <div id="heatmapChart"></div>
         </div>
       </div>
 
-      <!-- 城市运行态势摘要 -->
+      <!-- Operations brief -->
       <div class="ops-summary">
-        <div class="summary-title">城市运行态势摘要</div>
+        <div class="summary-title">Operations brief</div>
         <div class="summary-grid">
           <div class="summary-card">
-            <div class="summary-label">通勤峰值窗口</div>
+            <div class="summary-label">Peak commute</div>
             <div class="summary-value">18:00</div>
-            <div class="summary-note">晚高峰预计持续 92 分钟</div>
+            <div class="summary-note">Evening peak duration: 92 minutes</div>
           </div>
           <div class="summary-card">
-            <div class="summary-label">跨城流动强度</div>
+            <div class="summary-label">Intercity mobility index</div>
             <div class="summary-value">78.4</div>
-            <div class="summary-note">长三角、珠三角走廊活跃</div>
+            <div class="summary-note">Yangtze and Pearl River corridors</div>
           </div>
           <div class="summary-card">
-            <div class="summary-label">公共服务响应</div>
+            <div class="summary-label">Service response rate</div>
             <div class="summary-value">96.2%</div>
-            <div class="summary-note">核心城区资源供给稳定</div>
+            <div class="summary-note">Stable supply across central districts</div>
           </div>
           <div class="summary-card">
-            <div class="summary-label">重点商圈热度</div>
+            <div class="summary-label">Retail district activity</div>
             <div class="summary-value">+12.7%</div>
-            <div class="summary-note">较昨日同期持续升温</div>
+            <div class="summary-note">Compared with the same period yesterday</div>
           </div>
         </div>
       </div>
@@ -624,21 +626,21 @@
 
     // ========== 主要城市坐标 ==========
     const cityCoordinates = {
-      '北京': [116.4074, 39.9042],
-      '上海': [121.4737, 31.2304],
-      '广州': [113.2644, 23.1291],
-      '深圳': [114.0579, 22.5431],
-      '成都': [104.0659, 30.5728],
-      '杭州': [120.1551, 30.2875],
-      '西安': [108.9398, 34.3416],
-      '武汉': [114.3055, 30.5928],
-      '南京': [118.7969, 32.0603],
-      '重庆': [106.5516, 29.5630],
-      '苏州': [120.5954, 31.2989],
-      '长沙': [112.9388, 28.2282],
-      '郑州': [113.6254, 34.7466],
-      '青岛': [120.3826, 36.0671],
-      '宁波': [121.5440, 29.8683],
+      'Beijing': [116.4074, 39.9042],
+      'Shanghai': [121.4737, 31.2304],
+      'Guangzhou': [113.2644, 23.1291],
+      'Shenzhen': [114.0579, 22.5431],
+      'Chengdu': [104.0659, 30.5728],
+      'Hangzhou': [120.1551, 30.2875],
+      'Xian': [108.9398, 34.3416],
+      'Wuhan': [114.3055, 30.5928],
+      'Nanjing': [118.7969, 32.0603],
+      'Chongqing': [106.5516, 29.5630],
+      'Suzhou': [120.5954, 31.2989],
+      'Changsha': [112.9388, 28.2282],
+      'Zhengzhou': [113.6254, 34.7466],
+      'Qingdao': [120.3826, 36.0671],
+      'Ningbo': [121.5440, 29.8683],
     };
 
     // ========== 地图初始化 ==========
@@ -650,21 +652,21 @@
       if (hasChinaMap) {
         // 生成省份数据（模拟）
         const provinceData = [
-          {name: '广东', value: 1200},
-          {name: '浙江', value: 950},
-          {name: '上海', value: 850},
-          {name: '江苏', value: 800},
-          {name: '北京', value: 750},
-          {name: '四川', value: 620},
-          {name: '山东', value: 580},
-          {name: '福建', value: 520},
-          {name: '湖北', value: 450},
-          {name: '湖南', value: 380},
-          {name: '陕西', value: 320},
-          {name: '辽宁', value: 280},
-          {name: '江西', value: 240},
-          {name: '安徽', value: 220},
-          {name: '河南', value: 210}
+          {name: 'Guangdong', value: 1200},
+          {name: 'Zhejiang', value: 950},
+          {name: 'Shanghai', value: 850},
+          {name: 'Jiangsu', value: 800},
+          {name: 'Beijing', value: 750},
+          {name: 'Sichuan', value: 620},
+          {name: 'Shandong', value: 580},
+          {name: 'Fujian', value: 520},
+          {name: 'Hubei', value: 450},
+          {name: 'Hunan', value: 380},
+          {name: 'Shaanxi', value: 320},
+          {name: 'Liaoning', value: 280},
+          {name: 'Jiangxi', value: 240},
+          {name: 'Anhui', value: 220},
+          {name: 'Henan', value: 210}
         ];
 
         // 飞线数据（中心城市分发）
@@ -727,7 +729,7 @@
           series: [
             // Choropleth（省份着色）
             {
-              name: '客流量',
+              name: 'Visits',
               type: 'map',
               geoIndex: 0,
               data: provinceData,
@@ -835,7 +837,7 @@
         },
         series: [
           {
-            name: '城市客流',
+            name: '城市Visits',
             type: 'scatter',
             data: scatterData,
             symbolSize: function(val) {
@@ -870,11 +872,11 @@
       const pieChart = echarts.init(document.getElementById('pieChart'));
 
       const data = [
-        {value: 2840, name: '华东'},
-        {value: 1920, name: '华南'},
-        {value: 1560, name: '华北'},
-        {value: 1240, name: '西部'},
-        {value: 840, name: '东北'}
+        {value: 2840, name: 'East'},
+        {value: 1920, name: 'South'},
+        {value: 1560, name: 'North'},
+        {value: 1240, name: 'West'},
+        {value: 840, name: 'Northeast'}
       ];
 
       const colors = ['#4269d0', '#3ca951', '#ff725c', '#a463f2', '#efb118'];
@@ -929,11 +931,11 @@
       });
     }
 
-    // ========== 客流趋势（折线 + 面积） ==========
+    // ========== Visitor trend（折线 + 面积） ==========
     function initTrendChart() {
       const trendChart = echarts.init(document.getElementById('trendChart'));
 
-      const days = Array.from({length: 30}, (_, i) => `${i+1}日`);
+      const days = Array.from({length: 30}, (_, i) => `Day ${i+1}`);
       const data1 = Array.from({length: 30}, () => Math.floor(Math.random() * 300 + 1500));
 
       const option = {
@@ -967,7 +969,7 @@
         },
         series: [
           {
-            name: '客流量',
+            name: 'Visits',
             type: 'line',
             data: data1,
             smooth: true,
@@ -998,7 +1000,7 @@
       });
     }
 
-    // ========== 人口年龄结构（对称条形） ==========
+    // ========== Population by age（对称条形） ==========
     function initAgeChart() {
       const ageChart = echarts.init(document.getElementById('ageChart'));
 
@@ -1035,14 +1037,14 @@
         },
         series: [
           {
-            name: '男性',
+            name: 'Male',
             type: 'bar',
             data: male,
             itemStyle: {color: '#4269d0'},
             label: {show: false}
           },
           {
-            name: '女性',
+            name: 'Female',
             type: 'bar',
             data: female.map(v => -v),
             itemStyle: {color: '#6cc5b0'},
@@ -1062,7 +1064,7 @@
       const heatmapChart = echarts.init(document.getElementById('heatmapChart'));
 
       const hours = Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0') + ':00');
-      const days = ['一', '二', '三', '四', '五', '六', '日'];
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
       const heatData = [];
       for (let i = 0; i < 7; i++) {
@@ -1080,7 +1082,7 @@
           textStyle: {color: '#F8FAFC', fontSize: 11},
           formatter: (params) => {
             if (params.componentSubType === 'heatmap') {
-              return `${params.value[0]}:00<br/>周${days[params.value[1]]}<br/>客流: ${params.value[2]}`;
+              return `${params.value[0]}:00<br/>${days[params.value[1]]}<br/>Visits: ${params.value[2]}`;
             }
             return '';
           }
@@ -1102,7 +1104,7 @@
         },
         yAxis: {
           type: 'category',
-          data: days.map(d => '周' + d),
+          data: days,
           axisLabel: {color: '#9696a0', fontSize: 9},
           axisLine: {lineStyle: {color: 'rgba(255,255,255,0.1)'}},
           splitLine: {show: false}
@@ -1128,7 +1130,7 @@
         },
         series: [
           {
-            name: '客流热度',
+            name: 'Visitor intensity',
             type: 'heatmap',
             data: heatData,
             label: {show: false},

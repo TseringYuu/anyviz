@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="88" viewBox="0 0 104 88" role="img" aria-labelledby="brand-title brand-desc">
+<title id="brand-title">AnyViz</title>
+<desc id="brand-desc">An A/V monogram drawn as connected data points, paired with the AnyViz wordmark.</desc>
+<style>.ink{fill:#F0F4FC}.blue{stroke:#88A5FF}.teal{stroke:#64D6C4}.blue-fill{fill:#88A5FF}.teal-fill{fill:#64D6C4}</style>
+<defs><mask id="node-space"><rect width="104" height="88" fill="white"/><g fill="black"><circle cx="10" cy="68" r="8"/><circle cx="37" cy="18" r="8"/><circle cx="67" cy="68" r="8"/></g></mask></defs>
+<g mask="url(#node-space)" fill="none" stroke-width="8" stroke-linejoin="round">
+<path d="M25 48H53" class="teal"/>
+<path d="M10 68L37 18L67 68" class="blue"/>
+<path d="M67 68L94 18" class="teal"/>
+</g>
+<g class="blue-fill"><circle cx="10" cy="68" r="5"/><circle cx="37" cy="18" r="5"/></g>
+<circle class="teal-fill" cx="67" cy="68" r="5"/>
+</svg>

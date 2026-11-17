@@ -42,15 +42,21 @@
     "docs/installer-security.md",
     "examples/",
     "assets/banner.svg",
-    "assets/wordmark.svg"
+    "assets/wordmark.svg",
+    "assets/wordmark-light.svg",
+    "assets/wordmark-dark.svg",
+    "assets/icon.svg",
+    "assets/icon-light.svg",
+    "assets/icon-dark.svg"
   ],
   "scripts": {
-    "validate": "npm run validate:theme && npm run validate:exports && npm run validate:installer && npm run validate:showcases",
+    "validate": "npm run validate:theme && npm run validate:exports && npm run validate:installer && npm run validate:showcases && npm run validate:brand",
     "validate:theme": "python3 scripts/theme_validator.py -c examples/test_config_valid.json",
     "validate:exports": "node scripts/check_package_exports.js",
     "validate:installer": "sh -n install.sh && python3 scripts/check_installer_pins.py && sh scripts/test_install.sh",
     "prepublishOnly": "npm run validate",
-    "validate:showcases": "python3 scripts/check_showcases.py"
+    "validate:showcases": "python3 scripts/check_showcases.py",
+    "validate:brand": "python3 scripts/check_brand.py"
   },
   "repository": {
     "type": "git",

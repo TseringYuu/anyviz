@@ -1,4 +1,10 @@
-<p align="center"><img src="assets/wordmark.svg" alt="AnyViz" width="240"></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/wordmark-light.svg">
+    <img src="assets/wordmark.svg" alt="AnyViz" width="296" height="88">
+  </picture>
+</p>
 
 <h1 align="center">Tell AI the goal. Let it work out the chart.</h1>
 

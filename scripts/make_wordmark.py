@@ -10,6 +10,13 @@ flush against the text.
 Outputs the <g> fragment for the wordmark; the caller embeds it in wordmark.svg
 and banner.svg so both share identical geometry.
 """
+# The old build() API remains for legacy banner/GIF tooling. Direct invocation
+# regenerates the current identity without requiring FreeType or local fonts.
+if __name__ == "__main__":
+    from build_brand import write_assets
+    write_assets()
+    raise SystemExit(0)
+
 import freetype
 
 FONT = "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf"  # metric-compatible with Arial

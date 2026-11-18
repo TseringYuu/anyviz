@@ -61,7 +61,17 @@ if command -v sha256sum >/dev/null 2>&1; then
 else
   DIGEST="$(shasum -a 256 "$TEST_ROOT/fixture.tar.gz" | awk '{print $1}')"
 fi
-sed "s/^ARCHIVE_SHA256=.*/ARCHIVE_SHA256=\"$DIGEST\"/" "$PROJECT_ROOT/install.sh" > "$TEST_ROOT/install.sh"
+EXPECTED_PAYLOAD="$TEST_ROOT/payload/anyviz-fixture"
+if [ "${1:-}" = "--download-pinned" ]; then
+  SOURCE_COMMIT="$(sed -n 's/^SOURCE_COMMIT="\([0-9a-f]*\)"$/\1/p' "$PROJECT_ROOT/install.sh")"
+  curl -fsSL --proto '=https' --proto-redir '=https' --retry 3 \
+    "https://codeload.github.com/TseringYuu/anyviz/tar.gz/$SOURCE_COMMIT" -o "$TEST_ROOT/fixture.tar.gz"
+  # Keep production trust anchors unchanged for the real archive test.
+  cp "$PROJECT_ROOT/install.sh" "$TEST_ROOT/install.sh"
+  EXPECTED_PAYLOAD="$PROJECT_ROOT"
+else
+  sed "s/^ARCHIVE_SHA256=.*/ARCHIVE_SHA256=\"$DIGEST\"/" "$PROJECT_ROOT/install.sh" > "$TEST_ROOT/install.sh"
+fi
 cat > "$TEST_ROOT/bin/curl" <<'MOCK'
 #!/bin/sh
 set -eu
@@ -85,7 +95,10 @@ NETWORK_HOME="$TEST_ROOT/network-home"
 PATH="$TEST_ROOT/bin:$PATH" TEST_ARCHIVE="$TEST_ROOT/fixture.tar.gz" \
   ANYVIZ_HOME="$NETWORK_HOME" ANYVIZ_SOURCE_DIR= ANYVIZ_DETECT_COMMANDS=0 \
   sh "$TEST_ROOT/install.sh" >/dev/null
-cmp "$TEST_ROOT/payload/anyviz-fixture/SKILL.md" "$NETWORK_HOME/.agents/skills/anyviz/SKILL.md"
+cmp "$EXPECTED_PAYLOAD/SKILL.md" "$NETWORK_HOME/.agents/skills/anyviz/SKILL.md"
+if [ "${1:-}" = "--download-pinned" ]; then
+  cmp "$PROJECT_ROOT/assets/wordmark.svg" "$NETWORK_HOME/.agents/skills/anyviz/assets/wordmark.svg"
+fi
 printf 'preserve on failure\n' > "$NETWORK_HOME/.agents/skills/anyviz/sentinel"
 printf 'tampered archive\n' > "$TEST_ROOT/tampered.tar.gz"
 if PATH="$TEST_ROOT/bin:$PATH" TEST_ARCHIVE="$TEST_ROOT/tampered.tar.gz" \
@@ -95,6 +108,9 @@ if PATH="$TEST_ROOT/bin:$PATH" TEST_ARCHIVE="$TEST_ROOT/tampered.tar.gz" \
 fi
 grep -q 'archive SHA-256 mismatch' "$TEST_ROOT/failure.log"
 grep -q 'preserve on failure' "$NETWORK_HOME/.agents/skills/anyviz/sentinel"
-cmp "$TEST_ROOT/payload/anyviz-fixture/SKILL.md" "$NETWORK_HOME/.agents/skills/anyviz/SKILL.md"
+cmp "$EXPECTED_PAYLOAD/SKILL.md" "$NETWORK_HOME/.agents/skills/anyviz/SKILL.md"
+if [ "${1:-}" = "--download-pinned" ]; then
+  cmp "$PROJECT_ROOT/assets/wordmark.svg" "$NETWORK_HOME/.agents/skills/anyviz/assets/wordmark.svg"
+fi
 [ -z "$(find "$NETWORK_HOME" -name '.anyviz-install-*' -o -name '.anyviz-backup-*')" ]
 printf '%s\n' 'verified download accepted; tampered download rejected without modifying installation'

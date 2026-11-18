@@ -3,8 +3,8 @@ Set-StrictMode -Version 2.0
 
 $Repository = "TseringYuu/anyviz"
 # Reviewed payload; update both pins using docs/installer-security.md.
-$SourceCommit = "625ac015042d3d1987328b3e08cf629bbb377f61"
-$ArchiveSha256 = "9b04472bd9061505b5f937055ed5bf769905e6bb09333fc813a3631d94ed8b20"
+$SourceCommit = "3fda18871fe13123bc63715002595d10f7e1d60a"
+$ArchiveSha256 = "569e3afd6047151af8e01a0f1d4e5bd3f126fa6a833f7cb9b36549e8061bece9"
 $ArchiveUrl = "https://codeload.github.com/$Repository/zip/$SourceCommit"
 $AnyvizUserHome = if ($env:ANYVIZ_HOME) { $env:ANYVIZ_HOME } else { $env:USERPROFILE }
 $SourceRoot = $env:ANYVIZ_SOURCE_DIR

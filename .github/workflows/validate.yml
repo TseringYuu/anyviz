@@ -25,6 +25,9 @@ jobs:
       - name: Package validation — theme and exports
         run: npm run validate
 
+      - name: Pinned tar archive and selected wordmark
+        run: sh scripts/test_install.sh --download-pinned
+
       - name: Theme validator — invalid config should fail
         run: |
           if python3 scripts/theme_validator.py -c examples/test_config_invalid.json; then
@@ -76,3 +79,6 @@ jobs:
       - name: Verified archive and tamper rejection
         shell: pwsh
         run: ./scripts/test_install.ps1
+      - name: Pinned ZIP archive and selected wordmark
+        shell: pwsh
+        run: ./scripts/test_install.ps1 -DownloadPinnedPayload

@@ -36,7 +36,12 @@ this option does not establish trust in an arbitrary downloaded directory.
 5. Run `npm run validate` and the PowerShell test on Windows:
    `pwsh -File scripts/test_install.ps1`. Exercise actual downloaded archives
    in a temporary `ANYVIZ_HOME` with `ANYVIZ_DETECT_COMMANDS=0`. Do not use a real
-   agent home for testing. Commit the installer pin changes separately.
+   agent home for testing. The online regression commands are
+   `sh scripts/test_install.sh --download-pinned` and
+   `pwsh -File scripts/test_install.ps1 -DownloadPinnedPayload`. They keep the
+   production checksums intact, verify the installed wordmark against the
+   reviewed checkout, and test tamper rejection with the existing install intact.
+   Commit the installer pin changes separately.
 
 The shell and Windows tests cover successful verified installation, tampered
 archive rejection, and preserving an existing installation on failure. The

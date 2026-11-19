@@ -6,162 +6,82 @@
   </picture>
 </p>
 
-<h1 align="center">你说需求，AI 来选图、绘图。</h1>
+<h1 align="center">给编程智能体用的数据可视化技能</h1>
 
-<p align="center">让 AI 根据数据与使用场景，自行判断并绘制合适的可视化图表。<br>从一张图到报告、看板，不必再由你逐项指挥设计细节。</p>
+<p align="center"><a href="#安装技能">安装</a> · <a href="https://anyviz.aiware.store/">官网</a> · <a href="https://anyviz.aiware.store/llms.txt">llms.txt</a> · <a href="README.md" lang="en">English</a></p>
 
-<p align="center"><a href="README.md">English</a> · <b>简体中文</b> · <a href="https://anyviz.aiware.store">官网</a> · <a href="examples/">示例</a></p>
-<p align="center"><a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-4269d0?style=flat-square" alt="MIT 许可"></a> <a href="https://www.npmjs.com/package/anyviz"><img src="https://img.shields.io/npm/v/anyviz?style=flat-square&color=4269d0" alt="npm 已发布版本"></a> <a href="SKILL.md"><img src="https://img.shields.io/badge/Agent_Skill-SKILL.md-3ca951?style=flat-square" alt="Agent Skill"></a></p>
+把数据、你想弄清的问题，以及答案是给谁看的，告诉智能体就行。要不要画图，让它根据场景判断。需要画时，**AnyViz** 指导它选择图表，用项目里合适的工具画出来，并说明选择的理由。你不必先选图表类型，也不必写配置。
 
-## 说清目标，不必先成为图表专家
+## 一份 CSV，两种回答
 
-**告诉 AI 你想看懂什么、表达什么，而不是先替它选好图表。** AnyViz 引导 AI 助手理解数据和使用场景，判断合适的图表与绘制方式，再通过可用工具生成并检查结果。
+以示例里 [2025 财年十二个月的销售数据](examples/report-studio/data/monthly.csv) 为例。数据均为模拟。
 
-报告、交互看板、论文配图与日常分析，需要不同的判断。AnyViz 的核心期望，是让 AI 承担选图、样式、布局和一致性等决策，让你把注意力放在问题和结果上。你只需补充已知的约束，不必逐项指定颜色、标签或图表类型。
+> 去年全年的营收是多少？
 
-## 看看不同场景中的成果
+**3,003,000 美元。** 如果只是核对数字，回答到这里就够了。
 
-可以从面向文档的 **[Report Studio](examples/report-studio/)** 开始，也可以探索下面的行业看板。这些是同一套工作流在不同场景中的应用，并不意味着 AnyViz 只适用于报告或看板。
+> 我在写年度回顾。下半年表现更好，是某个月突然跳升，还是全年一直在增长？
 
-[![Report Studio：包含统一设计图表的完整报告页面](examples/report-studio/preview.png)](examples/report-studio/report.pdf)
+**营收逐月上升**，从一月的 18.4 万美元增至十二月的 33.6 万美元。下半年营收比上半年高 36.6%。只看两个半年度合计，看不出增长发生在什么时候；画出月度走势才能回答这个问题。
 
-[查看实际 PDF](examples/report-studio/report.pdf) · [下载 Word 版本](examples/report-studio/report.docx) · [查看源码与复现步骤](examples/report-studio/)
+<a href="https://anyviz.aiware.store/examples/report-studio/"><img src="examples/report-studio/charts/revenue.svg" width="660" alt="月营收从一月的 18.4 万美元逐月升至十二月的 33.6 万美元。纵轴单位为千美元，从 150 而非零开始。"></a>
 
-Report Studio 使用合成数据，包含六张图和三页报告。Word 的正文、题注与页面布局可编辑，图表是高清图片，**不是原生可编辑的 Word 图表**；修改数据后需重新生成图表。
+换个问题：“哪个渠道的营收最高？”月度总额回答不了。改看[渠道明细](examples/report-studio/data/channels.csv)，用[从零起算的排名条形图](examples/report-studio/charts/channels.svg)就能看出，直营渠道以 42.0% 位居第一。
 
-| 你想制作什么 | 从这里开始 |
-| --- | --- |
-| 报告或研究文档中的图表 | [Report Studio](examples/report-studio/) · [学术出版指南](guides/academic-publication.md) |
-| 零售业绩概览 | [电商运营看板](examples/ecommerce-retail/) |
-| 金融监控布局 | [交易看板](examples/finance-trading/) |
-| 能源与设备监控 | [能源看板](examples/iot-energy/) |
-| 地理与城市分析 | [城市看板](examples/city-geo/) |
+[阅读完整三页报告](https://anyviz.aiware.store/examples/report-studio/) · [PDF](examples/report-studio/report.pdf) · [Word](examples/report-studio/report.docx) · [数据、任务说明与源码](examples/report-studio/)
 
-以下看板预览使用模拟数据，不是实时服务或客户部署案例。
+这是可复现的人工参考实现，不是一次 AI 运行的实录。换成给运营团队看的[零售看板](https://anyviz.aiware.store/examples/ecommerce-retail/)，重点就不同了：销售趋势、转化和商品排行放在同一张交互屏上，便于对照。看板使用另一份模拟数据，[源码也在仓库里](examples/ecommerce-retail/)。
 
-![遵循 AnyViz 指导设计的四个行业看板](assets/showcase.gif)
+## 安装技能
 
-## AnyViz 带来了什么？
-
-你的 AI 助手已经会写绘图代码。AnyViz 提供的是可复用的判断过程，而不是让你承担全部设计决策：
-
-- **理解任务。** 结合数据、受众、问题和使用场景，判断图表需要传达什么。
-- **自行选图与绘制。** 选择合适的图表，结合项目可用的技术栈生成结果，而不是随意套用模板。
-- **适应不同场景。** 根据文档配图、分析或看板的需要，调整排版、配色、交互和布局。
-- **处理细节。** 保持单位、实体颜色与格式一致，检查标签、图例、对比度和最终效果；发现缺失数据或影响结论的不确定性时明确指出，而不是编造答案。
-
-AnyViz 由规范、模板与工作流指令组成，**实际判断和绘制由 AI 助手及其工具完成**；它不是独立渲染器，也不是自动 PDF/Word 转换器。效果取决于模型与可用工具，发布前仍需确认结果和重要数据。示例用于演示，不是受控性能测试，也不保证结果始终正确。
-
-## 开始使用
-
-### 1. 将 skill 加入你的 AI 助手
-
-macOS 或 Linux：先下载安装脚本，阅读后再执行。
+先获取 `main` 分支：
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.sh -o /tmp/anyviz-install.sh
-less /tmp/anyviz-install.sh
-sh /tmp/anyviz-install.sh
-```
-
-Windows PowerShell：
-
-```powershell
-Invoke-WebRequest https://raw.githubusercontent.com/TseringYuu/anyviz/main/install.ps1 -OutFile anyviz-install.ps1
-Get-Content ./anyviz-install.ps1
-./anyviz-install.ps1
-```
-
-安装器检测受支持的 Agent skill 目录并安装共享副本。如果目标位置已有非安装器管理的同名 skill，会先备份再替换。具体行为见 [install.sh](install.sh) 和 [install.ps1](install.ps1)。下载内容固定到已审查的提交，解压前校验 SHA-256；保存的安装器始终安装同一快照，更新时请重新阅读新版安装器。详见[完整性与更新策略](docs/installer-security.md)。
-
-也可以手动克隆仓库，按照所用工具加载自定义 skill 的方式，让助手读取 [`SKILL.md`](SKILL.md)。
-
-### 2. 告诉 AI 你想完成什么
-
-加载 skill 后，提供数据和目标即可开始。例如：
-
-```text
-用 AnyViz 帮我看懂这份销售数据发生了哪些变化，
-自行选择并绘制能清楚说明问题的图表。
-```
-
-```text
-用 AnyViz 把这些研究结果画成适合放进论文的图，
-选择清晰的表达方式，适配 A4 页面。
-```
-
-```text
-用 AnyViz 根据这些数据，在现有项目里做一个运营看板，
-让团队看清业务表现和需要关注的问题。
-```
-
-不必先指定图表类型或设计参数。你可以补充真正存在的约束，例如受众、输出格式或品牌色，其余交给 AI 根据 AnyViz 的指导判断。缺少关键信息时，助手可能需要询问，而不应盲目猜测。
-
-### 3. 看结果，而不是盯住每个参数
-
-确认图表是否回答了你的问题，重要数值是否与来源一致。需要调整时，直接说“让地区差异更明显”或“这张图要放进报告里”。[定制指南](guides/customization-guide.md) 帮助 AI 将反馈转换为设计调整，不必由你逐项修改图表配置。
-
-## skill 内部有什么？
-
-**分析 → 美学 → 适配 → 一致性 → 无障碍**
-
-| 资源 | 内容 |
-| --- | --- |
-| [34 种模板](templates/) | 20 种统计图、3 种地图、8 种关系与层次图、3 种三维图 |
-| [4 套主题](aesthetics/themes/) | Modern、analytics、dashboard 和 academic |
-| [7 个技术栈适配指南](adapters/) | D3、ECharts、Mapbox、Three.js、Plotly、Matplotlib 和 ggplot2 |
-| [图表选择](guides/chart-selection.md) | 根据数据形态与分析意图选图 |
-| [学术出版规则](guides/academic-publication.md) | 图幅尺寸、题注、来源、灰度辨识与导出指导 |
-| [图例布局](guides/legend-layout.md) | 安全间距、碰撞检查与视觉居中 |
-| [一致性规则](guides/consistency-rules.md) | 统一颜色、格式、排版与间距 |
-| [无障碍指南](guides/accessibility.md) | 对比度、冗余编码和替代文本 |
-
-适配器是针对这些库的使用指南；项目所需的渲染库须另行安装。地图服务可能需要自己的凭据，具体要求见各适配指南。
-
-仓库首页 [`README.md`](README.md) 为英文主文档；本文件 `README.zh-CN.md` 是中文介绍，`README.en.md` 保留为英文兼容入口。
-
-## 不使用 AI 助手，也能使用规范
-
-npm 包提供 JSON 主题和指南文件路径，本身不渲染图表。
-
-```sh
-npm install anyviz
-```
-
-```js
-const anyviz = require('anyviz');
-const theme = anyviz.themes.academic();
-console.log(theme.publication.export.dpi_min);
-console.log(anyviz.guides.academicPublication);
-```
-
-也可用你熟悉的语言直接读取 [`aesthetics/default.json`](aesthetics/default.json)。
-
-## 本地运行与校验
-
-```sh
-git clone https://github.com/TseringYuu/anyviz.git
+git clone --depth 1 --branch main https://github.com/TseringYuu/anyviz.git
 cd anyviz
-python3 -m http.server 8000
-# 打开 http://localhost:8000/examples/report-studio/
 ```
 
-四个行业看板通过 CDN 加载 ECharts，需要联网获取该依赖，数字均为模拟数据。Report Studio 的 HTML/SVG 展示不依赖 CDN；重建及可选 PDF、Word 导出要求见[案例说明](examples/report-studio/README.md)。
+运行前先查看对应的安装脚本：[macOS / Linux](install.sh) · [Windows](install.ps1)。在仓库根目录，只运行适用于你平台的那一条：
+
+| macOS / Linux | Windows PowerShell |
+| --- | --- |
+| `sh ./install.sh` | `.\install.ps1` |
+
+安装器会把技能放入共享目录 `~/.agents/skills/anyviz`，并检查受支持的智能体专用目录。如果智能体已经在运行，请重启。若只是想先试试，可以不做全局安装，直接用智能体打开仓库，让它阅读 [`SKILL.md`](SKILL.md)。
+
+**可以在仓库里直接问：**
+
+```text
+请用 AnyViz 分析 examples/report-studio/data/monthly.csv。我准备给销售团队做简报：
+营收和平均每笔订单金额的走势一致吗？把值得关注的变化讲清楚，
+也告诉我们，这些月度汇总数据解释不了什么。
+```
+
+### 应该用哪个下载渠道？
+
+- **给智能体安装技能，请用 `main` 上的脚本。** 安装器会在解压前校验固定版本归档的 SHA-256。[GitHub v1.0.3 发布版](https://github.com/TseringYuu/anyviz/releases/tag/v1.0.3)里的旧脚本取的是随分支变化的内容，没有这一步校验。[安装校验机制](docs/installer-security.md)。
+- **如果只想在 JavaScript 里使用规范，** 可以运行 `npm install anyviz` 获取主题和指南。[npm 1.0.2](https://registry.npmjs.org/anyviz/1.0.2) 不含 Shell 或 PowerShell 安装脚本；安装 npm 包不会替智能体注册技能。
+
+## 复现报告
+
+在同一个仓库里运行以下命令，就会从 CSV 重新生成 HTML 和六幅 SVG 图，并在本机提供预览。只需 Python 3 标准库：
 
 ```sh
-npm run validate
+python3 examples/report-studio/build.py
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-校验链检查主题配置、包导出、安装器行为和示例的静态约定。它**不是视觉正确性测试，也不会自动强制所有输出遵循设计规范**：仍需检查实际渲染的图表、文档和导出效果。
+打开[本机报告](http://127.0.0.1:8000/examples/report-studio/)。生成脚本会核对渠道、地区与整体营收是否一致。[导出说明](examples/report-studio/README.md)包含 PDF 和 Word 的生成方法；Word 正文可编辑，图表为嵌入图片。独立的[行业看板示例](examples/)通过 CDN 加载 ECharts。
 
-## 帮助打磨下一个案例
+## 技能里有什么
 
-你在报告、论文或看板中使用了 AnyViz？欢迎[提交 issue](https://github.com/TseringYuu/anyviz/issues)，附上脱敏截图、使用的 Agent/模型、提示词，以及有效或失败的部分。请勿上传私人数据。可复现案例与真实反馈尤其有帮助。
+| 智能体要做的事 | 对应资源 |
+| --- | --- |
+| 选择合适的比较图、趋势图、地图或流向图 | [选图指南](guides/chart-selection.md)、[34 个模板](templates/) |
+| 让图适合论文、报告、监控看板或网页 | [四套主题](aesthetics/themes/)、[出版指南](guides/academic-publication.md) |
+| 为项目已有技术栈生成可运行的代码 | [七个适配器](adapters/)：D3、ECharts、Mapbox、Three.js、Plotly、Matplotlib、ggplot2 |
+| 在最终尺寸下检查图表是否好读 | [一致性](guides/consistency-rules.md)、[图例](guides/legend-layout.md)、[无障碍](guides/accessibility.md) |
 
-**如果这个项目值得放进你的工具箱，欢迎点一个 star 收藏。** 使用示例不需要账号，也不需要先点 star。
+AnyViz 提供的是规则，**真正绘图的是你的智能体和它能调用的工具**。发布前，请用原始数据核对结果。
 
-参与贡献：[贡献指南](CONTRIBUTING.md) · [社区规范](CODE_OF_CONDUCT.md) · [安全说明](SECURITY.md)。
-
-## 许可与设计基础
-
-[MIT](LICENSE)。设计指导参考 Edward Tufte 的数据墨水比原则、Nathan Yau 的数据叙事、ColorBrewer 色板和 Viridis。这些参考不代表相关作者或项目的背书或认证。
+[参与贡献](CONTRIBUTING.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)

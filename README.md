@@ -12,9 +12,9 @@
 
 Give your agent the data, the question and the audience. Leave it to the agent to decide whether a chart would help. When it would, **AnyViz** guides the agent through choosing the chart, drawing it with the tools in your project, and explaining the choice. You don’t have to pick a chart type or write a configuration.
 
-[![Watch the AnyViz visualization showreel](assets/anyviz-showreel-poster.png)](assets/anyviz-showreel.mp4)
+[![Animated AnyViz preview: transit lines become orbital paths](assets/anyviz-showreel-preview.gif)](assets/anyviz-showreel.mp4)
 
-[▶ Watch the showreel](assets/anyviz-showreel.mp4) · A visual showcase, not a recording of an autonomous agent run.
+[▶ Full showreel (22 seconds, MP4)](assets/anyviz-showreel.mp4) · A visual showcase, not a recording of an autonomous agent run.
 
 ## Install the skill
 

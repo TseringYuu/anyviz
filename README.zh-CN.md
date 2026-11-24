@@ -12,9 +12,9 @@
 
 把数据、你想弄清的问题，以及答案是给谁看的，告诉智能体就行。要不要画图，让它根据场景判断。需要画时，**AnyViz** 指导它选择图表，用项目里合适的工具画出来，并说明选择的理由。你不必先选图表类型，也不必写配置。
 
-[![AnyViz 动图预览：地铁线路变成绕地轨道](assets/anyviz-showreel-preview.gif)](assets/anyviz-showreel.mp4)
+[![AnyViz 动图预览：五种数据可视化场景](assets/anyviz-showreel-montage.gif)](https://anyviz.aiware.store/showreel/)
 
-[▶ 完整短片（22 秒，MP4）](assets/anyviz-showreel.mp4) · 可视化效果展示，非 AI 自主执行过程录像。
+[▶ 播放完整短片（22 秒）](https://anyviz.aiware.store/showreel/) · 可视化效果展示，非 AI 自主执行过程录像。
 
 ## 安装技能
 
